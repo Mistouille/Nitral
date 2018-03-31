@@ -968,7 +968,8 @@ reminder(time, timeofreminder);
 
 });
 //Token
-bot.login ("NDA5MjUzMjk5Njk5ODQzMDcy.DYwLpQ.i-GfXs_tMv74xLCnlQLbAUXuKkA")
+bot.login (process.env.TOKEN)
+
     
     
     
