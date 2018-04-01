@@ -41,24 +41,36 @@ bot.on('message', message => {
     if (message.content ==="Team Wolf") {
         message.channel.send(":online-1: :wolf:**__TEAM WOLF EN FORCE__**:wolf:");
     }
-    if (message.content === owner + "distrub") {
+    if (message.content === prefix +  "distrub") {
+	     if(message.author.id == "234312981524119562"){
     	message.channel.bulkDelete (1)
     bot.user.setStatus( 'Online ' );
       bot.user.setActivity(`*help | ${bot.guilds.size} serveurs | ${bot.users.size} utilisateurs`) ;
       message.channel.send ("En cours de modification \n `en ligne`")
-}
-if (message.content === owner + "onmain") {
+} else {
+      message.channel.send("**Erreur** ! Tu n'es pas l'owner") 
+    }
+  }
+if (message.content === prefix + "onmain") {
+ if(message.author.id == "234312981524119562"){
     	message.channel.bulkDelete (1)
     bot.user.setStatus( 'idle' );
     bot.user.setActivity('EN MAINTENANCE');
         message.channel.send ("En cours de modification \n`en absence` et `EN MAINTENANCE`")
-}
-  if (message.content === owner + "stopmain") {
+} else {
+      message.channel.send("**Erreur** ! Tu n'es pas l'owner") 
+    }
+  }
+  if (message.content === prefix + "stopmain") {
+	  if(message.author.id == "234312981524119562"){
   	message.channel.bulkDelete (1)
     bot.user.setStatus( 'dnd' );
  bot.user.setActivity(`*help | ${bot.guilds.size} serveurs | ${bot.users.size} utilisateurs`);
  message.channel.send ("En cours de modification \n`en ne pas dérange`")
-}
+} else {
+      message.channel.send("**Erreur** ! Tu n'es pas l'owner") 
+    }
+  }
 
     if (message.content ==="++dédicace") {
         message.channel.send ("Dédicace à,Feuille Daloë, Mathilde, Harmony, Cassie, Colk pour m'avoir fait confiance et d'avoir rajouté mon bot sur votre serveur et de l'utiliser vraiment beaucoup je vous remercie si jamais n'hésitez pas à rejoindre le serveur du bot en tapant `++invitation` et en tapant le bouton join support serveur 😉")
