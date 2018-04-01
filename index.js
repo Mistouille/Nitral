@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client()
-
+const low = require("lowdb");
+const FileSync = require ('lowdb/adapters/FileSync')
+const client = new Discord.Client();
 //------------------------------------------------//
 //                   Préfixe                      //
 //------------------------------------------------//
@@ -13,6 +15,10 @@ let flyfamille = ("Fly'")
 //------------------------------------------------//
 //                   DATA BASE                    //
 //------------------------------------------------//
+const adatper = new FileSync('database.json')
+const db = low(adatper)
+
+db.defaults({histoires: [], xp: []}).write()
 
 
 //------------------------------------------------//
@@ -30,14 +36,43 @@ bot.on('ready', function () {
 //------------------------------------------------//
 
 
-//------------------------------------------------//
-//                   Commande                     //
-//------------------------------------------------//
-
 bot.on('message', message => {
 
-    //fun
+  //------------------------------------------------//
+  //                  XP                            //
+  //------------------------------------------------//
+    var msgauthor = message.author.id
 
+    if (message.author.bot)return;
+
+    if (!db.get("xp").find({user: msgauthor}).value()){
+        db.get("xp").push({user: msgauthor, xp: 1 }).write();
+
+    }else {
+      var userxpdb = db.get("xp").filter({user: msgauthor}).find('xp').value();
+      console.log(userxpdb)
+      var userxp = Object.values(userxpdb)
+      console.log(userxp)
+      console.log ("Nombre d'xp: ${userxp[1]}")
+
+      db.get("xp").find({user: msgauthor}).assign({user: msgauthor, xp: userxp[1] += 1}).write();
+
+      if (message.content === prefix + "xp"){
+        var xp = db.get("xp").filter({user: msgauthor}).find('xp').value()
+        var xpfinal = Object.values(xp);
+        let xpembed = new Discord.RichEmbed ()
+            .setTitle(`Xp de ${message.author.username}`)
+            .setColor ('#08B19C')
+            .addField("XP", `${xpfinal[1]} xp`)
+            .setTimestamp()
+            .setFooter ("XP")
+            message.channel.send(xpembed)
+      }
+    }
+    //------------------------------------------------//
+    //                   Commande                     //
+    //------------------------------------------------//
+        //Fun
     if (message.content ==="Team Wolf") {
         message.channel.send(":online-1: :wolf:**__TEAM WOLF EN FORCE__**:wolf:");
     }
@@ -123,6 +158,7 @@ if (message.content === prefix + "onmain") {
             .addField("__Setup__:","Envoi un message pour le bon fonctionnement du bot",false)
     	      .addField ("__Help__:","Affiche le help 🙇‍♂️", false)
     	      .addField ("__Ping__:", "Ping le bot 🏓", false)
+            .addField ("__Xp__:", "Donne votre xp (1 message = 1 xp)", false)
     	      .addField ("__Avatar__:", "Affiche votre avatar 🎎", false)
     	      .addField ("__Invitation__:", "Envoi l'invitation du bot 📨", false)
     	     .addField ("Dédicace", "Petite surprise à ceux qui utilisent très souvent mon bot ", false)
@@ -192,6 +228,7 @@ if (message.content === prefix + "onmain") {
             .addField("__Setup__:","Envoi un message pour le bon fonctionnement du bot",false)
     	      .addField ("__Help__:","Affiche le help 🙇‍♂️", false)
     	      .addField ("__Ping__:", "Ping le bot 🏓", false)
+            .addField ("__Xp__:", "Donne votre xp (1 message = 1 xp)", false)
     	      .addField ("__Avatar__:", "Affiche votre avatar 🎎", false)
     	      .addField ("__Invitation__:", "Envoi l'invitation du bot 📨", false)
     	      .addField ("__Check__:", "Vérifie si le bot et opérationnel et fait un ping 📢", false)
@@ -343,7 +380,7 @@ if (message.content === prefix + "onmain") {
      	.addField("Date de création", message.guild.createdAt,false)
      	.addField("Date de venu", message.member.joinedAt,false)
      	.addField("Membres Total", message.guild.memberCount,false)
-      .addField ("Propriétaire du serveur", message.guild.owner.username,false)
+      .addField ("Propriétaire du serveur", message.guild.owner.id,false)
       .addField ("ID du serveur", message.guild.id, false)
       .setTimestamp()
       .setFooter(`${message.author.username} | Server Info`);
@@ -981,9 +1018,68 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
         reminder(time, timeofreminder);
       }
     }
+        if(message.content.startsWith(prefix + 'lock')){
+          if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
+            message.channel.send ("📛 Tu n'as pas la permission 📛");
+            console.log("📛 Tu n'as pas la permission 📛");
+            return;
+          }
+          else if (!message.channel.permissionsFor(bot.user).hasPermission("MANAGE_ROLES")) {
+            message.channel.send ("📛 Je n'es pas la permission 📛");
+            console.log("📛 Je n'es pas la permission 📛");
+            return;
+          }
 
+          if (!bot.lockit) bot.lockit = [];
+          const time = message.content.split(' ');
+          const validUnlocks = ['release', 'unlock'];
+          if (!time) return message.reply('Tu dois donner un temp precis pour le lockdown');
+
+          if (validUnlocks.includes(time)) {
+            message.channel.overwritePermissions(message.guild.id, {
+              SEND_MESSAGES: null
+            }).then(() => {
+              message.channel.send('Lockdown lifted.');
+              clearTimeout(bot.lockit[message.channel.id]);
+              delete bot.lockit[message.channel.id];
+            }).catch(error => {
+              console.log(error);
+            });
+          } else {
+            message.channel.overwritePermissions(message.guild.id, {
+              SEND_MESSAGES: false
+            }).then(() => {
+              message.channel.send(`Channel bloqué pendant `).then(() => {
+
+                let unmuteEmbed = new Discord.RichEmbed()
+                    .setDescription("~Lockchan~")
+                    .setColor("#e56b00")
+                    .addField("Moderateur", `${message.author.username}`)
+                    .addField("Channel lock ", message.channel)
+                    .addField("Le", message.createdAt)
+                    .setTimestamp()
+                    .setFooter(`lockchan`);
+                    let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
+                    if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```logs-nitral```.");
+                      incidentchannel.send(unmuteEmbed)
+                      bot.lockit[message.channel.id] = setTimeout(() => {
+                        message.channel.overwritePermissions(message.guild.id, {
+                          SEND_MESSAGES: null
+                        }).then(message.channel.send('Channel débloqué')).catch(console.error);
+                        delete bot.lockit[message.channel.id];
+                      }, ms(time));
+
+                    }).catch(error => {
+                      console.log(error);
+                    });
+                  });
+                }
+              };
     if(message.content.startsWith(prefix + "h say")){
       message.channel.send("__Usage__ `"+ prefix + "say [Un mot ou une phrase]`");
+    }
+    if(message.content.startsWith(prefix + "h lockchan")){
+      message.channel.send("__Usage__ `"+ prefix + "lockchan [temps en seconde]`");
     }
     if(message.content.startsWith(prefix + "h 8ball")){
       message.channel.send("__Usage__ `"+ prefix + "8ball [Un mot ou une phrase]`");
@@ -992,7 +1088,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
       message.channel.send("__Usage__ `"+ prefix + "verlan <un mot ou une phrase>`");
     }
     if(message.content.startsWith(prefix + "h reminder")){
-      message.channel.send("Un reminder par channel \n \n __Usage__ `"+ prefix + "reminder <un mot ou une phrase>` \n             `" + prefix + "reminder end`");
+      message.channel.send("Un reminder par channel \n \n __Usage__ `"+ prefix + "reminder <temps en seconde> <un mot ou une phrase>` \n             `" + prefix + "reminder end`");
     }
     if(message.content.startsWith(prefix + "h report")){
       message.channel.send("`__Usage__ `"+ prefix + "report <Une mention><La raison>`");
@@ -1014,13 +1110,6 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
     }
     if(message.content.startsWith(prefix + "h unmute")){
           message.channel.send("__Usage__ `"+ prefix + "unmute <la mention de lutilisateur>`");
-    }
-    if(message.content === (prefix + "t")){
-    message.channel.send(":apple:***SONDAGE :apple:***")
-                .then(function (message) {
-                  message.react("👍")
-                  message.react("👎")
-                })
     }
 });
 //Token
