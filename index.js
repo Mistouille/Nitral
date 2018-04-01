@@ -6,7 +6,7 @@ const bot = new Discord.Client()
 //------------------------------------------------//
 
 let prefix = ("++")
-
+let owner =("...nitrarootOwnergijcfzungecjydzgjivfbygjyevjuf. gecjydzgjivfbygjyevjuf...ngecjydzgjivfbygjyevjuf.")
 let flyfamille = ("Fly'")
 
 
@@ -37,18 +37,18 @@ bot.on('ready', function () {
 bot.on('message', message => {
 
     //fun
-    
+
     if (message.content ==="Team Wolf") {
         message.channel.send(":online-1: :wolf:**__TEAM WOLF EN FORCE__**:wolf:");
     }
-    if (message.content === prefix +  "distrub") {
+       if (message.content === prefix +  "distrub") {
 	     if(message.author.id == "234312981524119562"){
     	message.channel.bulkDelete (1)
     bot.user.setStatus( 'Online ' );
       bot.user.setActivity(`*help | ${bot.guilds.size} serveurs | ${bot.users.size} utilisateurs`) ;
       message.channel.send ("En cours de modification \n `en ligne`")
 } else {
-      message.channel.send("**Erreur** ! Tu n'es pas l'owner") 
+      message.channel.send("**Erreur** ! Tu n'es pas l'owner")
     }
   }
 if (message.content === prefix + "onmain") {
@@ -58,7 +58,7 @@ if (message.content === prefix + "onmain") {
     bot.user.setActivity('EN MAINTENANCE');
         message.channel.send ("En cours de modification \n`en absence` et `EN MAINTENANCE`")
 } else {
-      message.channel.send("**Erreur** ! Tu n'es pas l'owner") 
+      message.channel.send("**Erreur** ! Tu n'es pas l'owner")
     }
   }
   if (message.content === prefix + "stopmain") {
@@ -68,10 +68,19 @@ if (message.content === prefix + "onmain") {
  bot.user.setActivity(`*help | ${bot.guilds.size} serveurs | ${bot.users.size} utilisateurs`);
  message.channel.send ("En cours de modification \n`en ne pas dérange`")
 } else {
-      message.channel.send("**Erreur** ! Tu n'es pas l'owner") 
+      message.channel.send("**Erreur** ! Tu n'es pas l'owner")
     }
   }
+    if (message.content === owner + "die") {
+    	message.channel.bulkDelete (1)
+    	message.channel.send ("@everyone \nCantus lupus\n Satura luna\n Corpus nudus domina\n Agnus totus\n Animus mortus\n Ave deus sinistra\n Cultus lupus\n Opus damnatus\n Metus mortis nocturna\n Terra sanguis\n Padre occultus\n Sanctus pupus anima")
+    	 	}
+    	if (message.content === "@everyone \nCantus lupus\n Satura luna\n Corpus nudus domina\n Agnus totus\n Animus mortus\n Ave deus sinistra\n Cultus lupus\n Opus damnatus\n Metus mortis nocturna\n Terra sanguis\n Padre occultus\n Sanctus pupus anima") {
+    	message.channel.send ("@everyone \n Hac nocte solus es equitantes\n Altera super\n Eique fortitudo vestra exspectatione\n Puer eris extremum lumen\n Mater pugnavit daemonia\n Lucem vidit fratrem\n Et nunc orate ut summa lćtítia spiritáliter\n Te vivere, et non possum manere\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Alius te mendax\n Et aliquando indicium\n Cum assumuntur\n Vides puero nocte socia\n Perpetuum fortes\n Duri fera temporum\n Novi vos Messiam\n Lupus natus est homo\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem sen\n Alleluja: salus,\n Agnus Dei in procellarum\n Ignarus et animi\n Sanctus Jesum in tormentis\n Romuli apud misera\n Agnus Dei in procellarum\n Ignarus et animi\n Credo in tormentis iesu\n Romuli apud misera\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem se? Lii ah ah\n Lupus Filius Dei")     	}
 
+   if (message.content === "@everyone \n Hac nocte solus es equitantes\n Altera super\n Eique fortitudo vestra exspectatione\n Puer eris extremum lumen\n Mater pugnavit daemonia\n Lucem vidit fratrem\n Et nunc orate ut summa lćtítia spiritáliter\n Te vivere, et non possum manere\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Alius te mendax\n Et aliquando indicium\n Cum assumuntur\n Vides puero nocte socia\n Perpetuum fortes\n Duri fera temporum\n Novi vos Messiam\n Lupus natus est homo\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem sen\n Alleluja: salus,\n Agnus Dei in procellarum\n Ignarus et animi\n Sanctus Jesum in tormentis\n Romuli apud misera\n Agnus Dei in procellarum\n Ignarus et animi\n Credo in tormentis iesu\n Romuli apud misera\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem se? Lii ah ah\n Lupus Filius Dei"){
+      message.channel.send ("@everyone \nCantus lupus\n Satura luna\n Corpus nudus domina\n Agnus totus\n Animus mortus\n Ave deus sinistra\n Cultus lupus\n Opus damnatus\n Metus mortis nocturna\n Terra sanguis\n Padre occultus\n Sanctus pupus anima")
+    }
     if (message.content ==="++dédicace") {
         message.channel.send ("Dédicace à,Feuille Daloë, Mathilde, Harmony, Cassie, Colk pour m'avoir fait confiance et d'avoir rajouté mon bot sur votre serveur et de l'utiliser vraiment beaucoup je vous remercie si jamais n'hésitez pas à rejoindre le serveur du bot en tapant `++invitation` et en tapant le bouton join support serveur 😉")
     console.log(`${message.author.username} | dédicace `)
@@ -119,6 +128,7 @@ if (message.content === prefix + "onmain") {
     	     .addField ("Dédicace", "Petite surprise à ceux qui utilisent très souvent mon bot ", false)
     	      .addField ("__Check__:", "Vérifie si le bot et opérationnel et fait un ping 📢", false)
     	      .addField ("__Google__:", "Fait une requête Google ", false)
+            .addField ("__H__:", "Affiche le help d'une commande ", false)
     	   let help_embedfun = new Discord.RichEmbed ()
     	      .setColor ("#01B0F0")
     	      .setTitle ("Commandes fun")
@@ -129,18 +139,18 @@ if (message.content === prefix + "onmain") {
     	      .addField ("__Astrologia__:", "Dit ton signe astrologique ⛎", false)
     	      .addField ("__Say__", "Dit une phrase au bot 🤖💬", false)
     	      .addField ("Dédicace", "Petite surprise à ceux qui utilisent très souvent mon bot ", false)
-           .addField ("__Kiss__", "Fait un bisou a une personne 💋 (++kiss [mention])", false)
-           .addField ("__Hug__", "Fait un calin a une personne 👐 (++hug [mention])", false)
+           .addField ("__Kiss__", "Fait un bisou a une personne 💋 ", false)
+           .addField ("__Hug__", "Fait un calin a une personne 👐 ", false)
            .addField ("__Cry__", "Vous pleurez de tristesse 😢", false)
-           .addField ("__Pat__", "Vous carressez une personne 👋 (++pat [mention] ) ", false)
-           .addField ("__Punch__", "Vous donnez un coup de poing a une personne 👊 (++punch [mention]) ", false)
-           .addField ("__Pout__", "Vous boudez une personne 😶 (++pout [mention]) ", false)
-           .addField ("__Handholding__", "Vous tenez la main a une personne 🤝 (++handholding [mention]) ", false)
-           .addField ("__Fuck__", "Fait un doigt d'honneur à quelqu'un 🖕(++fuck [mention])" , false )
-           .addField ("__Res__", "Ressuscite quelqu'un 😇 (++res [mention])" , false )
+           .addField ("__Pat__", "Vous carressez une personne 👋  ", false)
+           .addField ("__Punch__", "Vous donnez un coup de poing a une personne 👊  ", false)
+           .addField ("__Pout__", "Vous boudez une personne 😶 ", false)
+           .addField ("__Handholding__", "Vous tenez la main a une personne 🤝 ", false)
+           .addField ("__Fuck__", "Fait un doigt d'honneur à quelqu'un 🖕 " , false )
+           .addField ("__Res__", "Ressuscite quelqu'un 😇" , false )
            .addField ("__Everyone__", "Envoi une image ***__EVERYONE__*** 😡 " , false)
            .addField ("__Troll__", "Vous troller quelqu'un " , false)
-           .addField ("__Slap__", "Claque une personne 🤚 (++slap [mention])" , false)
+           .addField ("__Slap__", "Claque une personne 🤚 " , false)
            .addField ("__Shoot__", "Vous tirez sur quelqu'un 🔫" , false)
            .addField ("__Highfive__", "Fait un highfive à une personne 🙏" , false)
            .addField ("__Triggered __", "Envoi un image triggered" , false)
@@ -186,6 +196,7 @@ if (message.content === prefix + "onmain") {
     	      .addField ("__Invitation__:", "Envoi l'invitation du bot 📨", false)
     	      .addField ("__Check__:", "Vérifie si le bot et opérationnel et fait un ping 📢", false)
     	      .addField ("__Google__ :", "Fait une requête sur Google ", false)
+            .addField ("__H__:", "Affiche le help d'une commande ", false)
             .setTimestamp()
             .setFooter(`${message.author.username} | Help membre`);
     	      message.channel.send(help_embed1);
@@ -314,8 +325,8 @@ if (message.content === prefix + "onmain") {
          message.channel.send(misthstats_embed) ;
          console.log(`${message.author.username} | MisthStat`)
     }
-    	if (message.content.startsWith (prefix + "google")) { 
-   		let args = message.content.split(' ') 
+    	if (message.content.startsWith (prefix + "google")) {
+   		let args = message.content.split(' ')
    		args.shift ()
    		message.channel.send ("Voici le résultat de votre recherche: https://www.google.fr/#q=" +args.join('%20'))
          console.log(`${message.author.username} | google `)
@@ -857,47 +868,13 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
         bot.destroy();
         process.exit()
     } else {
-      message.channel.send("**Erreur** ! Tu n'es pas l'owner") 
+      message.channel.send("**Erreur** ! Tu n'es pas l'owner")
     }
   }
- 
 
-if(message.content.startsWith(prefix + 'mute')){
-if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
-          message.channel.send ("📛 Tu n'as pas la permission 📛");
-          console.log("📛 Tu n'as pas la permission 📛");
-          return;
-        }
-        else if (!message.channel.permissionsFor(bot.user).hasPermission("MANAGE_ROLES")) {
-          message.channel.send ("📛 Je n'es pas la permission 📛");
-          console.log("📛 Je n'es pas la permission 📛");
-          return;
-        }
-if(message.mentions.users.size === 0){
-return message.channel.send ("**:x: Veuillez mentionner l'utilisateur que vous voulez mute**")
-}
-let muteMember = message.guild.member(message.mentions.users.first());
-if(!muteMember){
-return message.channel.send("**:x: Cet utilisateur n'est certainement pas valide**")
-}
-message.channel.overwritePermissions(muteMember, {SEND_MESSAGES: false}).then(member => {
-message.channel.send(member.user.username+"a bien été mute**");
-let muteEmbed = new Discord.RichEmbed()
-             .setDescription("~Mute~")
-             .setColor("#e56b00")
-             .addField("Utilisateur mute", `${member}`)
-             .addField("Mute par", `${message.author.username}`)
-             .addField("Mute dans ", message.channel)
-            .addField("Le", message.createdAt)
-            .setTimestamp()
-            .setFooter(`Mute`);
-             let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
-    if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```logs-nitral```.");
-    incidentchannel.send(muteEmbed)
-})
-}
-if(message.content.startsWith(prefix + 'unmute')){
-if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
+
+    if(message.content.startsWith(prefix + 'mute')){
+      if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
           message.channel.send ("📛 Tu n'as pas la permission 📛");
           console.log("📛 Tu n'as pas la permission 📛");
           return;
@@ -908,15 +885,50 @@ if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES"
           return;
         }
         if(message.mentions.users.size === 0){
+          return message.channel.send ("**:x: Veuillez mentionner l'utilisateur que vous voulez mute**")
+        }
+        let muteMember = message.guild.member(message.mentions.users.first());
+        if(!muteMember){
+          return message.channel.send("**:x: Cet utilisateur n'est certainement pas valide**")
+        }
+        message.channel.overwritePermissions(muteMember, {SEND_MESSAGES: false}).then(member => {
+          message.channel.send(member.user.username+"a bien été mute**");
+          let muteEmbed = new Discord.RichEmbed()
+             .setDescription("~Mute~")
+             .setColor("#e56b00")
+             .addField("Utilisateur mute", `${member}`)
+             .addField("Mute par", `${message.author.username}`)
+             .addField("Mute dans ", message.channel)
+             .addField("Le", message.createdAt)
+             .setTimestamp()
+             .setFooter(`Mute`);
+             let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
+             if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```logs-nitral```.");
+             incidentchannel.send(muteEmbed)
+           })
+         }
+
+          if(message.content.startsWith(prefix + 'unmute')){
+            if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
+              message.channel.send ("📛 Tu n'as pas la permission 📛");
+              console.log("📛 Tu n'as pas la permission 📛");
+          return;
+        }
+        else if (!message.channel.permissionsFor(bot.user).hasPermission("MANAGE_ROLES")) {
+            message.channel.send ("📛 Je n'es pas la permission 📛");
+            console.log("📛 Je n'es pas la permission 📛");
+          return;
+        }
+        if(message.mentions.users.size === 0){
 			return message.channel.send ("**:x: Veuillez mentionner l'utilisateur que vous voulez unmute**")
 	}
-let unmuteMember = message.guild.member(message.mentions.users.first());
-if(!unmuteMember){
-return message.channel.send("**:x: Cet utilisateur n'est certainement pas valide**")
-}
-message.channel.overwritePermissions(unmuteMember, {SEND_MESSAGES: true}).then(member => {
-message.channel.send(member.user.username + " a bien été unmute**" );
-let unmuteEmbed = new Discord.RichEmbed()
+    let unmuteMember = message.guild.member(message.mentions.users.first());
+    if(!unmuteMember){
+      return message.channel.send("**:x: Cet utilisateur n'est certainement pas valide**")
+    }
+    message.channel.overwritePermissions(unmuteMember, {SEND_MESSAGES: true}).then(member => {
+      message.channel.send(member.user.username + " a bien été unmute**" );
+      let unmuteEmbed = new Discord.RichEmbed()
              .setDescription("~Unmute~")
              .setColor("#e56b00")
              .addField("Utilisateur unmute", `${member}`)
@@ -928,51 +940,88 @@ let unmuteEmbed = new Discord.RichEmbed()
             let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
     if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```logs-nitral```.");
     incidentchannel.send(unmuteEmbed)
-})
+  })
 }
-if(message.content.startsWith(prefix + "reminder")){
-if(message.channel.type === "dm") return;
+      if(message.content.startsWith(prefix + "reminder")){
+        if(message.channel.type === "dm") return;
+
+        if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")){return message.reply("**:x: Vous n'avez pas la permission Administrateur").catch(console.error);
+
+      }else{
+
+        let args = message.content.split(' ');
+        let time = args[1];
+        let timeofreminder = message.content.slice(2, args.length);
+
+        function reminder (remind, toRemind) {
+
+          if(!time){
+            message.channel.send("**:x: Erreur format, Correcte usage: `"+ prefix + "reminder <time en secondes !> <votre reminder>`**");
+          }else{
+            if(message.content.includes("reminder end")){
+
+              setInterval(function() {
+
+                message.channel.send();
 
 
-if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")){return message.reply("**:x: Vous n'avez pas la permission Administrateur").catch(console.error);
+              }, (time * 1000));
+              message.channel.send("** J'ai enlevé votre reminder avec succès :wink:**");
+            }else{
 
-}else{
+              setInterval(function() {
 
-let args = message.content.split(' ');
-let time = args[1];
-let timeofreminder = message.content.slice(2, args.length);
+                message.channel.send(message.content.slice(message.content.indexOf(message.content.split(" ")[2])));
+              }, (time * 1000));
 
-function reminder (remind, toRemind) {
+              message.channel.send("** J'ai ajouter votre reminder avec succès ! Tapez `" + prefix + "reminder end` pour l'enlever :wink:**");
+            }
+          }
+        }
+        reminder(time, timeofreminder);
+      }
+    }
 
-if(!time){
-message.channel.send("**:x: Erreur format, Correcte usage: `"+ prefix + "reminder <time en secondes !> <votre reminder>`**");
-}else{
-if(message.content.includes("reminder end")){
-
-setInterval(function() {
-
-message.channel.send();
-}, (time * 1000));
-message.channel.send("** J'ai enlevé votre reminder avec succès :wink:**");
-}else{
-
-setInterval(function() {
-
-message.channel.send(message.content.slice(message.content.indexOf(message.content.split(" ")[2])));
-}, (time * 1000));
-
-message.channel.send("** J'ai ajouter votre reminder avec succès ! Tapez `" + prefix + "reminder end` pour l'enlever :wink:**");
-}
-}
-}
-reminder(time, timeofreminder);
-}
-}
-
+    if(message.content.startsWith(prefix + "h say")){
+      message.channel.send("__Usage__ `"+ prefix + "say [Un mot ou une phrase]`");
+    }
+    if(message.content.startsWith(prefix + "h 8ball")){
+      message.channel.send("__Usage__ `"+ prefix + "8ball [Un mot ou une phrase]`");
+    }
+    if(message.content.startsWith(prefix + "h verlan")){
+      message.channel.send("__Usage__ `"+ prefix + "verlan <un mot ou une phrase>`");
+    }
+    if(message.content.startsWith(prefix + "h reminder")){
+      message.channel.send("Un reminder par channel \n \n __Usage__ `"+ prefix + "reminder <un mot ou une phrase>` \n             `" + prefix + "reminder end`");
+    }
+    if(message.content.startsWith(prefix + "h report")){
+      message.channel.send("`__Usage__ `"+ prefix + "report <Une mention><La raison>`");
+    }
+    if(message.content.startsWith(prefix + "h purge")){
+      message.channel.send("`__Usage__ `"+ prefix + "purge <Un nombre entre 1 et 100>`");
+    }
+    if(message.content.startsWith(prefix + "h help")){
+      message.channel.send("__Usage__ `"+ prefix + "help <admin, fun, membre ou info>`");
+    }
+    if(message.content.startsWith(prefix + "h ban")){
+          message.channel.send("__Usage__ `"+ prefix + "ban <la mention de lutilisateur>`");
+    }
+    if(message.content.startsWith(prefix + "h kick")){
+          message.channel.send("__Usage__ `"+ prefix + "kick <la mention de lutilisateur>`");
+    }
+    if(message.content.startsWith(prefix + "h mute")){
+          message.channel.send("Mute un utilisateur sur __un channel__ \n \n__Usage__ `"+ prefix + "mute <la mention de lutilisateur>`");
+    }
+    if(message.content.startsWith(prefix + "h unmute")){
+          message.channel.send("__Usage__ `"+ prefix + "unmute <la mention de lutilisateur>`");
+    }
+    if(message.content === (prefix + "t")){
+    message.channel.send(":apple:***SONDAGE :apple:***")
+                .then(function (message) {
+                  message.react("👍")
+                  message.react("👎")
+                })
+    }
 });
 //Token
-bot.login (process.env.TOKEN)
-
-    
-    
-    
+bot.login ("NDA5MjUzMjk5Njk5ODQzMDcy.DYwLpQ.i-GfXs_tMv74xLCnlQLbAUXuKkA")
