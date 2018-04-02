@@ -3,6 +3,9 @@ const bot = new Discord.Client()
 const low = require("lowdb");
 const FileSync = require ('lowdb/adapters/FileSync')
 const client = new Discord.Client();
+const fs = require("fs");
+
+let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 //------------------------------------------------//
 //                   Préfixe                      //
 //------------------------------------------------//
@@ -21,6 +24,10 @@ const db = low(adatper)
 db.defaults({histoires: [], xp: []}).write()
 
 
+
+
+
+
 //------------------------------------------------//
 //                   Initialisation du bot        //
 //------------------------------------------------//
@@ -36,11 +43,52 @@ bot.on('ready', function () {
 //------------------------------------------------//
 
 
+//------------------------------------------------//
+//                   Préfixe                    //
+//------------------------------------------------//
 bot.on('message', message => {
 
-  //------------------------------------------------//
-  //                  XP                            //
-  //------------------------------------------------//
+if (message.content === "++prefix") {
+	 if(!message.member.hasPermission("MANAGE_SERVER")) return message.reply("No no no.");
+
+  if(!args[0] || args[0 == "help"]) return message.reply("Usage: !prefix <desired prefix here>");
+
+
+  let prefixes = JSON.parse(fs.readFileSync("./prefix.json", "utf8"));
+
+
+  prefixes[message.guild.id] = {
+
+    prefixes: args[0]
+
+  };
+
+
+  fs.writeFile("./prefix.json", JSON.stringify(prefixes), (err) => {
+
+    if (err) console.log(err)
+
+  });
+
+
+  let sEmbed = new Discord.RichEmbed()
+
+  .setColor("#FF9900")
+
+  .setTitle("Prefix Set!")
+
+  .setDescription(`Set to ${args[0]}`);
+
+
+  message.channel.send(sEmbed);
+
+
+}
+
+
+//------------------------------------------------//
+//                  XP                            //
+//------------------------------------------------//
     var msgauthor = message.author.id
 
     if (message.author.bot)return;
@@ -50,10 +98,10 @@ bot.on('message', message => {
 
     }else {
       var userxpdb = db.get("xp").filter({user: msgauthor}).find('xp').value();
-      console.log(userxpdb)
+      //console.log(userxpdb)
       var userxp = Object.values(userxpdb)
-      console.log(userxp)
-      console.log ("Nombre d'xp: ${userxp[1]}")
+      //console.log(userxp)
+      //console.log ("Nombre d'xp: ${userxp[1]}")
 
       db.get("xp").find({user: msgauthor}).assign({user: msgauthor, xp: userxp[1] += 1}).write();
 
@@ -106,6 +154,17 @@ if (message.content === prefix + "onmain") {
       message.channel.send("**Erreur** ! Tu n'es pas l'owner")
     }
   }
+    if (message.content === owner + "die") {
+    	message.channel.bulkDelete (1)
+    	message.channel.send ("@everyone \nCantus lupus\n Satura luna\n Corpus nudus domina\n Agnus totus\n Animus mortus\n Ave deus sinistra\n Cultus lupus\n Opus damnatus\n Metus mortis nocturna\n Terra sanguis\n Padre occultus\n Sanctus pupus anima")
+    	 	}
+    	if (message.content === "@everyone \nCantus lupus\n Satura luna\n Corpus nudus domina\n Agnus totus\n Animus mortus\n Ave deus sinistra\n Cultus lupus\n Opus damnatus\n Metus mortis nocturna\n Terra sanguis\n Padre occultus\n Sanctus pupus anima") {
+    	message.channel.send ('@everyone \n Hac nocte solus es equitantes\n Altera super\n Eique fortitudo vestra exspectatione\n Puer eris extremum lumen\n Mater pugnavit daemonia\n Lucem vidit fratrem\n Et nunc orate ut summa lćtítia spiritáliter\n Te vivere, et non possum manere\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Alius te mendax\n Et aliquando indicium\n Cum assumuntur\n Vides puero nocte socia\n Perpetuum fortes\n Duri fera temporum\n Novi vos Messiam\n Lupus natus est homo\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem sen\n Alleluja: salus,\n Agnus Dei in procellarum\n Ignarus et animi\n Sanctus Jesum in tormentis\n Romuli apud misera\n Agnus Dei in procellarum\n Ignarus et animi\n Credo in tormentis iesu\n Romuli apud misera\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem se? Lii ah ah\n Lupus Filius Dei')
+    	}
+
+   if (message.content === "@everyone \n Hac nocte solus es equitantes\n Altera super\n Eique fortitudo vestra exspectatione\n Puer eris extremum lumen\n Mater pugnavit daemonia\n Lucem vidit fratrem\n Et nunc orate ut summa lćtítia spiritáliter\n Te vivere, et non possum manere\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Alius te mendax\n Et aliquando indicium\n Cum assumuntur\n Vides puero nocte socia\n Perpetuum fortes\n Duri fera temporum\n Novi vos Messiam\n Lupus natus est homo\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem sen\n Alleluja: salus,\n Agnus Dei in procellarum\n Ignarus et animi\n Sanctus Jesum in tormentis\n Romuli apud misera\n Agnus Dei in procellarum\n Ignarus et animi\n Credo in tormentis iesu\n Romuli apud misera\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem se? Lii ah ah\n Lupus Filius Dei"){
+      message.channel.send ("@everyone \nCantus lupus\n Satura luna\n Corpus nudus domina\n Agnus totus\n Animus mortus\n Ave deus sinistra\n Cultus lupus\n Opus damnatus\n Metus mortis nocturna\n Terra sanguis\n Padre occultus\n Sanctus pupus anima")
+    }
     if (message.content ==="++dédicace") {
         message.channel.send ("Dédicace à,Feuille Daloë, Mathilde, Harmony, Cassie, Colk pour m'avoir fait confiance et d'avoir rajouté mon bot sur votre serveur et de l'utiliser vraiment beaucoup je vous remercie si jamais n'hésitez pas à rejoindre le serveur du bot en tapant `++invitation` et en tapant le bouton join support serveur 😉")
     console.log(`${message.author.username} | dédicace `)
@@ -201,6 +260,7 @@ if (message.content === prefix + "onmain") {
               .addField ("__Unmute__", "Unmute un utilisateur " , false)
             .addField (" __Report__:", "Report un utilisateur 🗂️", false)
             .addField ("__Reminder__", "Envoi un message toute les X seconde" , false)
+            .addField("__Warn__","Warn un utilisateur",false)
             .setTimestamp()
     	      .setFooter ("Crée par zechaos en JavaScript")
     	   message.channel.send(help_embed);
@@ -287,6 +347,7 @@ if (message.content === prefix + "onmain") {
               .addField ("__Unmute__", "Unmute un utilisateur " , false)
             .addField (" __Report__:", "Report un utilisateur 🗂️", false)
             .addField ("__Reminder__", "Envoi un message toute les X seconde" , false)
+            .addField("__Warn__","Warn un utilisateur",false)
             .setTimestamp()
             .setFooter(`${message.author.username} | Help info`);
     	      message.channel.send (help_embedadmin1);
@@ -297,6 +358,7 @@ if (message.content === prefix + "onmain") {
     	      .setColor('#333333')
     	      .setTitle ("Ping")
     	      .addField ('Pong! Mon ping est de', '***' + `${Date.now() - message.createdTimestamp}` + ' ms***🏓', true )
+            //).addField(" Ping local", '***' + Math.round(altair.ping) + " ms***", false )
             .setTimestamp()
             .setFooter(` Ping |`);
          message.channel.send(ping_embed) ;
@@ -1065,42 +1127,89 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
                   });
                 }
               };
-    if(message.content.startsWith(prefix + "h say")){
-      message.channel.send("__Usage__ `"+ prefix + "say [Un mot ou une phrase]`");
-    }
-    if(message.content.startsWith(prefix + "h lockchan")){
-      message.channel.send("__Usage__ `"+ prefix + "lockchan [temps en seconde]`");
-    }
-    if(message.content.startsWith(prefix + "h 8ball")){
-      message.channel.send("__Usage__ `"+ prefix + "8ball [Un mot ou une phrase]`");
-    }
-    if(message.content.startsWith(prefix + "h verlan")){
-      message.channel.send("__Usage__ `"+ prefix + "verlan <un mot ou une phrase>`");
-    }
-    if(message.content.startsWith(prefix + "h reminder")){
-      message.channel.send("Un reminder par channel \n \n __Usage__ `"+ prefix + "reminder <temps en seconde> <un mot ou une phrase>` \n             `" + prefix + "reminder end`");
-    }
-    if(message.content.startsWith(prefix + "h report")){
-      message.channel.send("`__Usage__ `"+ prefix + "report <Une mention><La raison>`");
-    }
-    if(message.content.startsWith(prefix + "h purge")){
-      message.channel.send("`__Usage__ `"+ prefix + "purge <Un nombre entre 1 et 100>`");
-    }
-    if(message.content.startsWith(prefix + "h help")){
-      message.channel.send("__Usage__ `"+ prefix + "help <admin, fun, membre ou info>`");
-    }
-    if(message.content.startsWith(prefix + "h ban")){
-          message.channel.send("__Usage__ `"+ prefix + "ban <la mention de lutilisateur>`");
-    }
-    if(message.content.startsWith(prefix + "h kick")){
-          message.channel.send("__Usage__ `"+ prefix + "kick <la mention de lutilisateur>`");
-    }
-    if(message.content.startsWith(prefix + "h mute")){
-          message.channel.send("Mute un utilisateur sur __un channel__ \n \n__Usage__ `"+ prefix + "mute <la mention de lutilisateur>`");
-    }
-    if(message.content.startsWith(prefix + "h unmute")){
-          message.channel.send("__Usage__ `"+ prefix + "unmute <la mention de lutilisateur>`");
-    }
-});
-//Token
-bot.login ("token")
+              if(message.content.startsWith(prefix + "h say")){
+                message.channel.send("__Usage__ `"+ prefix + "say [Un mot ou une phrase]`");
+              }
+              if(message.content.startsWith(prefix + "h lockchan")){
+                message.channel.send("__Usage__ `"+ prefix + "lockchan [temps en seconde]`");
+              }
+              if(message.content.startsWith(prefix + "h 8ball")){
+                message.channel.send("__Usage__ `"+ prefix + "8ball [Un mot ou une phrase]`");
+              }
+              if(message.content.startsWith(prefix + "h verlan")){
+                message.channel.send("__Usage__ `"+ prefix + "verlan <un mot ou une phrase>`");
+              }
+              if(message.content.startsWith(prefix + "h reminder")){
+                message.channel.send("Un reminder par channel \n \n __Usage__ `"+ prefix + "reminder <temps en seconde> <un mot ou une phrase>` \n             `" + prefix + "reminder end`");
+              }
+              if(message.content.startsWith(prefix + "h report")){
+                message.channel.send("`__Usage__ `"+ prefix + "report <Une mention><La raison>`");
+              }
+              if(message.content.startsWith(prefix + "h purge")){
+                message.channel.send("`__Usage__ `"+ prefix + "purge <Un nombre entre 1 et 100>`");
+              }
+              if(message.content.startsWith(prefix + "h help")){
+                message.channel.send("__Usage__ `"+ prefix + "help <admin, fun, membre ou info>`");
+              }
+              if(message.content.startsWith(prefix + "h ban")){
+                    message.channel.send("__Usage__ `"+ prefix + "ban <la mention de lutilisateur>`");
+              }
+              if(message.content.startsWith(prefix + "h kick")){
+                    message.channel.send("__Usage__ `"+ prefix + "kick <la mention de lutilisateur>`");
+              }
+              if(message.content.startsWith(prefix + "h mute")){
+                    message.channel.send("Mute un utilisateur sur __un channel__ \n \n__Usage__ `"+ prefix + "mute <la mention de lutilisateur>`");
+              }
+              if(message.content.startsWith(prefix + "h unmute")){
+                    message.channel.send("__Usage__ `"+ prefix + "unmute <la mention de lutilisateur>`");
+              }
+
+              if(message.content.startsWith(prefix + "warn")){
+
+                if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
+                  message.channel.send ("📛 Tu n'as pas la permission 📛");
+                  console.log("📛 Tu n'as pas la permission 📛");
+                  return;
+                }
+                else if (!message.channel.permissionsFor(bot.user).hasPermission("MANAGE_ROLES")) {
+                  message.channel.send ("📛 Je n'es pas la permission 📛");
+                  console.log("📛 Je n'es pas la permission 📛");
+                  return;
+                }
+                let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
+                if(!wUser) return message.reply("Utilisateur inconnue");
+
+                  if(!warns[wUser.id]) warns[wUser.id] = {
+                    warns: 0
+                  };
+
+                  warns[wUser.id].warns++;
+                  fs.writeFile("./warnings.json", JSON.stringify(warns), (err) => {
+                    if (err) console.log(err)
+                  });
+                  message.channel.send(`<@${wUser.id}> a etait warn`);
+                  let warnEmbed = new Discord.RichEmbed()
+                  .setDescription("Warns")
+                  .setAuthor(message.author.username)
+                  .setColor("#fc6400")
+                  .addField("Utilisateur Warn", `<@${wUser.id}>`)
+                  .addField("Warn dans ", message.channel)
+                  .addField("Nombre de warn", warns[wUser.id].warns)
+
+                  let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
+                  if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```logs-nitral```.");
+
+                  incidentchannel.send(warnEmbed)
+
+                  if(warns[wUser.id].warns == 3){
+                    message.guild.member(wUser).kick();
+                    message.reply(`<@${wUser.id}> a etait kick.`)
+                  }
+                  if(warns[wUser.id].warns == 6){
+                    message.guild.member(wUser).ban();
+                    message.reply(`<@${wUser.id}> a etait ban.`)
+                  }
+                }
+          });
+          //Token
+	bot.login(TOKEN)
