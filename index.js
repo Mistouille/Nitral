@@ -1104,4 +1104,3 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
 });
 //Token
 bot.login ("token")
-KkA")
