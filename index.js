@@ -1103,4 +1103,5 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
     }
 });
 //Token
-bot.login ("NDA5MjUzMjk5Njk5ODQzMDcy.DYwLpQ.i-GfXs_tMv74xLCnlQLbAUXuKkA")
+bot.login ("token")
+KkA")
