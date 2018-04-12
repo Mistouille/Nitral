@@ -6,7 +6,7 @@ const client = new Discord.Client();
 const fs = require("fs");
 const config = require('./config.json');
 const cute = require("cuteapi");
-const cuteapi = new cute('902d99c1cd4028c91292fa13ded9f9e3e78f5060b7e35c9ce215044f3fd9c68e81693a349b8f4526262a275487396bd1f6a04f51956bb03594c32dfd9d5d0ca5');
+const cuteapi = new cute('token');
  
 
 var cooldown = new Set()
@@ -1802,6 +1802,5 @@ cuteapi.generate("triggered", image).then(r => { message.channel.send({ file: { 
  });
 
           //Token
-          bot.login ("NDA5MjUzMjk5Njk5ODQzMDcy.DaO4hw.KiZAkugDvM16wOLEGvZaQybz1Xs")
-    
+          bot.login (Token) 
     
