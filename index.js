@@ -2130,4 +2130,4 @@ cuteapi.generate("triggered", image).then(r => { message.channel.send({ file: { 
   })
 
           //Token
-          bot.login ("process.env.TOKEN")
+          bot.login (process.env.TOKEN)
