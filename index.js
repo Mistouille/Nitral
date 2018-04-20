@@ -5,7 +5,7 @@ const FileSync = require ('lowdb/adapters/FileSync')
 const client = new Discord.Client();
 const fs = require("fs");
 const cute = require("cuteapi");
-const cuteapi = new cute('902d99c1cd4028c91292fa13ded9f9e3e78f5060b7e35c9ce215044f3fd9c68e81693a349b8f4526262a275487396bd1f6a04f51956bb03594c32dfd9d5d0ca5');
+const cuteapi = new cute('token');
 const weather = require('weather-js');
 bot.commands = new Discord.Collection();
 const {get} = require("snekfetch");
@@ -2140,4 +2140,4 @@ cuteapi.generate("triggered", image).then(r => { message.channel.send({ file: { 
   })
 
           //Token
-          bot.login ("NDM1NTg1Nzg1Mjk1NjY3MjAw.DbbGZQ.OCMUfQRHLNiBxaD2X1ulnMb8LAQ")
+          bot.login ("Token ")
