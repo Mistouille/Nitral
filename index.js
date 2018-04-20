@@ -2115,7 +2115,7 @@ if (message.content.startsWith (prefix + "pollc") ) {
 
 
 } //finish command
-          if(message.content.startsWith(prefix + "triggered")) {
+         /* if(message.content.startsWith(prefix + "triggered")) {
          var image;
          var args2 = message.content.split(" ").slice(1).join(" ");
           if(args2){
@@ -2126,7 +2126,7 @@ if (message.content.startsWith (prefix + "pollc") ) {
 cuteapi.generate("triggered", image).then(r => { message.channel.send({ file: { attachment: r
       }}) ;
       })
-    }
+    }*/
   })
 
           //Token
