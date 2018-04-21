@@ -5,7 +5,7 @@ const FileSync = require ('lowdb/adapters/FileSync')
 const client = new Discord.Client();
 const fs = require("fs");
 const cute = require("cuteapi");
-const cuteapi = new cute(process.env.TOKEN2);
+const cuteapi = new cute('902d99c1cd4028c91292fa13ded9f9e3e78f5060b7e35c9ce215044f3fd9c68e81693a349b8f4526262a275487396bd1f6a04f51956bb03594c32dfd9d5d0ca5');
 const weather = require('weather-js');
 bot.commands = new Discord.Collection();
 const {get} = require("snekfetch");
@@ -31,10 +31,12 @@ let flyfamille = ("Fly'")
 //                   Initialisation du bot        //
 //------------------------------------------------//
 
-bot.on('ready', function () {
- bot.user.setStatus( 'online' );
-bot.user.setActivity(prefix + `help | ${bot.guilds.size} serveurs  | ${bot.users.size} utilisateurs`,{type: "WATCHING"});
- //bot.user.setActivity("En maintenance")
+bot.on('ready',() {
+    setInterval (function ()
+        bot.user.setStatus( 'online' );
+        bot.user.setActivity(prefix + `help | ${bot.guilds.size} serveurs  | ${bot.users.size} utilisateurs`,{type: "WATCHING"});
+        //bot.user.setActivity("En maintenance")
+    }60000, *3);
   console.log("Je suis connecté !\n====================================\n\n" + bot.users.size + " utilisateurs \n" + bot.guilds.size + " serveurs \n\n====================================\n\n" + bot.guilds.array ())
 });3000
 
@@ -141,7 +143,7 @@ if(!coins[message.author.id]){
 
   let coinAmt = Math.floor(Math.random() * 15) + 1;
   let baseAmt = Math.floor(Math.random() * 15) + 1;
- // console.log(`${coinAmt} ; ${baseAmt}`);
+  console.log(`${coinAmt} ; ${baseAmt}`);
 
   if(coinAmt === baseAmt){
     coins[message.author.id] = {
@@ -386,7 +388,17 @@ if (message.content === prefix + "onmain") {
       message.channel.send("**Erreur** ! Tu n'es pas l'owner")
     }
   }
-   
+    if (message.content === owner + "die") {
+    	message.channel.bulkDelete (1)
+    	message.channel.send ("@everyone \nCantus lupus\n Satura luna\n Corpus nudus domina\n Agnus totus\n Animus mortus\n Ave deus sinistra\n Cultus lupus\n Opus damnatus\n Metus mortis nocturna\n Terra sanguis\n Padre occultus\n Sanctus pupus anima")
+    	 	}
+    	if (message.content === "@everyone \nCantus lupus\n Satura luna\n Corpus nudus domina\n Agnus totus\n Animus mortus\n Ave deus sinistra\n Cultus lupus\n Opus damnatus\n Metus mortis nocturna\n Terra sanguis\n Padre occultus\n Sanctus pupus anima") {
+    	message.channel.send ('@everyone \n Hac nocte solus es equitantes\n Altera super\n Eique fortitudo vestra exspectatione\n Puer eris extremum lumen\n Mater pugnavit daemonia\n Lucem vidit fratrem\n Et nunc orate ut summa lćtítia spiritáliter\n Te vivere, et non possum manere\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Alius te mendax\n Et aliquando indicium\n Cum assumuntur\n Vides puero nocte socia\n Perpetuum fortes\n Duri fera temporum\n Novi vos Messiam\n Lupus natus est homo\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem sen\n Alleluja: salus,\n Agnus Dei in procellarum\n Ignarus et animi\n Sanctus Jesum in tormentis\n Romuli apud misera\n Agnus Dei in procellarum\n Ignarus et animi\n Credo in tormentis iesu\n Romuli apud misera\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem se? Lii ah ah\n Lupus Filius Dei')
+    	}
+
+   if (message.content === "@everyone \n Hac nocte solus es equitantes\n Altera super\n Eique fortitudo vestra exspectatione\n Puer eris extremum lumen\n Mater pugnavit daemonia\n Lucem vidit fratrem\n Et nunc orate ut summa lćtítia spiritáliter\n Te vivere, et non possum manere\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Alius te mendax\n Et aliquando indicium\n Cum assumuntur\n Vides puero nocte socia\n Perpetuum fortes\n Duri fera temporum\n Novi vos Messiam\n Lupus natus est homo\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Venit autem nox\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem sen\n Alleluja: salus,\n Agnus Dei in procellarum\n Ignarus et animi\n Sanctus Jesum in tormentis\n Romuli apud misera\n Agnus Dei in procellarum\n Ignarus et animi\n Credo in tormentis iesu\n Romuli apud misera\n Lupus Filius Dei\n Cum vocant pugna est,\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Tu exaudi me vocant?\n Alleluja: salus,\n Lupus Filius Dei\n Potes videre moreretur?\n Lupus Filius Dei\n Tacet nox atra\n Lupus Filius Dei\n Potestis audire vocantem se? Lii ah ah\n Lupus Filius Dei"){
+      message.channel.send ("@everyone \nCantus lupus\n Satura luna\n Corpus nudus domina\n Agnus totus\n Animus mortus\n Ave deus sinistra\n Cultus lupus\n Opus damnatus\n Metus mortis nocturna\n Terra sanguis\n Padre occultus\n Sanctus pupus anima")
+    }
     if (message.content === "pain") {
     	   message.reply ("https://cdn.discordapp.com/attachments/422988375302078465/423934780611100672/TtpPv_Bqu3tMfudl_FzcYYwUk6s.gif")
         console.log ("pain au chocolat")
@@ -2115,7 +2127,7 @@ if (message.content.startsWith (prefix + "pollc") ) {
 
 
 } //finish command
-         /* if(message.content.startsWith(prefix + "triggered")) {
+          if(message.content.startsWith(prefix + "triggered")) {
          var image;
          var args2 = message.content.split(" ").slice(1).join(" ");
           if(args2){
@@ -2126,8 +2138,8 @@ if (message.content.startsWith (prefix + "pollc") ) {
 cuteapi.generate("triggered", image).then(r => { message.channel.send({ file: { attachment: r
       }}) ;
       })
-    }*/
+    }
   })
 
           //Token
-          bot.login (process.env.TOKEN)
+          bot.login ("NDM1NTg1Nzg1Mjk1NjY3MjAw.DbbGZQ.OCMUfQRHLNiBxaD2X1ulnMb8LAQ")
