@@ -32,7 +32,7 @@ let flyfamille = ("Fly'")
 //------------------------------------------------//
 
 bot.on('ready',() => {
-    setInterval (function ()
+    setInterval (function (){
         bot.user.setStatus( 'online' );
         bot.user.setActivity(prefix + `help | ${bot.guilds.size} serveurs  | ${bot.users.size} utilisateurs`,{type: "WATCHING"});
         //bot.user.setActivity("En maintenance")
