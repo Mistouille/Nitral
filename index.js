@@ -267,6 +267,7 @@ if (message.content === prefix + 'cat') {
     if (message.content ==="Team Wolf") {
         message.channel.send(":online-1: :wolf:**__TEAM WOLF EN FORCE__**:wolf:");
     }
+	
        if (message.content === prefix +  "distrub") {
 	     if(message.author.id == "236627494764150784"){
     	message.channel.bulkDelete (1)
