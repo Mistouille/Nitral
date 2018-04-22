@@ -1297,7 +1297,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
       let repEmbed = new Discord.RichEmbed()
          .setDescription("~Report~")
          .setColor("#e56b00")
-         .addField("Utilisateur Report", `${member}`, false)
+         .addField("Utilisateur Report", `${defineduser.username}`, false)
          .addField("Report par", `${message.author.username}`, false)
          .addField("Dans ", message.channel, false)
          .addField("Le", message.createdAt, false)
