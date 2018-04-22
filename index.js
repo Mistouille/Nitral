@@ -511,26 +511,7 @@ if (message.content === prefix + "onmain") {
         console.log("Commande test" );
     }
     //Embed help
-    if (message.content === prefix + "help gen") {
-        let help_embed = new Discord.RichEmbed ()
-    	      .setColor('#15f153')
-    	      .setTitle ("Commandes des membre ")
-            .addField("__Setup__:","Envoi un message pour le bon fonctionnement du bot",false)
-    	      .addField ("__Help__:","Affiche le help 🙇‍♂️", false)
-    	      .addField ("__Ping__:", "Ping le bot 🏓", false)
-            .addField ("__Xp__:", "Donne votre xp (1 message = 1 xp)", false)
-            .addField ("__Levels__:", "Donne votre niveau", false)
-            .addField ("__Progress__:", "Donne votre progression sur le niveau actuel", false)
-    	      .addField ("__Avatar__:", "Affiche votre avatar 🎎", false)
-    	      .addField ("__Invite__:", "Envoi l'invitation du bot 📨", false)
-    	     .addField ("Dédicace", "Petite surprise à ceux qui utilisent très souvent mon bot ", false)
-    	      .addField ("__Check__:", "Vérifie si le bot et opérationnel et fait un ping 📢", false)
-    	      .addField ("__Google__:", "Fait une requête Google ", false)
-            .addField ("__H__:", "Affiche le help d'une commande ", false)
-    	   let help_embedfun = new Discord.RichEmbed ()
-    	      .setColor ("#01B0F0")
     
-
    //Embed help membre
    if (message.content === prefix + "help membre") {
      let help_embed1 = new Discord.RichEmbed ()
