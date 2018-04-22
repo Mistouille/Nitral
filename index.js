@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client()
-const config = require('./botconfig.json');
+//const config = require('./botconfig.json');
 const low = require("lowdb");
 const FileSync = require ('lowdb/adapters/FileSync')
 const client = new Discord.Client();
@@ -16,6 +16,7 @@ const ms = require("ms");
 
 
 
+let rvotes = ("99")
 let xp = require("./xp.json");
 var cooldown = new Set()
 let warns = JSON.parse(fs.readFileSync("warnings.json", "utf8"));
