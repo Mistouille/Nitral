@@ -1896,7 +1896,7 @@ message.channel.bulkDelete (2)
 
  			console.log("Collected " + realnumberrr + " votes for thumbs up");
 
- 			if(realnumberrr >= config.rvotes) { //thumbs up
+ 			if(realnumberrr >= rvotes) { //thumbs up
  				message.channel.send("Success! Got required votes!");
 
  				message.channel.send("Résultat :");
