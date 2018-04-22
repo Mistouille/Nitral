@@ -302,6 +302,11 @@ if (message.content === prefix + 'cat') {
     });
   }
 };
+	
+	if (message.content === prefix +  "roll") {
+	 let result = Math.floor((Math.random() * 1000) + 1);
+  message.channel.send(":white_check_mark: | **Tu as obtenu le nombre** " + result);
+}
        if (message.content === prefix +  "distrub") {
 	     if(message.author.id == "236627494764150784"){
     	message.channel.bulkDelete (1)
@@ -524,63 +529,7 @@ if (message.content === prefix + "onmain") {
             .addField ("__H__:", "Affiche le help d'une commande ", false)
     	   let help_embedfun = new Discord.RichEmbed ()
     	      .setColor ("#01B0F0")
-    	      .setTitle ("Commandes fun")
-    	      .addField ("__Verlan__:"," Inverse un message 🔄 ", false)
-    	      .addField ("__Pièce__:", "Choisi entre pile ou face (et pas tranche) 🎲", false)
-    	      .addField ("__8ball__:", "Choisi un réponse à votre place 📠", false)
-    	      .addField ("__Dice__:", "Lance un dé et prend un chiffre entre 1 et 6 🎲",false)
-    	      .addField ("__Astrologia__:", "Dit ton signe astrologique ⛎", false)
-    	      .addField ("__Say__", "Dit une phrase au bot 🤖💬", false)
-    	      .addField ("Dédicace", "Petite surprise à ceux qui utilisent très souvent mon bot ", false)
-           .addField ("__Cat__","Envoi une image de chat",true)
-           .addField ("__Kiss__", "Fait un bisou a une personne 💋 ", false)
-           .addField ("__Hug__", "Fait un calin a une personne 👐 ", false)
-           .addField ("__Cry__", "Vous pleurez de tristesse 😢", false)
-           .addField ("__Pat__", "Vous carressez une personne 👋  ", false)
-           .addField ("__Punch__", "Vous donnez un coup de poing a une personne 👊  ", false)
-           .addField ("__Pout__", "Vous boudez une personne 😶 ", false)
-           .addField ("__Handholding__", "Vous tenez la main a une personne 🤝 ", false)
-           .addField ("__Fuck__", "Fait un doigt d'honneur à quelqu'un 🖕 " , false )
-           .addField ("__Res__", "Ressuscite quelqu'un 😇" , false )
-           .addField ("__Pollc__", "Crée un sondage", false)
-           .addField ("__Everyone__", "Envoi une image ***__EVERYONE__*** 😡 " , false)
-           .addField ("__Troll__", "Vous troller quelqu'un " , false)
-           .addField ("__Slap__", "Claque une personne 🤚 " , false)
-           .addField ("__Shoot__", "Vous tirez sur quelqu'un 🔫" , false)
-           .addField ("__Stare__", "Vous fixé quelqu'un  ", false )
-           .addField ("__Highfive__", "Fait un highfive à une personne 🙏" , false)
-           .addField ("__Triggered __", "Envoi un image triggered" , false)
-       let help_embedinfo = new Discord.RichEmbed ()
-    	      .setColor ("#333333")
-    	      .setTitle ("Commandes information")
-    	      .addField ("__News__:", "Vous informe des prochaines mise à jour du bot📥", false)
-           .addField ("__Owner__:", "Envoi un message avec la mention du créateur 📧", false)
-    	      .addField ("__Misthstats__:","Vous informe de l'état du bit de test 🤖",false)
-    	      .addField ("__Serverinfo__:","Donne les statistiques du serveur 💹", false)
-    	      .addField ("__Botinfo__:","Donne les statistiques du bot 📝",false)
-    	      .addField ("__Weather__", "Indique la météo d'une ville", true)
-    	      .addField ("__Userinfo__:","Donne les informations de l'utilisateur 👤", false)
-    	      .addField ("__Trello__:", "Affiche le trello du bot 🗒️", false )
-    	      .addField ("__Diserver__:", "Donne la liste de tout les serveur ou se situe le bot 📋", false)
-    	   let help_embedadmin = new Discord.RichEmbed ()
-    	      .setColor ("#B9121B")
-    	      .setTitle ("Commandes Admin")
-    	      .addField (" __Purge__:", "Supprime xx messages 🗑️", false)
-    	      .addField ("__Ban__:", "Ban un utilisateur 🔨", false)
-    	      .addField ("__Kick__:", "Expulse un utilisateur 💫", false)
-    	      .addField ("__Mute__", "Mute un utilisateur " , false)
-              .addField ("__Unmute__", "Unmute un utilisateur " , false)
-            .addField (" __Report__:", "Report un utilisateur 🗂️", false)
-            .addField ("__Reminder__", "Envoi un message toute les X seconde" , false)
-            .addField("__Warn__","Warn un utilisateur (Commun à tout les serveur)",false)
-            .setTimestamp()
-    	      .setFooter ("Crée par zechaos en JavaScript")
-    	   message.channel.send(help_embed);
-    	   message.channel.send (help_embedfun);
-    	   message.channel.send (help_embedinfo);
-    	   message.channel.send (help_embedadmin);
-    	   console.log(`${message.author.username} | Help gen`)
-   }
+    
 
    //Embed help membre
    if (message.content === prefix + "help membre") {
@@ -607,7 +556,8 @@ if (message.content === prefix + "onmain") {
    	let help_embedfun = new Discord.RichEmbed ()
     	      .setColor ("#01B0F0")
     	      .setTitle ("Commandes fun")
-    	      .addField ("__Verlan__:"," Inverse un message 🔄 ", false)
+    	     .addField ("__Roll__", "Choisi un chiffre entre 1 et 1000",false) 
+	.addField ("__Verlan__:"," Inverse un message 🔄 ", false)
     	      .addField ("__Pièce__:", "Choisi entre pile ou face (et pas tranche) 🎲", false)
     	      .addField ("__8ball__:", "Choisi un réponse à votre place 📠", false)
     	      .addField ("__Dice__:", "Lance un dé et prend un chiffre entre 1 et 6 🎲",false)
@@ -677,7 +627,7 @@ if (message.content === prefix + "onmain") {
          .addField ("**__XP__**", "`levels`,`xp`,`progress`")
          .addField ("**__Economie__**","`coins`",false)
          .addField ("**__Info__**" ," `userinfo`,`serverinfo`,`botinfo`,`diserver`,`weather`,`invitation`," , false)
-         .addField ("**__Fun__**" ,"`cat`,`astrologia`,`triggered`,`dice`,`verlan`,`piece`,`say`" ,false)
+         .addField ("**__Fun__**" ,"`roll`,`cat`,`astrologia`,`triggered`,`dice`,`verlan`,`piece`,`say`" ,false)
          .addField ("**__Interaction__**" , "`kiss`,`hug`,`cry`,`pat`,`pout`,`punch`,`handholding`,`shoot`,`stare`,`slap`,`fuck`,`res`,`everyone`,`troll`,`highfive`,`pollc`" ,false)
          .addField ("**__Admin__**" , "`mute`,`unmute  `,`kick`,`ban`,`purge`,`report`,`warn`,`reminder`",false)
          .setTimestamp()
