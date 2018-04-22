@@ -1250,7 +1250,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
           return;
         }
         let args3 = message.content.split(" ").slice(1);
-        if (!args[0]){
+        if (!args3[0]){
           message.delete();
           message.channel.send("Données incorrecte")
           return;
