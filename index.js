@@ -143,7 +143,7 @@ if(!coins[message.author.id]){
 
   let coinAmt = Math.floor(Math.random() * 15) + 1;
   let baseAmt = Math.floor(Math.random() * 15) + 1;
-  console.log(`${coinAmt} ; ${baseAmt}`);
+  
 
   if(coinAmt === baseAmt){
     coins[message.author.id] = {
