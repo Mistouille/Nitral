@@ -1747,7 +1747,7 @@ message.channel.bulkDelete (2)
 
  			console.log("Collected " + realnumberrr + " votes for thumbs up");
 
- 			if(realnumberrr >= config.rvotes) { //thumbs up
+ 			if(realnumberrr >= rvotes) { //thumbs up
  				message.channel.send("Succès ! Les vote son ouvert 🗳!");
 
  				message.channel.send("Résultat :");
@@ -1818,7 +1818,7 @@ message.channel.bulkDelete (2)
 
  			console.log("Collected " + realnumberrr + " votes for thumbs up");
 
- 			//if(realnumberrr >= config.rvotes) { //thumbs up
+ 			if(realnumberrr >= rvotes) { //thumbs up
  				message.channel.send("Success! Got required votes!");
 
  				message.channel.send("Résultat :");
@@ -2066,7 +2066,7 @@ function startVote() {
 
 			console.log("Collected " + realnumberrr + " votes for thumbs up");
 
-			if(realnumberrr >= config.rvotes) { //thumbs up
+			if(realnumberrr >= rvotes) { //thumbs up
 				message.channel.send("Success! Got required votes!");
 
 				message.channel.send("Résultat :");
@@ -2092,7 +2092,7 @@ function startVote() {
 
 			console.log("Collected " + realnumberrrr + " votes for thumbs down");
 
-			if(realnumberrrr >= config.rvotes) { //thumbs up
+			if(realnumberrrr >= rvotes) { //thumbs up
 				//message.channel.send("Success! Got required votes!");
 				message.channel.send("Contre : " + realnumberrrr);
 			}
