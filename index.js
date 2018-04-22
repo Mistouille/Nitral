@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client()
-const config = require('./botconfig.json')const low = require("lowdb");
+const config = require('./botconfig.json')
+const low = require("lowdb");
 const FileSync = require ('lowdb/adapters/FileSync')
 const client = new Discord.Client();
 const fs = require("fs");
@@ -11,7 +12,8 @@ const search = require('youtube-search');
 const weather = require('weather-js');
 bot.commands = new Discord.Collection();
 const {get} = require("snekfetch");
-const YTDL = require("ytdl-core");const ms = require("ms");
+const YTDL = require("ytdl-core");
+const ms = require("ms");
 //const economy = require('discord-eco');
 
 
