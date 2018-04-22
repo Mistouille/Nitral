@@ -2343,19 +2343,8 @@ if (message.content.startsWith (prefix + "pollc") ) {
 
 
 } //finish command
-          if(message.content.startsWith(prefix + "triggered")) {
-         var image;
-         var args2 = message.content.split(" ").slice(1).join(" ");
-          if(args2){
-               var image = args2;
-          }else{
-   var image = message.author.avatarURL;
-          }
-cuteapi.generate("triggered", image).then(r => { message.channel.send({ file: { attachment: r
-      }}) ;
-      })
-    }
-  })
+          
+  });
 
           //Token
           bot.login ("NDM1NTg1Nzg1Mjk1NjY3MjAw.DbbGZQ.OCMUfQRHLNiBxaD2X1ulnMb8LAQ")
