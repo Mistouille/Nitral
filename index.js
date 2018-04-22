@@ -7,15 +7,23 @@ const fs = require("fs");
 const cute = require("cuteapi");
 const cuteapi = new cute('902d99c1cd4028c91292fa13ded9f9e3e78f5060b7e35c9ce215044f3fd9c68e81693a349b8f4526262a275487396bd1f6a04f51956bb03594c32dfd9d5d0ca5');
 const weather = require('weather-js');
+bot.commands = new Discord.Collection();
+const {get} = require("snekfetch");
+const ms = require("ms");
+//const economy = require('discord-eco');
+
+
+
 
 let xp = require("./xp.json");
 var cooldown = new Set()
 let warns = JSON.parse(fs.readFileSync("warnings.json", "utf8"));
+let prefix = "++"
+
 //------------------------------------------------//
 //                   Préfixe                      //
 //------------------------------------------------//
 
-let prefix = ("++")
 let owner =("...nitrarootOwnergijcfzungecjydzgjivfbygjyevjuf. gecjydzgjivfbygjyevjuf...ngecjydzgjivfbygjyevjuf.")
 let flyfamille = ("Fly'")
 
@@ -23,26 +31,153 @@ let flyfamille = ("Fly'")
 //                   Initialisation du bot        //
 //------------------------------------------------//
 
-bot.on('ready', function () {
- bot.user.setStatus( 'Idle' );
- bot.user.setActivity(prefix + `help | ${bot.guilds.size} serveurs | ${bot.users.size} utilisateurs`,{type: "WATCHING"});
+bot.on('ready',() => {
+    setInterval (function (){
+        bot.user.setStatus( 'online' );
+        bot.user.setActivity(prefix + `help | ${bot.guilds.size} serveurs  | ${bot.users.size} utilisateurs`,{type: "WATCHING"});
+        //bot.user.setActivity("En maintenance")
+    },60000 *3);
   console.log("Je suis connecté !\n====================================\n\n" + bot.users.size + " utilisateurs \n" + bot.guilds.size + " serveurs \n\n====================================\n\n" + bot.guilds.array ())
-});
+});3000
 
-bot.on('message', message => {
+/*fs.readdir("./commands/", (err, files) => {
+
+  if(err) console.log(err);
+
+  let jsfile = files.filter(f => f.split(".").pop() === "js")
+  if(jsfile.length <= 0){
+    console.log("Couldn't find commands.");
+    return;
+  }
+
+  jsfile.forEach((f, i) =>{
+    let props = require(`./commands/${f}`);
+    console.log(`${f} loaded!`);
+    bot.commands.set(props.help.name, props);
+  });
+});*/
+
+bot.on("message", async message => {
+
+let defineduser = message.mentions.users.first();
+
 //------------------------------------------------//
 //                   Bienvenue                    //
 //------------------------------------------------//
 
 //------------------------------------------------//
-//                   Préfixe                    //
+//                   Handler                      //
 //------------------------------------------------//
 
+
+/*if(message.author.bot) return;
+  if(message.channel.type === "dm") return;
+
+  let messageArray = message.content.split(" ");
+  let args = messageArray.slice(1);
+
+  let commandfile = bot.commands.get(prefix.length);
+  if(commandfile) commandfile.run(bot,message,args);*/
 //------------------------------------------------//
-//                  XP                            //
+//                   Préfixe                      //
 //------------------------------------------------//
 
-      let xpAdd = Math.floor(Math.random() * 7) + 8;
+  /*let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
+  if(!prefixes[message.guild.id]){
+    prefixes[message.guild.id] = {
+      prefixes: botconfig.prefix
+    };
+  }
+
+let prefix = prefixes[message.guild.id].prefixes;
+
+if (message.content.startsWith(prefix + "setprefix")){
+  if (!message.channel.permissionsFor(message.author).has("MANAGE_ROLES")) {
+      message.channel.send ("📛 Tu n'as pas la permission 📛");
+      console.log("📛 Tu n'as pas la permission 📛");
+      return;
+    }
+  if(!args[0] || args[0 == "help"]) return message.reply("Usage : ++setprefix votre prefix");
+
+  let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
+
+  prefixes[message.guild.id] = {
+    prefixes: args[0]
+  };
+
+  fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) => {
+    if (err) console.log(err)
+  });
+
+  let sEmbed = new Discord.RichEmbed()
+  .setColor("#FF9900")
+  .setTitle("Prefix ")
+  .setDescription(`Les prefixe est  ${args[0]}`);
+  message.channel.send(sEmbed);
+}*/
+
+//------------------------------------------------//
+//                  money                            //
+//------------------------------------------------//
+
+    /*let msg = message.content.toUpperCase();
+    let cont1 = message.content.slice(prefix.length).split(" "); // This slices off the prefix, then stores everything after that in an array split by spaces.
+    let args = cont.slice(1); // This removes the command part of the message, only leaving the words after it seperated by spaces
+if (msg === `${prefix}BALANCE` || msg === `${prefix}MONEY`) { // This will run if the message is either ~BALANCE or ~MONEY
+economy.fetchBalance(message.author.id + message.guild.id).then((i) => { // economy.fetchBalance grabs the userID, finds it, and puts the data with it into i.
+            const embed = new Discord.RichEmbed()
+                .setDescription(`**${message.guild.name} Bank**`)
+                .setColor(0xD4AF37) // You can set any HEX color if you put 0x before it.
+                .addField('Account Holder',message.author.username,true) // The TRUE makes the embed inline. Account Holder is the title, and message.author is the value
+                .addField('Account Balance',i.money,true)
+            message.channel.send({embed})
+        })
+    }*/
+    
+let coins = require("./coins.json");
+if(!coins[message.author.id]){
+    coins[message.author.id] = {
+      coins: 0
+    };
+  }
+
+  let coinAmt = Math.floor(Math.random() * 15) + 1;
+  let baseAmt = Math.floor(Math.random() * 15) + 1;
+  console.log(`${coinAmt} ; ${baseAmt}`);
+
+  if(coinAmt === baseAmt){
+    coins[message.author.id] = {
+      coins: coins[message.author.id].coins + coinAmt
+    };
+  fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
+    if (err) console.log(err)
+  });
+  }
+  if (message.content.startsWith(prefix + "coins")){
+    
+if(!coins[message.author.id]){
+    coins[message.author.id] = {
+      coins: 0
+    };
+  }
+
+  let uCoins = coins[message.author.id].coins;
+
+
+  let coinEmbed = new Discord.RichEmbed()
+  .setAuthor(message.author.username)
+  .setColor("#00FF00")
+  .addField("💸", uCoins);
+
+  message.channel.send(coinEmbed)
+
+}
+
+
+
+
+
+      let xpAdd = Math.floor(Math.random() * 10) + 8;
       //  console.log(xpAdd);
 
 
@@ -59,7 +194,7 @@ bot.on('message', message => {
         if(nxtLvl <= xp[message.author.id].xp){
           xp[message.author.id].level = curlvl + 1;
 
-          
+
         }
         fs.writeFile("./xp.json", JSON.stringify(xp), (err) => {
           if(err) console.log(err)
@@ -107,7 +242,7 @@ bot.on('message', message => {
         let xpEmbed = new Discord.RichEmbed()
           .setAuthor(message.author.username)
           .setColor("#AB49CD")
-          .addField ("Prochain niveau ", difference ,false)
+          .addField ("Prochain niveau ","Dans" + difference + "xp",false)
           .setTimestamp()
           .setFooter(`Levels`);
             message.channel.send(xpEmbed)
@@ -117,21 +252,124 @@ bot.on('message', message => {
     //                   Commande                     //
     //------------------------------------------------//
         //Fun
+
+//Embed
+let cat = ["http://img-comment-fun.9cache.com/media/c81c59c9145641080812687141_700wa_0.gif", "https://reseauinternational.net/wp-content/uploads/2015/10/gifa-cat-surprised.gif", "http://img4.hostingpics.net/pics/113686catmousetabletpounce.gif", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-vslRfH69TDhw9to9dtiBi9fwtiOwjHJ7HRSvi7wYSCvqP6rl","https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny85NTkvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzYzOTcxNjY1LmpwZw=="," http://www.ordanburdansurdan.com/wp-content/uploads/2017/06/oxgkvrvnd5o-1.jpg", "https://ichef.bbci.co.uk/news/660/cpsprodpb/71E1/production/_99735192_gettyimages-459467912.jpg", "https://cms.kienthuc.net.vn/zoom/500/Uploaded/ctvkhoahoc/2017_10_20/10_NMHD.jpg", "http://i0.kym-cdn.com/photos/images/facebook/000/012/445/lime-cat.jpg", "https://i2-prod.mirror.co.uk/incoming/article11812659.ece/ALTERNATES/s1200/The-Feline-World-Gathers-For-The-Supreme-Cat-Show-2017.jpg", "https://mymodernmet.com/wp/wp-content/uploads/2017/11/minimalist-cat-art-subreddit-10.jpg", "https://metrouk2.files.wordpress.com/2017/11/capture16.png?w=748&h=706&crop=1"] 
+let cating = cat[Math.floor(Math.random() * cat.length)] ;
+      
+if (message.content === prefix + 'cat') {
+    let catembed = new Discord.RichEmbed ()
+        .setColor('#B9121B')
+        .setTitle ("Chat")
+        .setImage (cating)
+    message.channel.send (catembed)
+	}
     if (message.content ==="Team Wolf") {
         message.channel.send(":online-1: :wolf:**__TEAM WOLF EN FORCE__**:wolf:");
     }
        if (message.content === prefix +  "distrub") {
-	     if(message.author.id == "234312981524119562"){
+	     if(message.author.id == "236627494764150784"){
     	message.channel.bulkDelete (1)
     bot.user.setStatus( 'Online ' );
-      bot.user.setActivity(`*help | ${bot.guilds.size} serveurs | ${bot.users.size} utilisateurs`) ;
+    bot.user.setActivity(prefix + `help | ${bot.guilds.size} serveurs  | ${bot.users.size} utilisateurs`,{type: "WATCHING"});
       message.channel.send ("En cours de modification \n `en ligne`")
 } else {
       message.channel.send("**Erreur** ! Tu n'es pas l'owner")
     }
   }
+function rand(low, high) {
+    return Math.random() * (high + 1 - low) + low | 0;
+}
+if (message.content.startsWith(prefix + "rps")){
+    if (args[0]) {
+      // get user choice && user choice
+      let computer_choice = rand(0,2);
+      let user_choice = args[0] == "rock" ? 1 : args[0] == "paper" ? 2 : 0;
+
+      // if their choices are same its a draw :D
+      if (computer_choice == user_choice) {
+        msg.reply("Egalité!");
+      }
+      else if (computer_choice < user_choice || computer_choice == 0 && user_choice == 2) {
+        msg.reply("J'ai gagné!");
+      } else {
+        msg.reply("Tu as gagné!");
+      }
+    }
+  }
+if (message.content.startsWith(prefix + "test")){
+  
+let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if(!tomute) return message.reply("Couldn't find user.");
+  if (!message.channel.permissionsFor(message.author).hasPermission("KICK_MEMBERS")) {
+        message.channel.send ("📛 Tu n'as pas la permission 📛");
+        console.log("📛 Tu n'as pas la permission 📛");
+        return;
+      }
+      else if (!message.channel.permissionsFor(bot.user).hasPermission("KICK_MEMBERS")) {
+        message.channel.send ("📛 Je n'es pas la permission 📛");
+        console.log("📛 Je n'es pas la permission 📛");
+        return;
+      }  let reason = args.slice(2).join(" ");
+  if(!reason) return message.reply("Please supply a reason.");
+
+  let muterole = message.guild.roles.find(`name`, "muted");
+  //start of create role
+  if(!muterole){
+    try{
+      muterole = await message.guild.createRole({
+        name: "mute",
+        color: "#000000",
+        permissions:[]
+      })
+      message.guild.channels.forEach(async (channel, id) => {
+        await channel.overwritePermissions(muterole, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false
+        });
+      });
+    }catch(e){
+      console.log(e.stack);
+    }
+  }
+  //end of create role
+  let mutetime = args[1];
+  if(!mutetime) return message.reply("You didn't specify a time!");
+
+  message.delete().catch(O_o=>{});
+
+  try{
+    await tomute.send(`Hi! You've been muted for ${mutetime}. Sorry!`)
+  }catch(e){
+    message.channel.send(`A user has been muted... but their DMs are locked. They will be muted for ${mutetime}`)
+  }
+
+  let muteembed = new Discord.RichEmbed()
+  .setDescription(`Mute executed by ${message.author}`)
+  .setColor("#B9121B")
+  .addField("Muted User", tomute)
+  .addField("Muted in", message.channel)
+  .addField("Time", message.createdAt)
+  .addField("Length", mutetime)
+  .addField("Reason", reason);
+
+  let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
+    if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```logs-nitral```.");
+ incidentschannel.send(muteembed);
+
+  await(tomute.addRole(muterole.id));
+
+  setTimeout(function(){
+    tomute.removeRole(muterole.id);
+    message.channel.send(`<@${tomute.id}> has been unmuted!`);
+  }, ms(mutetime));
+
+
+//end of module
+}
+  
 if (message.content === prefix + "onmain") {
- if(message.author.id == "234312981524119562"){
+ if(message.author.id == "236627494764150784"){
     	message.channel.bulkDelete (1)
     bot.user.setStatus( 'idle' );
     bot.user.setActivity('EN MAINTENANCE');
@@ -141,10 +379,10 @@ if (message.content === prefix + "onmain") {
     }
   }
   if (message.content === prefix + "stopmain") {
-	  if(message.author.id == "234312981524119562"){
+	  if(message.author.id == "236627494764150784"){
   	message.channel.bulkDelete (1)
     bot.user.setStatus( 'dnd' );
- bot.user.setActivity(`*help | ${bot.guilds.size} serveurs | ${bot.users.size} utilisateurs`);
+ bot.user.setActivity(`++help | ${bot.guilds.size} serveurs | ${bot.users.size} utilisateurs`);
  message.channel.send ("En cours de modification \n`en ne pas dérange`")
 } else {
       message.channel.send("**Erreur** ! Tu n'es pas l'owner")
@@ -170,13 +408,13 @@ if (message.content === prefix + "onmain") {
         message.reply("📝voila si tu veux mp mon createur <@234312981524119562>📝");
         console.log("Commande owner" );
     }
-    if (message.content === prefix + "bot") {
+    if (message.content === prefix + "botlist") {
     let bot= new Discord.RichEmbed ()
          .setColor('#B9121B')
          .setTitle ("Bot")
          .addField ("Bot générale", "[KOYA](https://discordapp.com/oauth2/authorize?permissions=2146958463&scope=bot&client_id=276060004262477825) , [RYTHM](https://discordapp.com/oauth2/authorize?client_id=235088799074484224&permissions=8&scope=bot&response_type=code&redirect_uri=https://rythmbot.co/thanks)", true)
          .addField ("Bot Modération","[Vexera](https://discordapp.com/oauth2/authorize?client_id=228537642583588864&scope=bot&permissions=8),[Logger](https://discordapp.com/oauth2/authorize?client_id=298822483060981760&scope=bot&permissions=380065)",true)
-         .addField ("Bot xp", "[tatsumaki](https://discordapp.com/oauth2/authorize?&client_id=172002255350792192&scope=bot&permissions=12659727), [Mee6](https://discordapp.com/oauth2/authorize?client_id=159985415099514880&scope=bot&permissions=66321471&response_type=code&redirect_uri=https%3A%2F%2Fmee6.xyz%2Fguild-oauth&guild_id=375215244047286272)", true)
+         .addField ("Bot xp", "[tatsumaki](https://discordapp.com/oauth2/authorize?&client_id=172002255350792192&scope=bot&permissions=12659727), [Mee6](https://discordapp.com/oauth2/authorize?client_id=159985415099514880&scope=bot&permissions=66321471&response_type=code&redirect_uri=https://mee6.xyz/guild-oauth&guild_id=375215244047286272)", true)
          .addField ("Bot jeu", "[Enderbot](https://discordapp.com/oauth2/authorize?client_id=280726849842053120&scope=bot&permissions=-1), [Discord Rpg](https://discordapp.com/oauth2/authorize?&client_id=170915256833540097&scope=bot&permissions=24640), [Pokecord](https://discordapp.com/oauth2/authorize?client_id=365975655608745985&scope=bot&permissions=67234880)", true)
          .setFooter(` Bot`);
       message.channel.send(bot) ;
@@ -188,35 +426,32 @@ if (message.content === prefix + "onmain") {
         console.log("Commande news" );
     }
     let cont = message.content.slice(prefix.length).split(" ");
- let args = cont.slice(1)
+ let args1 = cont.slice(1)
 
 
-       if (message.content.startsWith (prefix + 'weather')) { // This checks to see if the beginning of the message is calling the weather command.
+       if (message.content.startsWith (prefix + 'weather')) {
 
-        weather.find({search: args.join(" "), degreeType: 'C'}, function(err, result) { // Make sure you get that args.join part, since it adds everything after weather.
+        weather.find({search: args1.join(" "), degreeType: 'C'}, function(err, result) {
             if (err) message.channel.send(err);
 
-                        if (result.length === 0) {
-                message.channel.send('**Entré une localisation valide, .**') // This tells them in chat that the place they entered is invalid.
-                return;
-                }
-
-            var current = result[0].current; // This is a variable for the current part of the JSON output
-            var location = result[0].location; // This is a variable for the location part of the JSON output
-
+            var current = result[0].current;
+            var location = result[0].location;
+            message.channel.startTyping()
             const embed = new Discord.RichEmbed()
-                .setDescription(`**${current.skytext}**`) // This is the text of what the sky looks like, remember you can find all of this on the weather-js npm page.
-                .setAuthor(`Temps pour ${current.observationpoint}`) // This shows the current location of the weather.
-                .setThumbnail(current.imageUrl) // This sets the thumbnail of the embed
-                .setColor("#333333") // This sets the color of the embed, you can set this to anything if you look put a hex color picker, just make sure you put 0x infront of the hex
-                .addField('Plage horaire ',`UTC${location.timezone}`, true) // This is the first field, it shows the timezone, and the true means `inline`, you can read more about this on the official discord.js documentation
-                .addField('Messure ',location.degreetype, true)// This is the field that shows the degree type, and is inline
+                .setDescription(`**${current.skytext}**`)
+                .setAuthor(`Temps pour ${current.observationpoint}`)
+                .setThumbnail(current.imageUrl)
+                .setColor("#333333")
+                .addField('Plage horaire ',`UTC${location.timezone}`, true)
+                .addField('Messure ',location.degreetype, true)
                 .addField('Température ',`${current.temperature} °C`, true)
                 .addField('Ressenti ', `${current.feelslike} °C`, true)
                 .addField('Vents ',current.winddisplay, true)
                 .addField('Humidité', `${current.humidity}%`, true)
 
                  message.channel.send({embed});
+                message.channel.stopTyping()
+            
         });
     }
     //avatar
@@ -247,7 +482,7 @@ if (message.content === prefix + "onmain") {
             .addField ("__Levels__:", "Donne votre niveau", false)
             .addField ("__Progress__:", "Donne votre progression sur le niveau actuel", false)
     	      .addField ("__Avatar__:", "Affiche votre avatar 🎎", false)
-    	      .addField ("__Invitation__:", "Envoi l'invitation du bot 📨", false)
+    	      .addField ("__Invite__:", "Envoi l'invitation du bot 📨", false)
     	     .addField ("Dédicace", "Petite surprise à ceux qui utilisent très souvent mon bot ", false)
     	      .addField ("__Check__:", "Vérifie si le bot et opérationnel et fait un ping 📢", false)
     	      .addField ("__Google__:", "Fait une requête Google ", false)
@@ -262,6 +497,7 @@ if (message.content === prefix + "onmain") {
     	      .addField ("__Astrologia__:", "Dit ton signe astrologique ⛎", false)
     	      .addField ("__Say__", "Dit une phrase au bot 🤖💬", false)
     	      .addField ("Dédicace", "Petite surprise à ceux qui utilisent très souvent mon bot ", false)
+           .addField ("__Cat__","Envoi une image de chat",true)
            .addField ("__Kiss__", "Fait un bisou a une personne 💋 ", false)
            .addField ("__Hug__", "Fait un calin a une personne 👐 ", false)
            .addField ("__Cry__", "Vous pleurez de tristesse 😢", false)
@@ -308,7 +544,7 @@ if (message.content === prefix + "onmain") {
     	   message.channel.send (help_embedfun);
     	   message.channel.send (help_embedinfo);
     	   message.channel.send (help_embedadmin);
-    	   console.log(`${message.author.username} | Help`)
+    	   console.log(`${message.author.username} | Help gen`)
    }
 
    //Embed help membre
@@ -323,7 +559,7 @@ if (message.content === prefix + "onmain") {
             .addField ("__Levels__:", "Donne votre niveau", false)
             .addField ("__Progress__:", "Donne votre progression sur le niveau actuel", false)
     	      .addField ("__Avatar__:", "Affiche votre avatar 🎎", false)
-    	      .addField ("__Invitation__:", "Envoi l'invitation du bot 📨", false)
+    	      .addField ("__Invite__:", "Envoi l'invitation du bot 📨", false)
     	      .addField ("__Check__:", "Vérifie si le bot et opérationnel et fait un ping 📢", false)
     	      .addField ("__Google__ :", "Fait une requête sur Google ", false)
             .addField ("__H__:", "Affiche le help d'une commande ", false)
@@ -342,6 +578,7 @@ if (message.content === prefix + "onmain") {
     	      .addField ("__Dice__:", "Lance un dé et prend un chiffre entre 1 et 6 🎲",false)
     	      .addField ("__Astrologia__:", "Dit ton signe astrologique ⛎", false)
     	      .addField ("__Say__", "Dit une phrase au bot 🤖💬", false)
+            .addField ("__Cat__","Envoi une image de chat",true)
            .addField ("__Kiss__", "Fait un bisou a une personne 💋 (++kiss [mention])", false)
            .addField ("__Hug__", "Fait un calin a une personne 👐 (++hug [mention])", false)
            .addField ("__Cry__", "Vous pleurez de tristesse 😢", false)
@@ -370,12 +607,10 @@ if (message.content === prefix + "onmain") {
     	      .setTitle ("Commandes information")
     	      .addField ("__News__:", "Vous informe des prochaines mise à jour du bot📥", false)
            .addField ("__Owner__:", "Envoi un message avec la mention du créateur 📧", false)
-    	      .addField ("__Misthstats__:","Vous informe de l'état du bit de test 🤖",false)
     	      .addField ("__Serverinfo__:","Donne les statistiques du serveur 💹", false)
     	      .addField ("__Botinfo__:","Donne les statistiques du bot 📝",false)
     	      .addField ("__Weather__", "Indique la météo d'une ville", true)
     	      .addField ("__Userinfo__:","Donne les informations de l'utilisateur 👤", false)
-    	      .addField ("__Trello__:", "Affiche le trello du bot 📰", false )
     	      .addField ("__Diserver__:", "Donne la liste de tout les serveur ou se situe le bot📜", false)
             .setTimestamp()
             .setFooter(`${message.author.username} | Help info`);
@@ -403,46 +638,37 @@ if (message.content === prefix + "onmain") {
          .setColor('#B9121B')
          .setTitle ("Toutes les commandes ")
          .setDescription("Pour le bon fonctionnement du bot merci de faire la commande`" + prefix + "setup`. En cas de probleme merci de vous rendre sur le serveur en faisant `" + prefix +"botinfo` dans l'onglet 'Invitation du bot'",false)
-         .addField ("**__Membres__**", "`setup`, `help`, `ping`,`avatar`,`invitation`, `check`,`google`,`h`", false)
+         .addField ("**__Membres__**", "`setup`, `help`, `ping`,`avatar`,`invite`, `check`,`google`,`h`", false)
          .addField ("**__XP__**", "`levels`,`xp`,`progress`")
-         .addField ("**__Info__**" ," `userinfo`,`serverinfo`,`botinfo`,`diserver`,`weather`,`misthstat`,`trello`,`invitation`," , false)
-         .addField ("**__Fun__**" ,"`astrologia`,`dice`,`verlan`,`piece`,`say`" ,false)
-         .addField ("**__Interaction__**" , "`kiss`,`hug`,`cry`,`pat`,`pout`,`punch`,`handholding`,`shoot`,`stare`,`slap`,`fuck`,`res`,`everyone`,`troll`,`highfive`,`triggered`,`pollc`" ,false)
+         .addField ("**__Economie__**","`coins`",false)
+         .addField ("**__Info__**" ," `userinfo`,`serverinfo`,`botinfo`,`diserver`,`weather`,`invitation`," , false)
+         .addField ("**__Fun__**" ,"`cat`,`astrologia`,`triggered`,`dice`,`verlan`,`piece`,`say`" ,false)
+         .addField ("**__Interaction__**" , "`kiss`,`hug`,`cry`,`pat`,`pout`,`punch`,`handholding`,`shoot`,`stare`,`slap`,`fuck`,`res`,`everyone`,`troll`,`highfive`,`pollc`" ,false)
          .addField ("**__Admin__**" , "`mute`,`unmute  `,`kick`,`ban`,`purge`,`report`,`warn`,`reminder`",false)
          .setTimestamp()
          .setFooter(`Help`);
       message.channel.send(help2) ;
-      console.log (`${message.author.username} |ping `)
+      console.log (`${message.author.username} |help  `)
     }
    //Embed ping
    if (message.content === prefix + "ping") {
-      	let ping_embed = new Discord.RichEmbed ()
-    	      .setColor('#333333')
-    	      .setTitle ("Ping")
-    	      .addField ('Pong! Mon ping est de', '***' + `${Date.now() - message.createdTimestamp}` + ' ms***🏓', true )
-            //).addField(" Ping local", '***' + Math.round(altair.ping) + " ms***", false )
-            .setTimestamp()
-            .setFooter(` Ping |`);
-         message.channel.send(ping_embed) ;
-         console.log (`${message.author.username} |ping `)
-    }
-    if (message.content === prefix + "pong") {
-      	let ping_embed = new Discord.RichEmbed ()
-    	      .setColor('#333333')
-    	      .setTitle ("Pong")
-    	      .addField ('Ping! Mon pong est de', '***' + `${Date.now() - message.createdTimestamp}` + ' ms***🏓', true )
-            .setTimestamp()
-            .setFooter(` Pong |`);
-         message.channel.send(ping_embed) ;
-         console.log ("Commande pong ")
-    }
+   let ping_embed = new Discord.RichEmbed ()
+       .setColor('#333333')
+       .setTitle ("Ping")
+       .addField ('Pong! Mon ping est de', '***' + `${Date.now() - message.createdTimestamp}` + ' ms***🏓', true )
+       //).addField(" Ping local", '***' + Math.round(altair.ping) + " ms***", false )
+       .setTimestamp()
+       .setFooter(` Ping |`);
+    message.channel.send(ping_embed) ;
+    console.log (`${message.author.username} |ping `)
+}
     //Embed invitation
-    if (message.content === prefix + "invitation") {
+    if (message.content === prefix + "invite") {
     	   let invite_embed = new Discord.RichEmbed ()
     	      .setColor('#333333')
     	      .setTitle ("Invitation ")
-    	      .addField ("Invitation du bot et invitation serveur ", "Voici le lien du [discordbots ](https://discordbots.org/bot/409253299699843072) pour rejoindre le serveur et m'inviter sur ton serveur ", true)
-            .setTimestamp()
+    	      .addField ("Invitation du bot et invitation serveur ", "Voici le lien du [Bot](https://discordbots.org/bot/435585785295667200) pour rejoindre le serveur et m'inviter sur ton serveur ", true)
+  	  	      .setTimestamp()
             .setFooter(`Invitation`);
         message.channel.send(invite_embed) ;
          console.log (`${message.author.username} | Invitation`)
@@ -465,21 +691,10 @@ if (message.content === prefix + "onmain") {
     	      .addField ("Pour suivre toute les News du serveur Fly Family", " Voilà le [site internet ](https://zechaos.wixsite.com/flyfamile) du serveur" )
          message.channel.send(site_embed) ;
     }
-    //Embed misthstats
-    if (message.content === prefix + "misthstats") {
-    	   let misthstats_embed = new Discord.RichEmbed ()
-    	      .setColor('#01B0F0')
-    	      .setTitle ("Misth est off")
-    	      .addField ("**__Aucun test en cours __**" ,'Aucun' )
-            .setTimestamp()
-            .setFooter(`MisthStat`);
-         message.channel.send(misthstats_embed) ;
-         console.log(`${message.author.username} | MisthStat`)
-    }
     	if (message.content.startsWith (prefix + "google")) {
-   		let args = message.content.split(' ')
-   		args.shift ()
-   		message.channel.send ("Voici le résultat de votre recherche: https://www.google.fr/#q=" +args.join('%20'))
+   		let args2 = message.content.split(' ')
+   		args2.shift ()
+   		message.channel.send ("Voici le résultat de votre recherche: https://www.google.fr/#q=" +args2.join(' '))
          console.log(`${message.author.username} | google `)
 }
     //Embed serveur info
@@ -516,7 +731,7 @@ if (message.content === prefix + "onmain") {
   	  	 .addField ("Données utilisateurs", bot.users.size, false)
   	  	 .addField ("Le trello du bot", "Voilà mon [Trello](https://trello.com/b/rUl5NBRH/nitral) Pour voir l'avancement du bot ",false )
   	  	 .addField ("Le github du bot", "Voici le lien du [github ](https://github.com/zechaos031/Nitral-) du bot ()", true)
-  	  	 .addField ("Invitation du bot et invitation serveur ", "Voici le lien du [discordbots ](https://discordbots.org/bot/409253299699843072) pour rejoindre le serveur et m'inviter sur ton serveur ", true)
+  	  	 .addField ("Invitation du bot et invitation serveur ", "Voici le lien du [Bot](https://bots.discord.pw/bots/435585785295667200) pour rejoindre le serveur et m'inviter sur ton serveur ", true)
   	  	 .addField ("Hebergeur", "Hébergement local avec un Asus zenfone 4 en full 4G")
   	  	 .addField ("Langage de programmation", "Crée en JavaScript", false)
          .setTimestamp()
@@ -524,26 +739,121 @@ if (message.content === prefix + "onmain") {
   	  	 return message.channel.send(botembed);
   	  	 console.log(`${message.author.username} | Bot Info`)
    }
-
-   if (message.content === "serveur team wolf") {
-      message.reply ("https://discord.gg/suFsCPy")
-   }
    //Embed userinfo
-     if (message.content === prefix +`userinfo`){
-  	  	 let bot2embed = new Discord.RichEmbed()
+     if (message.content.startsWith === prefix +`userinfo`){
+  	  	 let user = message.mentions.users.first();
+    if (!user) {
+        return message.reply("Tu doit mentionné quelqu'un");
+    }
+    let mentioneduser = message.mentions.users.first();
+    let joineddiscord = (mentioneduser.createdAt.getDate() + 1) + '-' + (mentioneduser.createdAt.getMonth() + 1) + '-' + mentioneduser.createdAt.getFullYear() + ' | ' + mentioneduser.createdAt.getHours() + ':' + mentioneduser.createdAt.getMinutes() + ':' + mentioneduser.createdAt.getSeconds();
+    message.delete();
+    let game;
+    if (user.presence.game === null) {
+        game = 'Ne joue pas';
+    } else {
+        game = user.presence.game.name;
+    }
+    let status;
+    if (user.presence.status === 'en ligne') {
+        status = ':green_heart:';
+    } else if (user.presence.status === 'ne pas derangé') {
+        status = ':heart:';
+    } else if (user.presence.status === 'absent') {
+        status = ':yellow_heart:';
+    } else if (user.presence.status === 'deconnecté') {
+        status = ':black_heart:';
+    }
+  // Let afk;
+  // if (user.presence.data.afk === true) {
+  //   afk = "✅"
+  // } else {
+  //   afk = "❌"
+  // }
+    let stat;
+    if (user.presence.status === 'deconnecté') {
+        stat = 0x000000;
+    } else if (user.presence.status === 'en ligne') {
+        stat = 0x00AA4C;
+    } else if (user.presence.status === 'ne pas derangé') {
+        stat = 0x9C0000;
+    } else if (user.presence.status === 'absent') {
+        stat = 0xF7C035;
+    }
+    let userembed = new Discord.RichEmbed()
+
   	  	 .setTitle("Information sur l'utilisateur ")
   	  	 .setColor("#15f153")
-  	  	 .setThumbnail(message.author.avatarURL)
-  	  	 .addField ("Pseudo", message.author.username + message.author.discriminator, false)
-  	  	 .addField ("Date de création du compte", message.author.createdAt, false)
+  	  	 .setThumbnail(messag.author.avatarURL)
+  	  	 .addField ("Pseudo",`${user.username}#${user.discriminator}`, false)
+  	  	 .addField ("Jeu",`${game}`, false)
+         .addField ("Etat de connection",`${status}`, false)
+  	     .addField ("Bot",`${user.bot}`,false)
+  	  	 .addField ("Date de création du compte", `${joineddiscord}`, false)
   	  	 .addField("Date de venue", message.member.joinedAt,false)
+         .addField(`Roles:`, '``' + message.mentions.members.first().roles.map(r => r.name).join(', ') + '``')
   	   	 .addField ("ID de l'utilisateur", message.author.id,false )
          .setTimestamp()
          .setFooter(`User Info`);
-  	  	 return message.channel.send(bot2embed);
   	  	 console.log(`${message.author.username} |UserInfo`)
-   }
-      //Kick
+    message.channel.send(userembed)
+};
+if (message.content.startsWith === prefix +`userinfot`){
+let user = message.mentions.users.first();
+    if (!user) {
+        return message.reply('You must mention someone!');
+    }
+    const mentioneduser = message.mentions.users.first();
+    const joineddiscord = (mentioneduser.createdAt.getDate() + 1) + '-' + (mentioneduser.createdAt.getMonth() + 1) + '-' + mentioneduser.createdAt.getFullYear() + ' | ' + mentioneduser.createdAt.getHours() + ':' + mentioneduser.createdAt.getMinutes() + ':' + mentioneduser.createdAt.getSeconds();
+    message.delete();
+    let game;
+    if (user.presence.game === null) {
+        game = 'Not currently Playing.';
+    } else {
+        game = user.presence.game.name;
+    }
+    let messag;
+    if (user.lastMessage === null) {
+        messag = 'He didnt sent a message.';
+    } else {
+        messag = user.lastMessage;
+    }
+    let status;
+    if (user.presence.status === 'online') {
+        status = ':green_heart:';
+    } else if (user.presence.status === 'dnd') {
+        status = ':heart:';
+    } else if (user.presence.status === 'idle') {
+        status = ':yellow_heart:';
+    } else if (user.presence.status === 'offline') {
+        status = ':black_heart:';
+    }
+  // Let afk;
+  // if (user.presence.data.afk === true) {
+  //   afk = "✅"
+  // } else {
+  //   afk = "❌"
+  // }
+    let stat;
+    if (user.presence.status === 'offline') {
+        stat = 0x000000;
+    } else if (user.presence.status === 'online') {
+        stat = 0x00AA4C;
+    } else if (user.presence.status === 'dnd') {
+        stat = 0x9C0000;
+    } else if (user.presence.status === 'idle') {
+        stat = 0xF7C035;
+    }
+    const embed = new Discord.RichEmbed()
+  .addField('**UserInfo:**', `**name:** ${user.username}#${user.discriminator}\n**JoinedDiscord:** ${joineddiscord}\n**LastMessage:** ${messag}\n**Playing:** ${game}\n**Status:** ${status}\n**Bot?** ${user.bot}`, true)
+  .setThumbnail(user.displayAvatarURL)
+  .addField(`Roles:`, '``' + message.mentions.members.first().roles.map(r => r.name).join(', ') + '``')
+  .addField('DiscordInfo:', `**Discriminator:** ${user.discriminator}\n**ID:** ${user.id}\n**Username:** ${user.username}`)
+  .setAuthor(`Info for ${user.username} Below`, user.displayAvatarURL)
+  .setColor(stat);
+    message.channel.send(embed)
+  .catch(e => logger.error(e));
+};      //Kick
       if (message.content.startsWith(prefix + "kick")) {
 
         if (!message.channel.permissionsFor(message.author).hasPermission("KICK_MEMBERS")) {
@@ -673,7 +983,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
     }
 
   //Dé
-  var dévar = [":one: ", ":two:",":tree:",":foor",":five:",":six:"]
+  var dévar = [":one: ", ":two: ",":three: ",":four: ",":five: ",":six: "]
   var  dévaran = dévar[Math.floor(Math.random() * dévar.length)] ;
 
   if (message.content === prefix + "dice") {
@@ -748,7 +1058,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
             var text = message.content.substring(11)
             var fiveEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " a fait un highfive a "+ text )
+              .setDescription(`${message.author.username}` + " a fait un highfive a "+ defineduser.username )
               .setImage(five)
               .setTimestamp()
               .setFooter(`Highfive`)
@@ -760,7 +1070,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
             var text = message.content.substring(7)
             var trollEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username }` + " a troller"+ text )
+              .setDescription(`${message.author.username }` + " a troller"+ defineduser.username )
               .setImage(trolling)
               .setTimestamp()
               .setFooter(`Troll`)
@@ -771,7 +1081,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
           var text = message.content.substring(7)
           var bangEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " a tiré sur "+ text )
+              .setDescription(`${message.author.username}` + " a tiré sur "+ defineduser.username )
               .setImage(banging)
               .setTimestamp()
               .setFooter(`Shoot`)
@@ -782,7 +1092,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
           var text = message.content.substring(7)
           var stareEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " fixe "+ text )
+              .setDescription(`${message.author.username}` + " fixe "+ defineduser.username )
               .setImage(staring)
               .setTimestamp()
               .setFooter(`Stare`)
@@ -793,7 +1103,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
      	    var text = message.content.substring(6)
           var fuckEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " fait un doigt d'honneur à "+ text )
+              .setDescription(`${message.author.username}` + " fait un doigt d'honneur à "+ defineduser.username )
               .setImage(fucking)
               .setTimestamp()
               .setFooter(`Fuck`)
@@ -804,7 +1114,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
             var text = message.content.substring(6)
             var slapEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " donne une claque à "+ text )
+              .setDescription(`${message.author.username}` + " donne une claque à "+ defineduser.username )
               .setImage(slapping)
               .setTimestamp()
               .setFooter(`Slap`)
@@ -816,7 +1126,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
             var text = message.content.substring(8)
             var cudEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " réconforte "+ text )
+              .setDescription(`${message.author.username}` + " réconforte "+ defineduser.username )
               .setImage( cuddle)
               .setTimestamp()
               .setFooter(`Cuddle`)
@@ -826,7 +1136,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
     if (message.content.startsWith (prefix +"everyone")) {
      	      var eveEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " a fait everyone ")
+              .setDescription(`${message.author.username}` + " a fait un everyone ")
               .setImage(eve)
               .setTimestamp()
               .setFooter(`Everyone`)
@@ -837,7 +1147,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
      	      var text = message.content.substring(5)
             var resEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " ressuscite "+ text )
+              .setDescription(`${message.author.username}` + " ressuscite "+ defineduser.username )
               .setImage(resing)
               .setTimestamp()
               .setFooter(`Ressurect`)
@@ -858,7 +1168,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
     if (message.content.startsWith (prefix +"kiss")) {
             var text = message.content.substring(6)
             var kissEmbed = new Discord.RichEmbed()
-              .setDescription(`${message.author.username}` + " fait un bisou a "  + text)
+              .setDescription(`${message.author.username}` + " fait un bisou a "  + defineduser.username)
               .setColor ('#00FAD9')
               .setImage(kissing)
               .setTimestamp()
@@ -871,7 +1181,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
             var text = message.content.substring(7)
             var punchEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " donne un coup de poing à "+ text )
+              .setDescription(`${message.author.username}` + " donne un coup de poing à "+ defineduser.username )
               .setImage(punching)
               .setTimestamp()
               .setFooter(`Punch`)
@@ -883,7 +1193,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
             var text = message.content.substring(13)
             var handEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " donne la main à " + text )
+              .setDescription(`${message.author.username}` + " donne la main à " + defineduser.username )
               .setImage(handholding)
               .setTimestamp()
               .setFooter(`Handholding`)
@@ -895,7 +1205,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
             var text = message.content.substring(6)
             var poutEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " boude "+ text )
+              .setDescription(`${message.author.username}` + " boude "+ defineduser.username )
               .setImage(pouting)
               .setTimestamp()
               .setFooter(`Pout`)
@@ -907,7 +1217,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
             var text = message.content.substring(5)
             var patEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " carresse "+ text )
+              .setDescription(`${message.author.username}` + " carresse "+ defineduser.username )
               .setImage(pating)
               .setTimestamp()
               .setFooter(`Pat`)
@@ -918,7 +1228,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
             var text = message.content.substring(5)
             var HugEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9' )
-              .setDescription(`${message.author.username}` + " fait un calîn a "  + text)
+              .setDescription(`${message.author.username}` + " fait un calîn a "  + defineduser.username)
               .setImage(huging)
               .setTimestamp()
               .setFooter(`Hug`);
@@ -939,13 +1249,13 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
           console.log("📛 Je n'es pas la permission 📛");
           return;
         }
-        let args = message.content.split(" ").slice(1);
+        let args3 = message.content.split(" ").slice(1);
         if (!args[0]){
           message.delete();
           message.channel.send("Données incorrecte")
           return;
         }
-        if (args[0] > 100){
+        if (args3[0] > 100){
           message.delete();
           var offclearEmbed = new Discord.RichEmbed()
                 .setColor ('#00FAD9')
@@ -957,7 +1267,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
           return;
         }
         message.delete();
-        message.channel.bulkDelete(args[0]);
+        message.channel.bulkDelete(args3[0]);
             var onclearEmbed = new Discord.RichEmbed()
                   .setColor ('#00FAD9')
                   .setDescription(`${message.author.username}` + " a clear "+ args[0] + " messages" )
@@ -1001,7 +1311,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
           incidentchannel.send(repEmbed)
     console.log(`${message.author.username} | Report `)
   }
-    if (message.content.startsWith ("ed")){
+    if (message.content === "ed"){
       message.channel.send ("https://www.ecoledirecte.com/login")
     }
     if (message.content.startsWith(prefix + "setup")) {
@@ -1102,8 +1412,8 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
 
       }else{
 
-        let args = message.content.split(' ');
-        let time = args[1];
+        let args4 = message.content.split(' ');
+        let time = args4[1];
         let timeofreminder = message.content.slice(2, args.length);
 
         function reminder (remind, toRemind) {
@@ -1134,7 +1444,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
         reminder(time, timeofreminder);
       }
     }
-        if(message.content.startsWith(prefix + 'lock')){
+        /*if(message.content.startsWith(prefix + 'lock')){
           if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
             message.channel.send ("📛 Tu n'as pas la permission 📛");
             console.log("📛 Tu n'as pas la permission 📛");
@@ -1190,7 +1500,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
                     });
                   });
                 }
-              };
+              };*/
               if(message.content.startsWith(prefix + "h say")){
                 message.channel.send("__Usage__ `"+ prefix + "say [Un mot ou une phrase]`");
               }
@@ -1751,7 +2061,7 @@ function startVote() {
 		collector.on('collect', r => console.log("thumbs up in " + messageToReact.guild.name));
 		collector.on('end', collected => {
 
-			var realnumberrr = messageToReact.reactions.find(r=>r.emoji.name==="👍").count - 1; //get the right number
+      var realnumberrr = messageToReact.reactions.find(r=>r.emoji.name==="👍").count - 1; //get the right number
 
 			console.log("Collected " + realnumberrr + " votes for thumbs up");
 
@@ -1828,8 +2138,8 @@ if (message.content.startsWith (prefix + "pollc") ) {
 cuteapi.generate("triggered", image).then(r => { message.channel.send({ file: { attachment: r
       }}) ;
       })
-}
- });
+    }
+  })
 
           //Token
-          bot.login ("NDA5MjUzMjk5Njk5ODQzMDcy.DbEBgg.xyxodQcIRBedYB8UkVpEr8YD4A0")
+          bot.login ("NDM1NTg1Nzg1Mjk1NjY3MjAw.DbbGZQ.OCMUfQRHLNiBxaD2X1ulnMb8LAQ")
