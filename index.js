@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client()
-//const config = require('./botconfig.json');
+
 const low = require("lowdb");
 const FileSync = require ('lowdb/adapters/FileSync')
 const client = new Discord.Client();
