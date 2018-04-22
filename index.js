@@ -1,6 +1,5 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client()
-
 const low = require("lowdb");
 const FileSync = require ('lowdb/adapters/FileSync')
 const client = new Discord.Client();
@@ -16,7 +15,6 @@ const ms = require("ms");
 
 
 
-let rvotes = ("99")
 let xp = require("./xp.json");
 var cooldown = new Set()
 let warns = JSON.parse(fs.readFileSync("warnings.json", "utf8"));
@@ -145,7 +143,8 @@ if(!coins[message.author.id]){
 
   let coinAmt = Math.floor(Math.random() * 15) + 1;
   let baseAmt = Math.floor(Math.random() * 15) + 1;
- 
+  console.log(`${coinAmt} ; ${baseAmt}`);
+
   if(coinAmt === baseAmt){
     coins[message.author.id] = {
       coins: coins[message.author.id].coins + coinAmt
@@ -1251,7 +1250,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
           return;
         }
         let args3 = message.content.split(" ").slice(1);
-        if (!args3[0]){
+        if (!args[0]){
           message.delete();
           message.channel.send("Données incorrecte")
           return;
@@ -1271,7 +1270,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
         message.channel.bulkDelete(args3[0]);
             var onclearEmbed = new Discord.RichEmbed()
                   .setColor ('#00FAD9')
-                  .setDescription(`${message.author.username}` + " a clear "+ args3[0] + " messages" )
+                  .setDescription(`${message.author.username}` + " a clear "+ args[0] + " messages" )
                   .setTimestamp()
                   .setFooter(` Purge `);
                   message.channel.send(onclearEmbed)
@@ -1279,8 +1278,8 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
                         .setDescription("~Purge~")
                         .setColor ('#e56b00')
                         .addField("Utilisateur", `${message.author.username}`, false)
-                        .addField("Nombre de message supprimé",args3[0] + " messages")
-                        .addField("Channel", message.channel.name, false)
+                        .addField("Nombre de message supprimé",args[0] + " messages")
+                        .addField("Channel", message.channel, false)
                         .addField("A", message.createdAt, false)
                         .setTimestamp()
                         .setFooter(` Purge `);
@@ -1288,7 +1287,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
               if(!incidentchannel) return message.channel.send("Impossible de trouver le channel `logs-nitral`.");
 
                         incidentchannel.send(onclearEmbed2)
-        console.log(`${message.author.username} | Purge `+ args3[0] + " messages")
+        console.log(`${message.author.username} | Purge `+ args[0] + " messages")
         return;
    }
   if (message.content.startsWith(prefix + "report")) {
@@ -1747,7 +1746,7 @@ message.channel.bulkDelete (2)
 
  			console.log("Collected " + realnumberrr + " votes for thumbs up");
 
- 			if(realnumberrr >= rvotes) { //thumbs up
+ 			if(realnumberrr >= config.rvotes) { //thumbs up
  				message.channel.send("Succès ! Les vote son ouvert 🗳!");
 
  				message.channel.send("Résultat :");
@@ -1818,7 +1817,7 @@ message.channel.bulkDelete (2)
 
  			console.log("Collected " + realnumberrr + " votes for thumbs up");
 
- 			if(realnumberrr >= rvotes) { //thumbs up
+ 			//if(realnumberrr >= config.rvotes) { //thumbs up
  				message.channel.send("Success! Got required votes!");
 
  				message.channel.send("Résultat :");
@@ -1896,7 +1895,7 @@ message.channel.bulkDelete (2)
 
  			console.log("Collected " + realnumberrr + " votes for thumbs up");
 
- 			if(realnumberrr >= rvotes) { //thumbs up
+ 			if(realnumberrr >= config.rvotes) { //thumbs up
  				message.channel.send("Success! Got required votes!");
 
  				message.channel.send("Résultat :");
@@ -2066,7 +2065,7 @@ function startVote() {
 
 			console.log("Collected " + realnumberrr + " votes for thumbs up");
 
-			if(realnumberrr >= rvotes) { //thumbs up
+			if(realnumberrr >= config.rvotes) { //thumbs up
 				message.channel.send("Success! Got required votes!");
 
 				message.channel.send("Résultat :");
@@ -2092,7 +2091,7 @@ function startVote() {
 
 			console.log("Collected " + realnumberrrr + " votes for thumbs down");
 
-			//if(realnumberrrr >= rvotes) { //thumbs up
+			if(realnumberrrr >= config.rvotes) { //thumbs up
 				//message.channel.send("Success! Got required votes!");
 				message.channel.send("Contre : " + realnumberrrr);
 			}
