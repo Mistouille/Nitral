@@ -255,7 +255,8 @@ if(!coins[message.author.id]){
     //------------------------------------------------//
     //                   Musique                     //
     //------------------------------------------------//
-    
+if (message.content.startsWith(prefix + "play")){
+
 var intent;
 
     function getRandomInt(max) {
