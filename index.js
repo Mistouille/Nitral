@@ -1270,7 +1270,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
         message.channel.bulkDelete(args3[0]);
             var onclearEmbed = new Discord.RichEmbed()
                   .setColor ('#00FAD9')
-                  .setDescription(`${message.author.username}` + " a clear "+ args[0] + " messages" )
+                  .setDescription(`${message.author.username}` + " a clear "+ args3[0] + " messages" )
                   .setTimestamp()
                   .setFooter(` Purge `);
                   message.channel.send(onclearEmbed)
@@ -1278,7 +1278,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
                         .setDescription("~Purge~")
                         .setColor ('#e56b00')
                         .addField("Utilisateur", `${message.author.username}`, false)
-                        .addField("Nombre de message supprimé",args[0] + " messages")
+                        .addField("Nombre de message supprimé",args3[0] + " messages")
                         .addField("Channel", message.channel, false)
                         .addField("A", message.createdAt, false)
                         .setTimestamp()
@@ -1287,7 +1287,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
               if(!incidentchannel) return message.channel.send("Impossible de trouver le channel `logs-nitral`.");
 
                         incidentchannel.send(onclearEmbed2)
-        console.log(`${message.author.username} | Purge `+ args[0] + " messages")
+        console.log(`${message.author.username} | Purge `+ args3[0] + " messages")
         return;
    }
   if (message.content.startsWith(prefix + "report")) {
