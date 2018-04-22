@@ -267,9 +267,9 @@ if (message.content === prefix + 'cat') {
     if (message.content ==="Team Wolf") {
         message.channel.send(":online-1: :wolf:**__TEAM WOLF EN FORCE__**:wolf:");
     }
-	if (message.content.startsWith(prefix + "rps")){
+	if (message.content.startsWith(prefix + "lock")){
        if (!client.lockit) client.lockit = [];
-  const time = args.join(' ');
+  const time = message.content.split(" ").slice(1).join(" ");
   const validUnlocks = ['release', 'unlock'];
   if (!time) return message.reply('Vous devez définir une durée pour le lockdown. En heures, minutes ou secondes');
 
@@ -277,7 +277,7 @@ if (message.content === prefix + 'cat') {
     message.channel.overwritePermissions(message.guild.id, {
       SEND_MESSAGES: null
     }).then(() => {
-      message.channel.send('Lockdown levé');
+      message.channel.send('Channel libéré ! ');
       clearTimeout(client.lockit[message.channel.id]);
       delete client.lockit[message.channel.id];
     }).catch(error => {
@@ -292,7 +292,7 @@ if (message.content === prefix + 'cat') {
         client.lockit[message.channel.id] = setTimeout(() => {
           message.channel.overwritePermissions(message.guild.id, {
             SEND_MESSAGES: null
-          }).then(message.channel.send('Lockdown levé')).then(msg => {msg.delete(10000)});
+          }).then(message.channel.send('Channel libéré ! ')).then(msg => {msg.delete(10000)});
           delete client.lockit[message.channel.id];
         }, ms(time));
 
