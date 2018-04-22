@@ -2092,7 +2092,7 @@ function startVote() {
 
 			console.log("Collected " + realnumberrrr + " votes for thumbs down");
 
-			if(realnumberrrr >= rvotes) { //thumbs up
+			//if(realnumberrrr >= rvotes) { //thumbs up
 				//message.channel.send("Success! Got required votes!");
 				message.channel.send("Contre : " + realnumberrrr);
 			}
