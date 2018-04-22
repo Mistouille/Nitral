@@ -1279,7 +1279,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
                         .setColor ('#e56b00')
                         .addField("Utilisateur", `${message.author.username}`, false)
                         .addField("Nombre de message supprimé",args3[0] + " messages")
-                        .addField("Channel", message.channel, false)
+                        .addField("Channel", message.channel.name, false)
                         .addField("A", message.createdAt, false)
                         .setTimestamp()
                         .setFooter(` Purge `);
