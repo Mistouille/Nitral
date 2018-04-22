@@ -1,15 +1,17 @@
 const Discord = require('discord.js')
 const bot = new Discord.Client()
-const low = require("lowdb");
+const config = require('./botconfig.json')const low = require("lowdb");
 const FileSync = require ('lowdb/adapters/FileSync')
 const client = new Discord.Client();
 const fs = require("fs");
 const cute = require("cuteapi");
 const cuteapi = new cute('902d99c1cd4028c91292fa13ded9f9e3e78f5060b7e35c9ce215044f3fd9c68e81693a349b8f4526262a275487396bd1f6a04f51956bb03594c32dfd9d5d0ca5');
+const ytdl = require('ytdl-core');
+const search = require('youtube-search');
 const weather = require('weather-js');
 bot.commands = new Discord.Collection();
 const {get} = require("snekfetch");
-const ms = require("ms");
+const YTDL = require("ytdl-core");const ms = require("ms");
 //const economy = require('discord-eco');
 
 
@@ -143,7 +145,7 @@ if(!coins[message.author.id]){
 
   let coinAmt = Math.floor(Math.random() * 15) + 1;
   let baseAmt = Math.floor(Math.random() * 15) + 1;
-  console.log(`${coinAmt} ; ${baseAmt}`);
+  
 
   if(coinAmt === baseAmt){
     coins[message.author.id] = {
@@ -249,11 +251,222 @@ if(!coins[message.author.id]){
             console.log(`${message.author.username} | progess `)
   }
     //------------------------------------------------//
+    //                   Musique                     //
+    //------------------------------------------------//
+    
+var intent;
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * (max + 1));
+    }
+    
+    var paused = {}
+    
+
+    function play(message, queue, song) {
+        try {
+            if (!message || !queue) return;
+            if (song) {
+                search(song, opts, function(err, results) {
+                    if(language == "fr"){
+                    if (err) return message.channel.send("Vidéo non trouvée, essayez d'utiliser un lien à youtube à la place."); 
+                    }else{
+                    if (err) return message.channel.send("Video not found please try to use a youtube link instead.");
+                    }
+                    song = (song.includes("https://" || "http://")) ? song : results[0].link
+                    let stream = ytdl(song, {
+                        audioonly: true
+                    })
+                    let test
+                    if (queue.length === 0) test = true
+                    queue.push({
+                        "title": results[0].title,
+                        "requested": message.author.username,
+                        "toplay": stream
+                    })
+                if(language == "fr"){
+                
+                }else{
+            
+                }
+                message.channel.send({
+                    embed: {
+                        author: {
+                            name: client.user.username,
+                            icon_url: client.user.avatarURL
+                        },
+                        color: 0x00FF00,
+                        title: `Queued`,
+                        description: "**" + queue[queue.length - 1].title + "**"
+                    }
+                        }).then(response => { response.delete(5000) });
+                    if (test) {
+                        setTimeout(function() {
+                            play(message, queue)
+                        }, 1000)
+                    }
+                })
+            } else if (queue.length != 0) {
+                if(language == 'fr'){
+                    message.channel.send({
+            embed: {
+                author: {
+                    name: client.user.username,
+                    icon_url: client.user.avatarURL
+                },
+                color: 0x00FF00,
+                title: `Lecture en cours`,
+                description: `**${queue[0].title}** | Demande par ***${queue[0].requested}***`
+            }
+                }).then(response => { response.delete(5000) });
+                let connection = message.guild.voiceConnection
+                if (!connection) return console.log("Pas de connexion!");
+                intent = connection.playStream(queue[0].toplay)
+    
+                intent.on('error', () => {
+                    queue.shift()
+                    play(message, queue)
+                })
+    
+                intent.on('end', () => {
+                    queue.shift()
+                    play(message, queue)
+                })
+                }else{
+                    message.channel.send({
+            embed: {
+                author: {
+                    name: client.user.username,
+                    icon_url: client.user.avatarURL
+                },
+                color: 0x00FF00,
+                title: `Now Playing`,
+                description: `**${queue[0].title}** | Requested by ***${queue[0].requested}***`
+            }
+                }).then(response => { response.delete(5000) });
+                console.log(`Playing ${queue[0].title} as requested by ${queue[0].requested} in ${message.guild.name}`);
+                let connection = message.guild.voiceConnection
+                if (!connection) return console.log("No Connection!");
+                intent = connection.playStream(queue[0].toplay)
+    
+                intent.on('error', () => {
+                    queue.shift()
+                    play(message, queue)
+                })
+    
+                intent.on('end', () => {
+                    queue.shift()
+                    play(message, queue)
+                })
+                }
+            } else {
+                if(language == "fr"){
+                    message.channel.send('Il n\'y a plus de musique dans la playlist.').then(response => { response.delete(5000) });
+                    if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+  
+                }else{
+                    message.channel.send('No more music in queue! Starting autoplaylist').then(response => { response.delete(5000) });
+                    if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+                  
+                }
+            }
+        } catch (err) {
+            if(language =="fr"){
+            console.log("BIEN LADS COMPREND QUE QUELQUE FOIS A ÉTÉ MAL! Visitez le serveur de vidéos Joris pour obtenir de l'assistance (https://discord.gg/E8tXHqC) et citez cette erreur:\n\n\n" + err.stack)
+            errorlog[String(Object.keys(errorlog).length)] = {
+                "code": err.code,
+                "error": err,
+                "stack": err.stack
+            }
+            fs.writeFile("./data/errors.json", JSON.stringify(errorlog), function(err) {
+                if (err) return console.log("Pire encore, nous ne pouvions pas écrire dans notre fichier journal d'erreur! Assurez-vous que data / errors.json existe toujours!");
+            });
+            }else{
+                console.log("WELL LADS LOOKS LIKE SOMETHING WENT WRONG! Visit Joris vidéo server for support (https://discord.gg/E8tXHqC) and quote this error:\n\n\n" + err.stack)
+            errorlog[String(Object.keys(errorlog).length)] = {
+                "code": err.code,
+                "error": err,
+                "stack": err.stack
+            }
+            fs.writeFile("./data/errors.json", JSON.stringify(errorlog), function(err) {
+                if (err) return console.log("Even worse we couldn't write to our error log file! Make sure data/errors.json still exists!");
+            });
+            }
+    
+        }
+    }
+
+
+    try {
+        var config = require('../../config.json'),
+        language = config.language;
+        if (language == "fr") {
+        } else if (language == "en") {
+        } else {
+        }
+    } catch (err) {
+        console.log(err);
+        if(language == 'fr'){
+            console.log("No config detected, attempting to use environment variables...");
+        }else {
+            console.log("No config detected, attempting to use environment variables...");
+        }
+        if (process.env.TOKEN && process.env.YOUTUBE_API_KEY) {
+            var config = require('../../config.json')
+        } else {
+            console.log("No token passed! Exiting...")
+            process.exit(0)
+        }
+    }
+
+    function getQueue(guild) {
+        if (!guild) return
+        if (typeof guild == 'object') guild = guild.id
+        if (queues[guild]) return queues[guild]
+        else queues[guild] = []
+        return queues[guild]
+    }
+
+if (!message.guild.voiceConnection) {
+                if(language == "fr"){
+                if (!message.member.voiceChannel) return message.channel.send('Vous devez être dans un channel vocal')
+                }else{
+                if (!message.member.voiceChannel) return message.channel.send('You need to be in a voice channel')
+                }
+                var chan = message.member.voiceChannel
+                chan.join()
+            }
+            let suffix = message.content.split(" ").slice(1).join(" ")
+            if(language == "fr"){
+            let suffix = message.content.split(" ").slice(1).join(" ")
+            if (!suffix) return message.channel.send('Vous devez spécifier un lien pour le morceau ou un nom de musique!')
+            }else{
+            if (!suffix) return message.channel.send('You need to specify a song link or a song name!')
+            }
+
+            play(message, getQueue(message.guild.id), suffix)
+        }
+    
+    //------------------------------------------------//
     //                   Commande                     //
     //------------------------------------------------//
         //Fun
 
 //Embed
+if (message.content.startsWith(prefix + "rps")){
+let defineduser = message.mentions.users.first();
+    let user = message.author
+    message.delete();
+    if (!args[0]) {return message.reply(`**Veuillez spécifiez un utilisateur que vous voulez toucher.**`)    
+                  }else{
+ 
+ 
+    let Embed = new Discord.RichEmbed()
+    .setTitle('Poke 👉')
+    .addField('Tu as juste été toucher.', `Par: ${user}`, true)
+    .setColor(0xD4AF37)
+    defineduser.send(Embed)
+                  }
 let cat = ["http://img-comment-fun.9cache.com/media/c81c59c9145641080812687141_700wa_0.gif", "https://reseauinternational.net/wp-content/uploads/2015/10/gifa-cat-surprised.gif", "http://img4.hostingpics.net/pics/113686catmousetabletpounce.gif", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-vslRfH69TDhw9to9dtiBi9fwtiOwjHJ7HRSvi7wYSCvqP6rl","https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny85NTkvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzYzOTcxNjY1LmpwZw=="," http://www.ordanburdansurdan.com/wp-content/uploads/2017/06/oxgkvrvnd5o-1.jpg", "https://ichef.bbci.co.uk/news/660/cpsprodpb/71E1/production/_99735192_gettyimages-459467912.jpg", "https://cms.kienthuc.net.vn/zoom/500/Uploaded/ctvkhoahoc/2017_10_20/10_NMHD.jpg", "http://i0.kym-cdn.com/photos/images/facebook/000/012/445/lime-cat.jpg", "https://i2-prod.mirror.co.uk/incoming/article11812659.ece/ALTERNATES/s1200/The-Feline-World-Gathers-For-The-Supreme-Cat-Show-2017.jpg", "https://mymodernmet.com/wp/wp-content/uploads/2017/11/minimalist-cat-art-subreddit-10.jpg", "https://metrouk2.files.wordpress.com/2017/11/capture16.png?w=748&h=706&crop=1"] 
 let cating = cat[Math.floor(Math.random() * cat.length)] ;
       
