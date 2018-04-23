@@ -335,16 +335,22 @@ if (message.content.startsWith(prefix + "rps")){
         message.channel.send("Egalité!");
       }
        if (computer_choice == 0 && user_choice == 2) {
-        message.channel.send (  " J'ai gagné1!");
+        message.channel.send (  " J'ai gagné!");
       } 
 	  if (computer_choice == 2 && user_choice == 0) {
-        message.channel.send ("Tu as gagné1!");
+        message.channel.send ("Tu as gagné!");
       }
 	    if (computer_choice == 1 && user_choice == 0) {
-        message.channel.send ("J'ai gagné 2!");
+        message.channel.send ("J'ai gagné !");
       }
     if (computer_choice == 0 && user_choice == 1) {
-        message.channel.send ("Tu as gagné 2!");
+        message.channel.send ("Tu as gagné !");
+      }
+	    if (computer_choice == 1 && user_choice == 2) {
+        message.channel.send ("Tu as gagné !");
+      }
+	    if (computer_choice == 2 && user_choice == 1) {
+        message.channel.send ("J'ai gagné !");
       }
     } 
   }
