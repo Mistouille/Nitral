@@ -340,6 +340,13 @@ if (message.content.startsWith(prefix + "rps")){
       }
     } 
   }
+	usage : () => {
+    return "<prefix>rps rock/paper/scissors";
+  },
+	
+	
+	
+	
 if (message.content.startsWith(prefix + "test")){
 	const args6 = message.content.split(" ").slice(1).join(" ");
 	
@@ -496,7 +503,8 @@ if (message.content === prefix + "onmain") {
     	      .addField ("__Astrologia__:", "Dit ton signe astrologique ⛎", false)
     	      .addField ("__Say__", "Dit une phrase au bot 🤖💬", false)
             .addField ("__Cat__","Envoi une image de chat",true)
-           .addField ("__Kiss__", "Fait un bisou a une personne 💋 (++kiss [mention])", false)
+          .addField ("__Rps__", " Fait un pierre, feuilles, ciseaux avec le bot", false) 
+	.addField ("__Kiss__", "Fait un bisou a une personne 💋 (++kiss [mention])", false)
            .addField ("__Hug__", "Fait un calin a une personne 👐 (++hug [mention])", false)
            .addField ("__Cry__", "Vous pleurez de tristesse 😢", false)
            .addField ("__Pat__", "Vous carressez une personne 👋 (++pat [mention] ) ", false)
@@ -559,7 +567,7 @@ if (message.content === prefix + "onmain") {
          .addField ("**__XP__**:**(bug)**", "`levels`,`xp`,`progress`")
          .addField ("**__Economie__**:**(bug)**","`coins`",false)
          .addField ("**__Info__**" ," `userinfo`,`serverinfo`,`botinfo`,`diserver`,`weather`,`invitation`," , false)
-         .addField ("**__Fun__**" ,"`roll`,`cat`,`astrologia`,`triggered`,`dice`,`verlan`,`piece`,`say`" ,false)
+         .addField ("**__Fun__**" ,"`rps`,`roll`,`cat`,`astrologia`,`triggered`,`dice`,`verlan`,`piece`,`say`" ,false)
          .addField ("**__Interaction__**" , "`kiss`,`hug`,`cry`,`pat`,`pout`,`punch`,`handholding`,`shoot`,`stare`,`slap`,`fuck`,`res`,`everyone`,`troll`,`highfive`,`pollc`" ,false)
          .addField ("**__Admin__**" , "`mute`,`unmute  `,`kick`,`ban`,`purge`,`report`,`warn`,`reminder`",false)
          .setTimestamp()
