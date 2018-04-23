@@ -343,7 +343,7 @@ if (message.content === prefix + 'cat') {
     }
 
     if (hours === 1) {
-        dateStrings.push('**1** heure );
+        dateStrings.push('**1** heure' );
     } else if (hours > 1) {
         dateStrings.push('**' + String(hours) + '** heures');
     }
