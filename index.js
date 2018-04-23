@@ -377,6 +377,7 @@ if (message.content === prefix + 'cat') {
   .addField(':runner: Serveur disponible :', `**${bot.guilds.size}** servers`, false )
   .addField(':white_check_mark: Bot actif depuis :', dateString, false )
  .addField ('👥 Utilisateur:', ` ${bot.users.size} utilisateurs`, false) 
+   .addField ('🏓 Ping :', `${Date.now() - message.createdTimestamp} ms`, false) 
     .setColor(6583245);
     message.channel.send({embed})
   .catch(console.error);
