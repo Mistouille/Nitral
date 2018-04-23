@@ -405,12 +405,11 @@ if (message.content === prefix + "onmain") {
       console.log (`${message.author.username} |ping `)
     }
 	  if (message.content.startsWith (prefix +"youtube")) {
-	let args = message.content.split(" ").slice(1).join(" ");
-	
-	
+	let args2 = message.content.split(' ')
+   		args2.shift ()
    		message.channel.send ("Voici le résultat de votre recherche: https://www.youtube.com/results?search_query=" +args.join('+'))
          console.log(`${message.author.username} | youtube `)
-}
+		 } 
     //NEWS
     if (message.content === prefix + "news"){
         message.channel.send ("__Mise à jour:__```\n Ajout de la commande ++weather ```");
