@@ -327,7 +327,7 @@ if (message.content.startsWith(prefix + "rps")){
 	
     if (args8[0]) {
       // get user choice && user choice
-      let computer_choice = rand(0,3);
+      let computer_choice = rand(0,2);
       let user_choice = args8[0] == "pierre " ? 1 : args8[0] == "feuille " ? 2 : 0;
 
       // if their choices are same its a draw :D
