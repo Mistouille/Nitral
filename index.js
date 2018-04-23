@@ -334,9 +334,9 @@ if (message.content.startsWith(prefix + "rps")){
         msg.reply("Egalité!");
       }
       else if (computer_choice < user_choice || computer_choice == 0 && user_choice == 2) {
-        msg.reply("J'ai gagné!");
+        message.channel.send ("J'ai gagné!");
       } else {
-        msg.reply("Tu as gagné!");
+        message.channel.send ("Tu as gagné!");
       }
     } 
   }
