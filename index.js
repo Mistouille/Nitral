@@ -310,7 +310,7 @@ if (message.content === prefix + 'cat') {
   message.channel.send(":white_check_mark: | **Tu as obtenu le nombre** " + result);
 }
 	if (message.content === prefix +  "uptime") {
-	    let ms = client.uptime;
+	    let ms = bot.uptime;
     let cd = 24 * 60 * 60 * 1000; // Calc days
     let ch = 60 * 60 * 1000; // Calc hours
     let cm = 60 * 1000; // Calc minutes
@@ -374,7 +374,7 @@ if (message.content === prefix + 'cat') {
   .setTimestamp()
   .setThumbnail(message.author.iconURL)
   .addField(':clock: uptime', 'Bot\'s uptime', true)
-  .addField(':runner: Running on:', `**${client.guilds.size}** servers`, true)
+  .addField(':runner: Running on:', `**${bot.guilds.size}** servers`, true)
   .addField(':white_check_mark: Active for:', dateString, true)
   .setColor(6583245);
     message.channel.send({embed})
