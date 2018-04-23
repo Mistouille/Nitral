@@ -337,15 +337,15 @@ if (message.content === prefix + 'cat') {
     let dateStrings = [];
 
     if (days === 1) {
-        dateStrings.push('**1** day');
+        dateStrings.push('**1** jour');
     } else if (days > 1) {
-        dateStrings.push('**' + String(days) + '** days');
+        dateStrings.push('**' + String(days) + '** jours');
     }
 
     if (hours === 1) {
-        dateStrings.push('**1** hour');
+        dateStrings.push('**1** heure );
     } else if (hours > 1) {
-        dateStrings.push('**' + String(hours) + '** hours');
+        dateStrings.push('**' + String(hours) + '** heures');
     }
 
     if (minutes === 1) {
@@ -355,9 +355,9 @@ if (message.content === prefix + 'cat') {
     }
 
     if (seconds === 1) {
-        dateStrings.push('**1** second');
+        dateStrings.push('**1** seconde');
     } else if (seconds > 1) {
-        dateStrings.push('**' + String(seconds) + '** seconds');
+        dateStrings.push('**' + String(seconds) + '** secondes');
     }
 
     let dateString = '';
@@ -367,7 +367,7 @@ if (message.content === prefix + 'cat') {
     }
     if (dateStrings.length >= 2) {
         dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
-        dateString += 'and ';
+        dateString += 'et ';
     }
     dateString += dateStrings[dateStrings.length - 1];
     const embed = new Discord.RichEmbed()
