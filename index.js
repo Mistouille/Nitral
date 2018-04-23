@@ -408,7 +408,7 @@ if (message.content === prefix + "onmain") {
 	const args7 = message.content.split(" ").slice(1).join(" ");
 	
 	
-   		message.channel.send ("Voici le résultat de votre recherche: https://www.youtube.com/results?search_query=" +args7.join('+'))
+   		message.channel.send ("Voici le résultat de votre recherche: https://www.youtube.com/results?search_query=" +args.join('+'))
          console.log(`${message.author.username} | youtube `)
 }
     //NEWS
