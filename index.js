@@ -12,6 +12,7 @@ const {get} = require("snekfetch");
 const ms = require("ms");
 //const economy = require('discord-eco');
 
+let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 let rvotes =("99")
 
