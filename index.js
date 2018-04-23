@@ -402,6 +402,11 @@ if (message.content === prefix + "onmain") {
       message.channel.send(bot) ;
       console.log (`${message.author.username} |ping `)
     }
+	  if (message.content.startsWith (prefix +"youtube")) {
+	
+   		message.channel.send ("Voici le résultat de votre recherche: https://www.youtube.com/results?search_query=" +args.join('+'))
+         console.log(`${message.author.username} | youtube `)
+}
     //NEWS
     if (message.content === prefix + "news"){
         message.channel.send ("__Mise à jour:__```\n Ajout de la commande ++weather ```");
