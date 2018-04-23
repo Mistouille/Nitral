@@ -327,7 +327,7 @@ if (message.content.startsWith(prefix + "rps")){
     if (args[0]) {
       // get user choice && user choice
       let computer_choice = rand(0,3);
-      let user_choice = args8[0] == "pierre" ? 1 : args8[0] == "feuille" ? 2 : args8[0] == "ciseaux" 3;
+      let user_choice = args8[0] == "rock" ? 1 : args8[0] == "paper" ? 2 : 0;
 
       // if their choices are same its a draw :D
       if (computer_choice == user_choice) {
@@ -338,11 +338,7 @@ if (message.content.startsWith(prefix + "rps")){
       } else {
         msg.reply("Tu as gagné!");
       }
-    } else if (computer_choice == 1 && user_choice == 3){
-	msg.reply("J'ai gagné!");
-      } else {
-        msg.reply("Tu as gagné!");
-      }
+    } 
   }
 if (message.content.startsWith(prefix + "test")){
 	const args6 = message.content.split(" ").slice(1).join(" ");
