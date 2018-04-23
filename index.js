@@ -327,7 +327,7 @@ if (message.content.startsWith(prefix + "rps")){
     if (args8[0]) {
       // get user choice && user choice
       let computer_choice = rand(0,3);
-      let user_choice = args8[0] == "rock" ? 1 : args8[0] == "paper" ? 2 : 0;
+      let user_choice = args8[0] == "pierre " ? 1 : args8[0] == "feuille " ? 2 : 0;
 
       // if their choices are same its a draw :D
       if (computer_choice == user_choice) {
@@ -340,9 +340,7 @@ if (message.content.startsWith(prefix + "rps")){
       }
     } 
   }
-	usage : () => {
-    return "<prefix>rps rock/paper/scissors";
-  }
+	
 	
 	
 	
@@ -1454,6 +1452,9 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
               }
               if(message.content.startsWith(prefix + "h unmute")){
                     message.channel.send("__Usage__ `"+ prefix + "unmute <la mention de lutilisateur>`");
+              }
+	if(message.content.startsWith(prefix + "h rps")){
+                message.channel.send("__Usage__ `"+ prefix + "rps <pierre, feuille, ciseaux `");
               }
 
               if(message.content.startsWith(prefix + "warn")){
