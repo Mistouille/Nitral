@@ -342,7 +342,7 @@ if (message.content.startsWith(prefix + "rps")){
   }
 	usage : () => {
     return "<prefix>rps rock/paper/scissors";
-  },
+  }
 	
 	
 	
