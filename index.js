@@ -373,10 +373,11 @@ if (message.content === prefix + 'cat') {
     const embed = new Discord.RichEmbed()
   .setTimestamp()
   .setThumbnail(message.author.iconURL)
-  .addField(':clock: uptime', 'Bot\'s uptime', true)
-  .addField(':runner: Running on:', `**${bot.guilds.size}** servers`, true)
-  .addField(':white_check_mark: Active for:', dateString, true)
-  .setColor(6583245);
+  .addField(':clock: Actif ', 'Le bot est actif', false )
+  .addField(':runner: Serveur disponible :', `**${bot.guilds.size}** servers`, false )
+  .addField(':white_check_mark: Bot actif depuis :', dateString, false )
+ .addField ('👥 Utilisateur:', ' ${bot.users.size} utilisateurs', false) 
+    .setColor(6583245);
     message.channel.send({embed})
   .catch(console.error);
 };
