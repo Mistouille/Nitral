@@ -338,75 +338,14 @@ if (message.content.startsWith(prefix + "rps")){
     }
   }
 if (message.content.startsWith(prefix + "test")){
+let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
+    if(!wUser) return message.reply("Je ne trouve pas cette utilisateur");
+    let warnlevel = warns[wUser.id].warns;
   
-let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if(!tomute) return message.reply("Couldn't find user.");
-  if (!message.channel.permissionsFor(message.author).hasPermission("KICK_MEMBERS")) {
-        message.channel.send ("📛 Tu n'as pas la permission 📛");
-        console.log("📛 Tu n'as pas la permission 📛");
-        return;
-      }
-      else if (!message.channel.permissionsFor(bot.user).hasPermission("KICK_MEMBERS")) {
-        message.channel.send ("📛 Je n'es pas la permission 📛");
-        console.log("📛 Je n'es pas la permission 📛");
-        return;
-      }  let reason = args.slice(2).join(" ");
-  if(!reason) return message.reply("Please supply a reason.");
-
-  let muterole = message.guild.roles.find(`name`, "muted");
-  //start of create role
-  if(!muterole){
-    try{
-      muterole = await message.guild.createRole({
-        name: "mute",
-        color: "#000000",
-        permissions:[]
-      })
-      message.guild.channels.forEach(async (channel, id) => {
-        await channel.overwritePermissions(muterole, {
-          SEND_MESSAGES: false,
-          ADD_REACTIONS: false
-        });
-      });
-    }catch(e){
-      console.log(e.stack);
-    }
-  }
-  //end of create role
-  let mutetime = args[1];
-  if(!mutetime) return message.reply("You didn't specify a time!");
-
-  message.delete().catch(O_o=>{});
-
-  try{
-    await tomute.send(`Hi! You've been muted for ${mutetime}. Sorry!`)
-  }catch(e){
-    message.channel.send(`A user has been muted... but their DMs are locked. They will be muted for ${mutetime}`)
+    message.reply(`<@${wUser.id}> a ${warnlevel} warns.`);
+  
   }
 
-  let muteembed = new Discord.RichEmbed()
-  .setDescription(`Mute executed by ${message.author}`)
-  .setColor("#B9121B")
-  .addField("Muted User", tomute)
-  .addField("Muted in", message.channel)
-  .addField("Time", message.createdAt)
-  .addField("Length", mutetime)
-  .addField("Reason", reason);
-
-  let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
-    if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```logs-nitral```.");
- incidentschannel.send(muteembed);
-
-  await(tomute.addRole(muterole.id));
-
-  setTimeout(function(){
-    tomute.removeRole(muterole.id);
-    message.channel.send(`<@${tomute.id}> has been unmuted!`);
-  }, ms(mutetime));
-
-
-//end of module
-}
   
 if (message.content === prefix + "onmain") {
  if(message.author.id == "236627494764150784"){
