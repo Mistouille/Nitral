@@ -331,10 +331,10 @@ if (message.content.startsWith(prefix + "rps")){
 
       // if their choices are same its a draw :D
       if (computer_choice == user_choice) {
-        msg.reply("Egalité!");
+        message.channel.send("Egalité!");
       }
       else if (computer_choice < user_choice || computer_choice == 0 && user_choice == 2) {
-        message.channel.send ("J'ai gagné!");
+        message.channel.send ( computer_choice + " J'ai gagné!");
       } else {
         message.channel.send ("Tu as gagné!");
       }
