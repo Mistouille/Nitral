@@ -268,42 +268,29 @@ if (message.content === prefix + 'cat') {
     if (message.content ==="Team Wolf") {
         message.channel.send(":online-1: :wolf:**__TEAM WOLF EN FORCE__**:wolf:");
     }
-
-	if (message.content.startsWith(prefix + "lock")){
-       if (!client.lockit) client.lockit = [];
-  const time = message.content.split(" ").slice(1).join(" ");
-  const validUnlocks = ['release', 'unlock'];
-  if (!time) return message.reply('Vous devez définir une durée pour le lockdown. En heures, minutes ou secondes');
-
-  if (validUnlocks.includes(time)) {
-    message.channel.overwritePermissions(message.guild.id, {
-      SEND_MESSAGES: null
-    }).then(() => {
-      message.channel.send('Channel libéré ! ');
-      clearTimeout(client.lockit[message.channel.id]);
-      delete client.lockit[message.channel.id];
-    }).catch(error => {
-      console.log(error);
-    });
-  } else {
-    message.channel.overwritePermissions(message.guild.id, {
-      SEND_MESSAGES: false
-    }).then(() => {
-      message.channel.send(`Channel lock pendant ${ms(ms(time), { long:true })}`).then(msg => {msg.delete(ms(time))}).then(() => {
-
-        client.lockit[message.channel.id] = setTimeout(() => {
-          message.channel.overwritePermissions(message.guild.id, {
-            SEND_MESSAGES: null
-          }).then(message.channel.send('Channel libéré ! ')).then(msg => {msg.delete(10000)});
-          delete client.lockit[message.channel.id];
-        }, ms(time));
-
-      }).catch(error => {
-        console.log(error);
-      });
-    });
+	if (message.content.startsWith(prefix + "removerole")){
+	if(!message.channel.permissionsFor(message.author).has("MANAGE_ROLES")) return message.reply("Désolé, tu ne peux pas faire ça.");
+    if(!message.channel.permissionsFor(client.user).has("MANAGE_ROLES")) return message.reply("Désolé, je ne peux pas faire ça.");
+    let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+    if(!rMember) return message.reply("Impossible de trouver cette utilisateur.");
+    let role =  message.content.split(" ").slice(1).join(" ");
+    if(!role) return message.reply("Specifiez un rôle!");
+    let gRole = message.guild.roles.find(`name`, role);
+    if(!gRole) return message.reply("Je ne trouve pas ce rôle");
+  
+    if(!rMember.roles.has(gRole.id)) return message.reply("Il n'a pas ce rôle");
+    await(rMember.removeRole(gRole.id));
+  
+    try{
+      await rMember.send(`RIP, tu as perdu le rôle ${gRole.name}.`)
+      message.channel.send(`RIP, ${rMember} a perdu le rôle ${gRole.name}`)
+    }catch(e){
+      message.channel.send(`RIP <@${rMember.id}>, il a perdu le rôle **${gRole.name}**. J'ai essayé de le MP, mais ces MP sont bloqués.`)
+    }
   }
-};
+
+
+
 	
 	if (message.content === prefix +  "roll") {
 	 let result = Math.floor((Math.random() * 1000) + 1);
