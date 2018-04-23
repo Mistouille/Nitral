@@ -269,9 +269,17 @@ if (message.content === prefix + 'cat') {
         message.channel.send(":online-1: :wolf:**__TEAM WOLF EN FORCE__**:wolf:");
     }
 	if (message.content.startsWith(prefix + "removerole")){
-	if(!message.channel.permissionsFor(message.author).has("MANAGE_ROLES")) return message.reply("Désolé, tu ne peux pas faire ça.");
-    if(!message.channel.permissionsFor(client.user).has("MANAGE_ROLES")) return message.reply("Désolé, je ne peux pas faire ça.");
-    let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+	if (!message.channel.permissionsFor(message.author).hasPermission("KICK_MEMBERS")) {
+        message.channel.send ("📛 Tu n'as pas la permission 📛");
+        console.log("📛 Tu n'as pas la permission 📛");
+        return;
+      }
+      else if (!message.channel.permissionsFor(bot.user).hasPermission("KICK_MEMBERS")) {
+        message.channel.send ("📛 Je n'es pas la permission 📛");
+        console.log("📛 Je n'es pas la permission 📛");
+        return;
+      }
+		let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
     if(!rMember) return message.reply("Impossible de trouver cette utilisateur.");
     let role =  message.content.split(" ").slice(1).join(" ");
     if(!role) return message.reply("Specifiez un rôle!");
