@@ -376,7 +376,7 @@ if (message.content === prefix + 'cat') {
   .addField(':clock: Actif ', 'Le bot est actif', false )
   .addField(':runner: Serveur disponible :', `**${bot.guilds.size}** servers`, false )
   .addField(':white_check_mark: Bot actif depuis :', dateString, false )
- .addField ('👥 Utilisateur:', ' ${bot.users.size} utilisateurs', false) 
+ .addField ('👥 Utilisateur:', ` ${bot.users.size} utilisateurs`, false) 
     .setColor(6583245);
     message.channel.send({embed})
   .catch(console.error);
@@ -644,7 +644,7 @@ if (message.content === prefix + "onmain") {
          .addField ("**__Membres__**", "`setup`, `help`, `ping`,`avatar`,`invite`, `check`,`google`, `youtube`, `playstore`,`h`", false)
          .addField ("**__XP__**:**(bug)**", "`levels`,`xp`,`progress`")
          .addField ("**__Economie__**:**(bug)**","`coins`",false)
-         .addField ("**__Info__**" ," `userinfo`,`serverinfo`,`botinfo`,`diserver`,`weather`,`invitation`," , false)
+         .addField ("**__Info__**" ,"`uptime`,`userinfo`,`serverinfo`,`botinfo`,`diserver`,`weather`,`invitation`," , false)
          .addField ("**__Fun__**" ,"`rps`,`roll`,`cat`,`astrologia`,`triggered`,`dice`,`verlan`,`piece`,`say`" ,false)
          .addField ("**__Interaction__**" , "`kiss`,`hug`,`cry`,`pat`,`pout`,`punch`,`handholding`,`shoot`,`stare`,`slap`,`fuck`,`res`,`everyone`,`troll`,`highfive`,`pollc`" ,false)
          .addField ("**__Admin__**" , "`mute`,`unmute  `,`kick`,`ban`,`purge`,`report`,`warn`,`reminder`",false)
