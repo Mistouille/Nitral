@@ -1485,11 +1485,11 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
 
                   if(warns[wUser.id].warns == 12){
                     message.guild.member(wUser).kick();
-                    message.reply(`<@${wUser.id}> a etait kick.`)
+                    message.reply(`<@${wUser.id}> a etait ^^kick. Car il a atteint 12 warns. `)
                   }
                   if(warns[wUser.id].warns == 24){
                     message.guild.member(wUser).ban();
-                    message.reply(`<@${wUser.id}> a etait ban.`)
+                    message.reply(`<@${wUser.id}> a etait ^^ban. Car il a atteint 24 warns. `)
                   }
                 }
 function getpollinfo() {
