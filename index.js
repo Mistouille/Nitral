@@ -405,8 +405,8 @@ if (message.content === prefix + "onmain") {
       console.log (`${message.author.username} |ping `)
     }
 	  if (message.content.startsWith (prefix +"youtube")) {
-	let args2 = message.content.split(' ')
-   		args2.shift ()
+	let args = message.content.split(' ')
+   		args.shift ()
    		message.channel.send ("Voici le résultat de votre recherche: https://www.youtube.com/results?search_query=" +args.join('+'))
          console.log(`${message.author.username} | youtube `)
 		 } 
