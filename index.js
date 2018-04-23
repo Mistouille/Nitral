@@ -347,16 +347,6 @@ if (message.content.startsWith(prefix + "rps")){
 	
 	
 	
-if (message.content.startsWith(prefix + "test")){
-	const args6 = message.content.split(" ").slice(1).join(" ");
-	
-let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args6[0])
-    if(!wUser) return message.reply("Je ne trouve pas cette utilisateur");
-    let warnlevel = warns[wUser.id].warns;
-  
-    message.reply(`<@${wUser.id}> a ${warnlevel} warns.`);
-  
-  }
 
   
 if (message.content === prefix + "onmain") {
