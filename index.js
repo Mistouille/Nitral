@@ -324,7 +324,7 @@ function rand(low, high) {
 if (message.content.startsWith(prefix + "rps")){
 	const args8 = message.content.split(" ").slice(1).join(" ");
 	
-    if (args[0]) {
+    if (args8[0]) {
       // get user choice && user choice
       let computer_choice = rand(0,3);
       let user_choice = args8[0] == "rock" ? 1 : args8[0] == "paper" ? 2 : 0;
