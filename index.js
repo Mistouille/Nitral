@@ -403,8 +403,10 @@ if (message.content === prefix + "onmain") {
       console.log (`${message.author.username} |ping `)
     }
 	  if (message.content.startsWith (prefix +"youtube")) {
+	const args7 = message.content.split(" ").slice(1).join(" ");
 	
-   		message.channel.send ("Voici le résultat de votre recherche: https://www.youtube.com/results?search_query=" +args.join('+'))
+	
+   		message.channel.send ("Voici le résultat de votre recherche: https://www.youtube.com/results?search_query=" +args7.join('+'))
          console.log(`${message.author.username} | youtube `)
 }
     //NEWS
