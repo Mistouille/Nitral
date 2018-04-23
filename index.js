@@ -276,11 +276,11 @@ if (message.content === prefix + 'cat') {
 						}
 
 						return `Has to be one of ${validHands.join(', ')}`;
-					},
+					}
 					'parse': p => p.toLowerCase()
 				}
 			]
-		});
+		})
 	}
 
 	run (msg, args) {
@@ -289,7 +289,7 @@ if (message.content === prefix + 'cat') {
 			'number': 1,
 			'minimum': 1,
 			'maximum': 3
-		}, (error, randoms) => {
+		} (error, randoms) => {
 			if (!error) {
 				const rpsEmbed = new Discord.MessageEmbed();
 
@@ -326,9 +326,9 @@ if (message.content === prefix + 'cat') {
 			}
 
 			return msg.reply('⚠️ an error occured getting a random result and I\'m not going to rig this game.');
-		});
+		})
 	}
-};
+}
 	if (message.content.startsWith(prefix + "lock")){
        if (!client.lockit) client.lockit = [];
   const time = message.content.split(" ").slice(1).join(" ");
