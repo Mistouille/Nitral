@@ -410,6 +410,20 @@ if (message.content === prefix + "onmain") {
    		message.channel.send ("Voici le résultat de votre recherche: https://www.youtube.com/results?search_query=" +args.join('+'))
          console.log(`${message.author.username} | youtube `)
 		 } 
+	if (message.content.startsWith (prefix +"playstore")) {
+	let args = message.content.split(' ')
+   		args.shift ()
+   		message.channel.send ("Voici le résultat de votre recherche: https://play.google.com/store/search?q=" +args.join('+'))
+         console.log(`${message.author.username} | play store `)
+		 
+	} 
+	if (message.content.startsWith (prefix +"playstore")) {
+	let args = message.content.split(' ')
+   		args.shift ()
+   		message.channel.send ("Voici le résultat de votre recherche: https://www.apple.com/fr/search/" +args.join('+')'?src=globalnav')
+         console.log(`${message.author.username} | play store `)
+		 }
+	 
     //NEWS
     if (message.content === prefix + "news"){
         message.channel.send ("__Mise à jour:__```\n Ajout de la commande ++weather ```");
