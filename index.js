@@ -417,12 +417,12 @@ if (message.content === prefix + "onmain") {
          console.log(`${message.author.username} | play store `)
 		 
 	} 
-	if (message.content.startsWith (prefix +"playstore")) {
+	/*if (message.content.startsWith (prefix +"playstore")) {
 	let args = message.content.split(' ')
    		args.shift ()
    		message.channel.send ("Voici le résultat de votre recherche: https://www.apple.com/fr/search/" +args.join('+')'?src=globalnav')
          console.log(`${message.author.username} | play store `)
-		 }
+		 }*/
 	 
     //NEWS
     if (message.content === prefix + "news"){
