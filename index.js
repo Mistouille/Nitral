@@ -89,7 +89,7 @@ return message.channel.send("Tu es déjà afk ");
 let args1 = message.content.split(" ").slice(1);
 if (args1.length === 0) {
 afk[message.author.id] = {"reason" : true};
-message.delete();
+
 message.channel.send("Tu es désormais afk, met `++remafk` pour enlever ton afk").then(x => DeleteQueue.add(x, 10000));
 }else{
 afk[message.author.id] = {"reason" : args1.join(" ")};
