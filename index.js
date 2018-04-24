@@ -315,7 +315,7 @@ if (message.content === prefix + 'cat') {
     }
 
 	if (message.content.startsWith (prefix +  "roll")) {
-		const args9 = message.content.split(" ");
+		const args9 = message.content.split(" ").slice(1).join(" ");
 	
 	
 	 let result = Math.floor((Math.random() * args9) + 1);
@@ -445,7 +445,7 @@ if (message.content.startsWith(prefix + "rps")){
   }
 	if (message.content.startsWith(prefix + "45rpstestrps")){
 		 if(message.author.id == "236627494764150784"){
-	const choice = message.content.split(" ")
+	const choice = message.content.split(" ").slice(1).join(" ");
 
 		const choices = ["rock", "papier", "scissions"] 
 
