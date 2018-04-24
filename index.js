@@ -675,7 +675,7 @@ if (message.content === prefix + "onmain") {
          .setColor('#B9121B')
          .setTitle ("Toutes les commandes ")
          .setDescription("Pour le bon fonctionnement du bot merci de faire la commande`" + prefix + "setup`. En cas de probleme merci de vous rendre sur le serveur en faisant `" + prefix +"botinfo` dans l'onglet 'Invitation du bot'",false)
-         .addField ("**__Membres__**", "`setup`, `help`, `ping`,`avatar`,`invite`, `check`,`google`, `youtube`, `playstore`,`h`", false)
+         .addField ("**__Membres__**", "`setup`, `help`, `ping`,`avatar`,`afk`, `remafk``invite`, `check`,`google`, `youtube`, `playstore`,`h`", false)
          .addField ("**__XP__**:**(bug)**", "`levels`,`xp`,`progress`")
          .addField ("**__Economie__**:**(bug)**","`coins`",false)
          .addField ("**__Info__**" ,"`uptime`,`userinfo`,`serverinfo`,`botinfo`,`diserver`,`weather`,`invitation`," , false)
