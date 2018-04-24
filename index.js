@@ -393,7 +393,7 @@ if (message.content.startsWith(prefix + "rps")){
       }
     } 
   }
-	if (message.content.startsWith(prefix + "rps")){
+	if (message.content.startsWith(prefix + "rps2")){
 	const choices = message.content.split(" ").slice(1).join(" ");
 
 		const response = choices[Math.floor(Math.random() * choices.length)];
