@@ -462,7 +462,7 @@ if (message.content.startsWith(prefix + "rps")){
 		}
 		return message.channel.send('I win by default, you little cheater.');
 	}
-
+}
 	
 	
 	
