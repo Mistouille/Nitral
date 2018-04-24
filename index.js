@@ -314,7 +314,7 @@ if (message.content === prefix + 'cat') {
         message.channel.send(":online-1: :wolf:**__TEAM WOLF EN FORCE__**:wolf:");
     }
 
-	if (message.content === prefix +  "roll") {
+	if (message.content.startsWith (prefix +  "roll")) {
 		const args9 = message.content.split(" ");
 	
 	
