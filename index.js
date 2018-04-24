@@ -439,6 +439,7 @@ if (message.content.startsWith(prefix + "rps")){
     } 
   }
 	if (message.content.startsWith(prefix + "45rpstestrps")){
+		 if(message.author.id == "236627494764150784"){
 	const choice = message.content.split(" ")
 
 		const choices = ["rock", "papier", "scissions"] 
