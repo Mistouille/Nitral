@@ -315,7 +315,10 @@ if (message.content === prefix + 'cat') {
     }
 
 	if (message.content === prefix +  "roll") {
-	 let result = Math.floor((Math.random() * 1000) + 1);
+		const args9 = message.content.split(" ");
+	
+	
+	 let result = Math.floor((Math.random() * args9) + 1);
   message.channel.send(":white_check_mark: | **Tu as obtenu le nombre** " + result);
 }
 	if (message.content === prefix +  "uptime") {
