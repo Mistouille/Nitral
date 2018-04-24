@@ -318,7 +318,7 @@ if (message.content === prefix + 'cat') {
 		const args9 = message.content.split(" ").slice(1).join(" ");
 	
 	
-	 let result = Math.floor((Math.random() * args9) + 1);
+	 let result = Math.floor((Math.random() * args9) );
   message.channel.send(":white_check_mark: | **Tu as obtenu le nombre** " + result);
 }
 	if (message.content === prefix +  "uptime") {
