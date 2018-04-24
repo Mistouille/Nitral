@@ -414,7 +414,7 @@ if (message.content.startsWith(prefix + "rps")){
 		}
 		return msg.say('I win by default, you little cheater.');
 	}
-};
+
 	
 	
 	
