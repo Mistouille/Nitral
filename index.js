@@ -396,7 +396,8 @@ if (message.content.startsWith(prefix + "rps")){
 	if (message.content.startsWith(prefix + "rps2")){
 	const choice = message.content.split(" ").slice(1).join(" ");
 
-		
+		const choices = ["rock", "papier", "scissions"] 
+
 		const response = choices[Math.floor(Math.random() * choices.length)];
 		if (choice === 'rock') {
 			if (response === 'rock') return msg.say('Rock! Aw... A tie...');
