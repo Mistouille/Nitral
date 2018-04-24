@@ -393,7 +393,7 @@ if (message.content.startsWith(prefix + "rps")){
       }
     } 
   }
-	if (message.content.startsWith(prefix + "rps2")){
+	if (message.content.startsWith(prefix + "45rpstestrps")){
 	const choice = message.content.split(" ")
 
 		const choices = ["rock", "papier", "scissions"] 
