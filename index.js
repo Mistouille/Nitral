@@ -71,9 +71,9 @@ if (message.content.startsWith(prefix + "remafk")){
 if (afk[message.author.id]) {
 delete afk[message.author.id];
 if (message.member.nickname === null) {
-message.channel.send(" re, j'ai enlever votre afk ^^");
+message.channel.send("J'ai enlever votre afk");
 }else{
-message.channel.send(" re, j'ai enlever votre afk ^^");
+message.channel.send("J'ai enlever votre afk ");
 }
 fs.writeFile("./afks.json", JSON.stringify(afk), (err) => { if (err) console.error(err);});
 }else{
@@ -84,17 +84,17 @@ message.channel.send("Erreur ! Tu es déjà afk");
 
 if (message.content.startsWith(prefix + "afk")||message.content === prefix + "afk") {
 if (afk[message.author.id]) {
-return message.channel.send("Erreur ! Tu es déjà afk -_-");
+return message.channel.send("Tu es déjà afk ");
 }else{
 let args1 = message.content.split(" ").slice(1);
 if (args1.length === 0) {
 afk[message.author.id] = {"reason" : true};
 message.delete();
-message.channel.send(`tu es désormais afk, met **${prefix}remafk** pour enlever ton afk`).then(x => DeleteQueue.add(x, 10000));
+message.channel.send("Tu es désormais afk, met`" prefix +"remafk` pour enlever ton afk").then(x => DeleteQueue.add(x, 10000));
 }else{
 afk[message.author.id] = {"reason" : args1.join(" ")};
 message.delete();
-message.channel.send(`tu es désormais afk, met **${prefix}remafk** pour enlever ton afk`).then(x => DeleteQueue.add(x, 10000));
+message.channel.send("Tu es désormais afk, met`" prefix +"remafk` pour enlever ton afk" ).then(x => DeleteQueue.add(x, 10000));
 }
 fs.writeFile("./afks.json", JSON.stringify(afk), (err) => { if (err) console.error(err);});
 }
@@ -104,9 +104,9 @@ fs.writeFile("./afks.json", JSON.stringify(afk), (err) => { if (err) console.err
 if(message.mentions.users.size > 0) {
 if (afk[message.mentions.users.first().id]) {
 if (afk[message.mentions.users.first().id].reason === true) {
-message.channel.send(`@${mentionned.username} is AFK: pas de raison`);
+message.channel.send(`@${mentionned.username} est AFK: pas de raison`);
 }else{
-message.channel.send(`@${mentionned.username} is AFK: ${afk[message.mentions.users.first().id].reason}`);
+message.channel.send(`@${mentionned.username} est AFK: ${afk[message.mentions.users.first().id].reason}`);
 }
 }
 }
