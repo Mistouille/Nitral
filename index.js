@@ -400,21 +400,21 @@ if (message.content.startsWith(prefix + "rps")){
 
 		const response = choices[Math.floor(Math.random() * choices.length)];
 		if (choice === 'rock') {
-			if (response === 'rock') return msg.say('Rock! Aw... A tie...');
-			if (response === 'paper') return msg.say('Paper! Yes! I win!');
-			if (response === 'scissors') return msg.say('Scissors! Aw... I lose...');
+			if (response === 'rock') return message.channel.send ('Rock! Aw... A tie...');
+			if (response === 'paper') return message.channel.send('Paper! Yes! I win!');
+			if (response === 'scissors') return message.channel.send('Scissors! Aw... I lose...');
 		}
 		if (choice === 'paper') {
-			if (response === 'rock') return msg.say('Rock! Aw... I lose...');
-			if (response === 'paper') return msg.say('Paper! Aw... A tie...');
-			if (response === 'scissors') return msg.say('Scissors! Yes! I win!');
+			if (response === 'rock') return message.channel.send('Rock! Aw... I lose...');
+			if (response === 'paper') return message.channel.send('Paper! Aw... A tie...');
+			if (response === 'scissors') return message.channel.send('Scissors! Yes! I win!');
 		}
 		if (choice === 'scissors') {
-			if (response === 'rock') return msg.say('Rock! Yes! I win!');
-			if (response === 'paper') return msg.say('Paper! Aw... I lose...');
-			if (response === 'scissors') return msg.say('Scissors! Aw... A tie...');
+			if (response === 'rock') return message.channel.send('Rock! Yes! I win!');
+			if (response === 'paper') return message.channel.send('Paper! Aw... I lose...');
+			if (response === 'scissors') return message.channel.send('Scissors! Aw... A tie...');
 		}
-		return msg.say('I win by default, you little cheater.');
+		return message.channel.send('I win by default, you little cheater.');
 	}
 
 	
