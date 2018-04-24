@@ -110,7 +110,7 @@ message.channel.send(`@${mentionned.username} is AFK: ${afk[message.mentions.use
 }
 }
 }
-});
+
 //------------------------------------------------//
 //                   Handler                      //
 //------------------------------------------------//
