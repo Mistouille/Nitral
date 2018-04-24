@@ -394,8 +394,9 @@ if (message.content.startsWith(prefix + "rps")){
     } 
   }
 	if (message.content.startsWith(prefix + "rps2")){
-	const choices = message.content.split(" ").slice(1).join(" ");
+	const choice = message.content.split(" ").slice(1).join(" ");
 
+		
 		const response = choices[Math.floor(Math.random() * choices.length)];
 		if (choice === 'rock') {
 			if (response === 'rock') return msg.say('Rock! Aw... A tie...');
