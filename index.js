@@ -393,7 +393,28 @@ if (message.content.startsWith(prefix + "rps")){
       }
     } 
   }
-	
+	if (message.content.startsWith(prefix + "rps")){
+	const choices = message.content.split(" ").slice(1).join(" ");
+
+		const response = choices[Math.floor(Math.random() * choices.length)];
+		if (choice === 'rock') {
+			if (response === 'rock') return msg.say('Rock! Aw... A tie...');
+			if (response === 'paper') return msg.say('Paper! Yes! I win!');
+			if (response === 'scissors') return msg.say('Scissors! Aw... I lose...');
+		}
+		if (choice === 'paper') {
+			if (response === 'rock') return msg.say('Rock! Aw... I lose...');
+			if (response === 'paper') return msg.say('Paper! Aw... A tie...');
+			if (response === 'scissors') return msg.say('Scissors! Yes! I win!');
+		}
+		if (choice === 'scissors') {
+			if (response === 'rock') return msg.say('Rock! Yes! I win!');
+			if (response === 'paper') return msg.say('Paper! Aw... I lose...');
+			if (response === 'scissors') return msg.say('Scissors! Aw... A tie...');
+		}
+		return msg.say('I win by default, you little cheater.');
+	}
+};
 	
 	
 	
