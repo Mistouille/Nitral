@@ -394,7 +394,7 @@ if (message.content.startsWith(prefix + "rps")){
     } 
   }
 	if (message.content.startsWith(prefix + "rps2")){
-	const choice = message.content.split(" ").slice(1).join(" ");
+	const choice = message.content.split(" ")
 
 		const choices = ["rock", "papier", "scissions"] 
 
