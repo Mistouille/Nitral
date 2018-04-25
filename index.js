@@ -537,10 +537,7 @@ if (message.content === prefix + "onmain") {
 		 }*/
 	 
     //NEWS
-    if (message.content === prefix + "news"){
-        message.channel.send ("__Mise à jour:__```\n Ajout de la commande ++weather ```");
-        console.log("Commande news" );
-    }
+    
     let cont = message.content.slice(prefix.length).split(" ");
  let args1 = cont.slice(1)
 
@@ -648,8 +645,7 @@ if (message.content === prefix + "onmain") {
    	let help_embedinfo1 = new Discord.RichEmbed ()
    	       .setColor ("#333333")
     	      .setTitle ("Commandes information")
-    	      .addField ("__News__:", "Vous informe des prochaines mise à jour du bot📥", false)
-           .addField ("__Owner__:", "Envoi un message avec la mention du créateur 📧", false)
+    	      .addField ("__Owner__:", "Envoi un message avec la mention du créateur 📧", false)
     	      .addField ("__Serverinfo__:","Donne les statistiques du serveur 💹", false)
     	      .addField ("__Botinfo__:","Donne les statistiques du bot 📝",false)
     	      .addField ("__Weather__", "Indique la météo d'une ville", true)
@@ -785,24 +781,9 @@ if (message.content === prefix + "onmain") {
    //Embed userinfo
      if (message.content.startsWith === prefix +`userinfo`){
 
-    let userembed = new Discord.RichEmbed()
-
-  	  	 .setTitle("Information sur l'utilisateur ")
-  	  	 .setColor("#15f153")
-  	  	 .setThumbnail(messag.author.avatarURL)
-  	  	 .addField ("Pseudo",`${defineduser.username}#${user.discriminator}`, false)
-  	  	// .addField ("Jeu",`${game}`, false)
-         //.addField ("Etat de connection",`${status}`, false)
-  	   //  .addField ("Bot",`${user.bot}`,false)
-  	  	 .addField ("Date de création du compte", `${joineddiscord}`, false)
-  	  	 .addField("Date de venue", message.member.joinedAt,false)
-         //.addField(`Roles:`, '``' + message.mentions.members.first().roles.map(r => r.name).join(', ') + '``')
-  	   	 .addField ("ID de l'utilisateur", message.author.id,false )
-         .setTimestamp()
-         .setFooter(`User Info`);
-  	  	 
+    
     message.channel.send(userembed)
-	     console.log(`${message.author.username} |UserInfo`)
+	     console.log(`La commande est temporairement off, pour plus d'informations merci de vous rendre sur le serveur du bot et tapant `++invite` et de clique sur join support server./n Merci de votre comprehention `)
 
 };      
 	//Kick
