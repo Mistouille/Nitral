@@ -783,7 +783,7 @@ if (message.content === prefix + "onmain") {
 
     
     message.channel.send(userembed)
-	     console.log(`La commande est temporairement off, pour plus d'informations merci de vous rendre sur le serveur du bot et tapant `++invite` et de clique sur join support server./n Merci de votre comprehention `)
+	     console.log("La commande est temporairement off, pour plus d'informations merci de vous rendre sur le serveur du bot et tapant `++invite` et de clique sur join support server./n Merci de votre comprehention" )
 
 };      
 	//Kick
