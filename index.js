@@ -1226,7 +1226,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
   if (message.content.startsWith(prefix + "report")) {
     var member= message.mentions.members.first();
     var text = message.content.substring(8)
-    let args10 = message.content.split(" ").slice(1);
+    let args10 = message.content.split(" ").slice(1).join(" ");
         if (!args10[0]){
           message.delete();
           message.channel.send("Données incorrecte")
@@ -1240,7 +1240,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
          .addField("Report par", `${message.author.username}`, false)
          .addField("Dans ", message.channel, false)
          .addField("Le", message.createdAt, false)
-         .addField ("Raison", text, false)
+         .addField ("Raison", args10, false)
          .setTimestamp()
          .setFooter(` Report`);
 
