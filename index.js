@@ -784,45 +784,7 @@ if (message.content === prefix + "onmain") {
    }
    //Embed userinfo
      if (message.content.startsWith === prefix +`userinfo`){
-  	  	 let user = message.mentions.users.first();
-    if (!user) {
-        return message.reply("Tu doit mentionné quelqu'un");
-    }
-    let mentioneduser = message.mentions.users.first();
-    let joineddiscord = (mentioneduser.createdAt.getDate() + 1) + '-' + (mentioneduser.createdAt.getMonth() + 1) + '-' + mentioneduser.createdAt.getFullYear() + ' | ' + mentioneduser.createdAt.getHours() + ':' + mentioneduser.createdAt.getMinutes() + ':' + mentioneduser.createdAt.getSeconds();
-    message.delete();
-    let game;
-    if (user.presence.game === null) {
-        game = 'Ne joue pas';
-    } else {
-        game = user.presence.game.name;
-    }
-    let status;
-    if (user.presence.status === 'en ligne') {
-        status = ':green_heart:';
-    } else if (user.presence.status === 'ne pas derangé') {
-        status = ':heart:';
-    } else if (user.presence.status === 'absent') {
-        status = ':yellow_heart:';
-    } else if (user.presence.status === 'deconnecté') {
-        status = ':black_heart:';
-    }
-  // Let afk;
-  // if (user.presence.data.afk === true) {
-  //   afk = "✅"
-  // } else {
-  //   afk = "❌"
-  // }
-    let stat;
-    if (user.presence.status === 'deconnecté') {
-        stat = 0x000000;
-    } else if (user.presence.status === 'en ligne') {
-        stat = 0x00AA4C;
-    } else if (user.presence.status === 'ne pas derangé') {
-        stat = 0x9C0000;
-    } else if (user.presence.status === 'absent') {
-        stat = 0xF7C035;
-    }
+
     let userembed = new Discord.RichEmbed()
 
   	  	 .setTitle("Information sur l'utilisateur ")
@@ -830,11 +792,11 @@ if (message.content === prefix + "onmain") {
   	  	 .setThumbnail(messag.author.avatarURL)
   	  	 .addField ("Pseudo",`${user.username}#${user.discriminator}`, false)
   	  	 .addField ("Jeu",`${game}`, false)
-         .addField ("Etat de connection",`${status}`, false)
-  	     .addField ("Bot",`${user.bot}`,false)
+         //.addField ("Etat de connection",`${status}`, false)
+  	   //  .addField ("Bot",`${user.bot}`,false)
   	  	 .addField ("Date de création du compte", `${joineddiscord}`, false)
   	  	 .addField("Date de venue", message.member.joinedAt,false)
-         .addField(`Roles:`, '``' + message.mentions.members.first().roles.map(r => r.name).join(', ') + '``')
+         //.addField(`Roles:`, '``' + message.mentions.members.first().roles.map(r => r.name).join(', ') + '``')
   	   	 .addField ("ID de l'utilisateur", message.author.id,false )
          .setTimestamp()
          .setFooter(`User Info`);
