@@ -1232,14 +1232,12 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
           message.channel.send("Données incorrecte")
           return;
         }
-	  let user = message.guild.member(message.mentions.users.first())
 	  
-	  let raison = args10.join(" ").slice(22)
     message.channel.send(`${message.author.username} vient de report ${member}.\n\n **Raison :** ${text}. `);
       let repEmbed = new Discord.RichEmbed()
          .setDescription("~Report~")
          .setColor("#e56b00")
-         .addField("Utilisateur Report", `${user.tag}`, false)
+         .addField("Utilisateur Report", `${defineduser.username} `, false)
          .addField("Report par", `${message.author.username}`, false)
          .addField("Dans ", message.channel, false)
          .addField("Le", message.createdAt, false)
