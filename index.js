@@ -1226,6 +1226,12 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
   if (message.content.startsWith(prefix + "report")) {
     var member= message.mentions.members.first();
     var text = message.content.substring(8)
+    let args10 = message.content.split(" ").slice(1);
+        if (!args10[0]){
+          message.delete();
+          message.channel.send("Données incorrecte")
+          return;
+        }
     message.channel.send(`${message.author.username} vient de report ${member}.\n\n **Raison :** ${text}. `);
       let repEmbed = new Discord.RichEmbed()
          .setDescription("~Report~")
