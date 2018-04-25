@@ -1232,17 +1232,19 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
           message.channel.send("Données incorrecte")
           return;
         }
+	  let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
+	  let raison = args.join(" ").slice(22)
     message.channel.send(`${message.author.username} vient de report ${member}.\n\n **Raison :** ${text}. `);
       let repEmbed = new Discord.RichEmbed()
          .setDescription("~Report~")
          .setColor("#e56b00")
-         .addField("Utilisateur Report", `${defineduser.username}`, false)
+         .addField("Utilisateur Report", `${user.tag}`, false)
          .addField("Report par", `${message.author.username}`, false)
          .addField("Dans ", message.channel, false)
          .addField("Le", message.createdAt, false)
-         .addField ("Raison", args10, false)
+         .addField ("Raison", raison, false)
          .setTimestamp()
-         .setFooter(` Report`);
+         .setFooter(` raison`);
 
           let incidentchannel = message.guild.channels.find(`name`, "report-nitral");
           if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```report-nitral```.");
