@@ -782,8 +782,8 @@ if (message.content === prefix + "onmain") {
      if (message.content.startsWith === prefix +`userinfo`){
 
     
-    message.channel.send(userembed)
-	     console.log("La commande est temporairement off, pour plus d'informations merci de vous rendre sur le serveur du bot et tapant `++invite` et de clique sur join support server./n Merci de votre comprehention" )
+    message.channel.send("La commande est temporairement off, pour plus d'informations merci de vous rendre sur le serveur du bot et tapant `++invite` et de clique sur join support server./n Merci de votre comprehention" ))
+	     
 
 };      
 	//Kick
