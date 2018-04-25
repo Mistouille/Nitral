@@ -1233,7 +1233,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
           return;
         }
 	  let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
-	  let raison = args.join(" ").slice(22)
+	  let raison = args10.join(" ").slice(22)
     message.channel.send(`${message.author.username} vient de report ${member}.\n\n **Raison :** ${text}. `);
       let repEmbed = new Discord.RichEmbed()
          .setDescription("~Report~")
