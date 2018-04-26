@@ -393,7 +393,8 @@ if (message.content === prefix + 'cat') {
   .addField(':white_check_mark: Bot actif depuis :', dateString, false )
 .addField (':scroll: Nombre de commande :', '55 commandes', false) 
    .addField (':repeat: Nombre de commandes chargés:', '54 commandes chargés', false) 
-
+.addField ('Utilisation mémoire' , process.memoryUsage().heapUsed, false) 
+	  
     .addField(':runner: Serveur disponible :', `**${bot.guilds.size}** servers`, false )
   .addField ('👥 Utilisateur:', ` ${bot.users.size} utilisateurs`, false) 
    .addField ('🏓 Ping :', `${Date.now() - message.createdTimestamp} ms`, false) 
