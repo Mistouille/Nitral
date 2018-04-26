@@ -499,15 +499,9 @@ if (message.content === prefix + "onmain") {
     }
   }
 
-    if (message.content === "pain") {
-    	   message.reply ("https://cdn.discordapp.com/attachments/422988375302078465/423934780611100672/TtpPv_Bqu3tMfudl_FzcYYwUk6s.gif")
-        console.log ("pain au chocolat")
-    }
+   
     //owner
-    if (message.content === prefix + "owner"){
-        message.reply("📝voila si tu veux mp mon createur <@234312981524119562>📝");
-        console.log("Commande owner" );
-    }
+    
     if (message.content === prefix + "botlist") {
     let bot= new Discord.RichEmbed ()
          .setColor('#B9121B')
@@ -533,12 +527,12 @@ if (message.content === prefix + "onmain") {
          console.log(`${message.author.username} | play store `)
 		 
 	} 
-	/*if (message.content.startsWith (prefix +"playstore")) {
+	if (message.content.startsWith (prefix +"apple")) {
 	let args = message.content.split(' ')
    		args.shift ()
-   		message.channel.send ("Voici le résultat de votre recherche: https://www.apple.com/fr/search/" +args.join('+')'?src=globalnav')
+   		message.channel.send ("Voici le résultat de votre recherche: https://www.apple.com/fr/search/" +args.join('+')"?src=global n'a" )
          console.log(`${message.author.username} | play store `)
-		 }*/
+		 }
 	 
     //NEWS
     
@@ -568,7 +562,7 @@ if (message.content === prefix + "onmain") {
 
                  message.channel.send({embed});
                 message.channel.stopTyping()
-            
+            console.log ('weather') 
         });
     }
     //avatar
