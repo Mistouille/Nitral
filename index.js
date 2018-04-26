@@ -32,7 +32,7 @@ let flyfamille = ("Fly'")
 //                   Initialisation du bot        //
 //------------------------------------------------//
 
-bot.on('ready',function() => {
+bot.on('ready',function() {
     
         bot.user.setStatus( 'online' );
         bot.user.setActivity(prefix + `help | ${bot.guilds.size} serveurs  | ${bot.users.size} utilisateurs`,{type: "WATCHING"});
