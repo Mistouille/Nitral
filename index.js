@@ -323,7 +323,7 @@ if (message.content === prefix + 'cat') {
         }
 	
 	 let result = Math.floor((Math.random() * args9) );
-  message.channel.send(":white_check_mark: | **Tu as obtenu le nombre** " + result);
+  message.channel.send("🏅 | **Tu as obtenu le nombre** " + result);
 }
 	if (message.content === prefix +  "uptime") {
 	    let ms = bot.uptime;
