@@ -32,14 +32,14 @@ let flyfamille = ("Fly'")
 //                   Initialisation du bot        //
 //------------------------------------------------//
 
-bot.on('ready',() => {
-    setInterval (function (){
+bot.on('ready',function() => {
+    
         bot.user.setStatus( 'online' );
         bot.user.setActivity(prefix + `help | ${bot.guilds.size} serveurs  | ${bot.users.size} utilisateurs`,{type: "WATCHING"});
         //bot.user.setActivity("En maintenance")
-    },60000 *3);
+   
   console.log("Je suis connecté !\n====================================\n\n" + bot.users.size + " utilisateurs \n" + bot.guilds.size + " serveurs \n\n====================================\n\n" + bot.guilds.array ())
-});3000
+})
 
 /*fs.readdir("./commands/", (err, files) => {
 
