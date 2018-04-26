@@ -318,7 +318,7 @@ if (message.content === prefix + 'cat') {
 		const args9 = message.content.split(" ").slice(1).join(" ");
 	if (!args9[0]){
           message.delete();
-          message.channel.send("Pour un usage correct faite" + prefix + "roll [un nombre]` ")
+          message.channel.send("Pour un usage correct faite` " + prefix + "roll [un nombre]` ")
           return;
         }
 	
