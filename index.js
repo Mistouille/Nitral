@@ -527,12 +527,12 @@ if (message.content === prefix + "onmain") {
          console.log(`${message.author.username} | play store `)
 		 
 	} 
-	if (message.content.startsWith (prefix +"apple")) {
+	/*if (message.content.startsWith (prefix +"apple")) {
 	let args = message.content.split(' ')
    		args.shift ()
    		message.channel.send ("Voici le résultat de votre recherche: https://www.apple.com/fr/search/" +args.join('+')"?src=global n'a" )
          console.log(`${message.author.username} | play store `)
-		 }
+		 }*/
 	 
     //NEWS
     
