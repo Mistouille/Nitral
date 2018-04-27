@@ -696,7 +696,7 @@ if (message.content === prefix + "onmain") {
          .addField ("**__Info__**:gear: :" ,"`uptime`,`userinfo`,`serverinfo`,`botinfo`,`diserver`,`weather`" , false)
          .addField ("**__Fun__**:tada: :" ,"`rps`,`roll`,`cat`,`astrologia`,`triggered`,`dice`,`verlan`,`piece`,`say`" ,false)
          .addField ("**__Interaction__**:recycle: :" , "`kiss`,`hug`,`cry`,`pat`,`pout`,`punch`,`handholding`,`shoot`,`stare`,`slap`,`fuck`,`res`,`everyone`,`troll`,`highfive`,`pollc`" ,false)
-         .addField ("**__Admin__**:tools: :" , "`mute`,`unmute  `,`kick`,`ban`,`purge`,`report`,`warn`,`reminder`",false)
+         .addField ("**__Admin__**:tools: :" , "`mute`,`unmute  `,`kick`,`ban`,`purge`,`report`,`warn`,`lockdown`, `reminder`",false)
          .setTimestamp()
          .setFooter(`Help`);
       message.channel.send(help2) ;
