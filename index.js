@@ -450,7 +450,7 @@ if (message.content.startsWith(prefix + "rps")){
   }
 	if (message.content.startsWith(prefix + "lockdown")){
 		 if (!client.lockit) client.lockit = [];
-		args8 = message.content.split(" ").slice(1).join(" ");
+		let args = message.content.split(" ").slice(1).join(" ");
 	
   let time = args.join(' ');
   let validUnlocks = ['release', 'unlock'];
