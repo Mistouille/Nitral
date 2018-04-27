@@ -465,7 +465,7 @@ if (message.content.startsWith(prefix + "rps")){
   let validUnlocks = ['release', 'unlock'];
   if (!args[0]){
          
-          message.channel.send("Mettez une durée ")
+          message.channel.send("Mettez une durée:\n`s`:pour secondes\n`m`: pour minutes\n`h`: pour heures ")
           return;
         }
   if (validUnlocks.includes(args)) {
