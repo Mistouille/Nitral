@@ -768,10 +768,8 @@ if (message.content === prefix + "onmain") {
   	  	 .addField ("Données serveur", bot.guilds.size, false)
   	  	 .addField ("Données utilisateurs", bot.users.size, false)
   	  	 .addField ("Le trello du bot", "Voilà mon [Trello](https://trello.com/b/rUl5NBRH/nitral) Pour voir l'avancement du bot ",false )
-  	  	 .addField ("Le github du bot", "Voici le lien du [github ](https://github.com/zechaos031/Nitral-) du bot ()", true)
-  	  	 .addField ("Invitation du bot et invitation serveur ", "Voici le lien du [Bot](https://bots.discord.pw/bots/435585785295667200) pour rejoindre le serveur et m'inviter sur ton serveur ", true)
-  	  	 .addField ("Hebergeur", "Hébergement local avec un Asus zenfone 4 en full 4G")
-  	  	 .addField ("Langage de programmation", "Crée en JavaScript", false)
+  	  	   .addField ("Invitation du bot et invitation serveur ", "Voici le lien du [Bot](https://bots.discord.pw/bots/435585785295667200) pour rejoindre le serveur et m'inviter sur ton serveur ", true)
+  	  	  .addField ("Langage de programmation", "Crée en JavaScript", false)
          .setTimestamp()
          .setFooter(`${message.author.username} | Bot Info`);
   	  	 return message.channel.send(botembed);
