@@ -448,31 +448,43 @@ if (message.content.startsWith(prefix + "rps")){
       }
     } 
   }
-	if (message.content.startsWith(prefix + "45rpstestrps")){
-		 if(message.author.id == "236627494764150784"){
-	const choice = message.content.split(" ").slice(1).join(" ");
+	if (message.content.startsWith(prefix + "lockdown")){
+		 if (!client.lockit) client.lockit = [];
+		args8 = message.content.split(" ").slice(1).join(" ");
+	
+  let time = args.join(' ');
+  let validUnlocks = ['release', 'unlock'];
+  if (!time) return message.reply('Tu doit mettre une durée pour le lockdown ');
 
-		const choices = ["rock", "papier", "scissions"] 
+  if (validUnlocks.includes(time)) {
+    message.channel.overwritePermissions(message.guild.id, {
+      SEND_MESSAGES: null
+    }).then(() => {
+      message.channel.sendMessage('Lockdown levé ');
+      clearTimeout(client.lockit[message.channel.id]);
+      delete client.lockit[message.channel.id];
+    }).catch(error => {
+      console.log(error);
+    });
+  } else {
+    message.channel.overwritePermissions(message.guild.id, {
+      SEND_MESSAGES: false
+    }).then(() => {
+      message.channel.sendMessage(`Channel bloqué pendant ${ms(ms(time), { long:true })}`).then(() => {
 
-		const response = choices[Math.floor(Math.random() * choices.length)];
-		if (choice === 'rock') {
-			if (response === 'rock') return message.channel.send ('Rock! Aw... A tie...');
-			if (response === 'paper') return message.channel.send('Paper! Yes! I win!');
-			if (response === 'scissors') return message.channel.send('Scissors! Aw... I lose...');
-		}
-		if (choice === 'paper') {
-			if (response === 'rock') return message.channel.send('Rock! Aw... I lose...');
-			if (response === 'paper') return message.channel.send('Paper! Aw... A tie...');
-			if (response === 'scissors') return message.channel.send('Scissors! Yes! I win!');
-		}
-		if (choice === 'scissors') {
-			if (response === 'rock') return message.channel.send('Rock! Yes! I win!');
-			if (response === 'paper') return message.channel.send('Paper! Aw... I lose...');
-			if (response === 'scissors') return message.channel.send('Scissors! Aw... A tie...');
-		}
-		return message.channel.send('I win by default, you little cheater.');
-	}
-}
+        client.lockit[message.channel.id] = setTimeout(() => {
+          message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSAGES: null
+          }).then(message.channel.sendMessage('Lockdown levé.')).catch(console.error);
+          delete client.lockit[message.channel.id];
+        }, ms(time));
+
+      }).catch(error => {
+        console.log(error);
+      });
+    });
+  }
+};
 	
 	
 	
