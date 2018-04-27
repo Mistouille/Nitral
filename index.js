@@ -452,11 +452,13 @@ if (message.content.startsWith(prefix + "rps")){
 		 if (!client.lockit) client.lockit = [];
 		let args = message.content.split(" ").slice(1).join(" ");
 	
-  let time = args.join(' ');
   let validUnlocks = ['release', 'unlock'];
-  if (!time) return message.reply('Tu doit mettre une durée pour le lockdown ');
-
-  if (validUnlocks.includes(time)) {
+  if (!args[0]){
+         
+          message.channel.send("Mettez une durée ")
+          return;
+        }
+  if (validUnlocks.includes(args)) {
     message.channel.overwritePermissions(message.guild.id, {
       SEND_MESSAGES: null
     }).then(() => {
@@ -477,7 +479,7 @@ if (message.content.startsWith(prefix + "rps")){
             SEND_MESSAGES: null
           }).then(message.channel.sendMessage('Lockdown levé.')).catch(console.error);
           delete client.lockit[message.channel.id];
-        }, ms(time));
+        }, ms(args));
 
       }).catch(error => {
         console.log(error);
