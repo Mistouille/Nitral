@@ -472,7 +472,7 @@ if (message.content.startsWith(prefix + "rps")){
     message.channel.overwritePermissions(message.guild.id, {
       SEND_MESSAGES: false
     }).then(() => {
-      message.channel.sendMessage(`Channel bloqué pendant ${ms(ms(time), { long:true })}`).then(() => {
+      message.channel.sendMessage(`Channel bloqué pendant ${ms(ms(args), { long:true })}`).then(() => {
 
         client.lockit[message.channel.id] = setTimeout(() => {
           message.channel.overwritePermissions(message.guild.id, {
