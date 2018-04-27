@@ -449,6 +449,16 @@ if (message.content.startsWith(prefix + "rps")){
     } 
   }
 	if (message.content.startsWith(prefix + "lockdown")){
+		if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
+          message.channel.send ("📛 Tu n'as pas la permission 📛");
+          console.log("📛 Tu n'as pas la permission 📛");
+          return;
+        }
+        else if (!message.channel.permissionsFor(bot.user).hasPermission("MANAGE_ROLES")) {
+          message.channel.send ("📛 Je n'es pas la permission 📛");
+          console.log("📛 Je n'es pas la permission 📛");
+          return;
+        }
 		 if (!client.lockit) client.lockit = [];
 		let args = message.content.split(" ").slice(1).join(" ");
 	
