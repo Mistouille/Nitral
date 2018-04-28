@@ -1247,6 +1247,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
         return;
    }
   if (message.content.startsWith(prefix + "report")) {
+	  let args = message.content.split(" ")
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!rUser) return message.channel.send("Je ne trouve pas cette utilisateur").then(msg => {msg.delete(5000)});
       let rreason = args.join(" ").slice(22);	
