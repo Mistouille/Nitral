@@ -19,7 +19,7 @@ let rvotes =("99")
 let xp = require("./xp.json");
 var cooldown = new Set()
 //let warns = JSON.parse(fs.readFileSync("warnings.json", "utf8"));
-//let prefix = "++"
+let prefix = "++"
 
 //------------------------------------------------//
 //                   Préfixe                      //
