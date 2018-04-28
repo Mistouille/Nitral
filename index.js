@@ -812,7 +812,7 @@ if (message.content === prefix + "onmain") {
 	//Kick
       if (message.content.startsWith(prefix + "kick")) {
 
-        if (!message.channel.permissionsFor(message.author).hasPermission("KICK_MEMBERS")) {
+        /*if (!message.channel.permissionsFor(message.author).hasPermission("KICK_MEMBERS")) {
         message.channel.send ("📛 Tu n'as pas la permission 📛");
         console.log("📛 Tu n'as pas la permission 📛");
         return;
@@ -846,12 +846,13 @@ if (message.content === prefix + "onmain") {
               incidentchannel.send(kickEmbed)
         })
         
-        console.log(`${message.author.username} | kick ${member}`)
+        console.log(`${message.author.username} | kick ${member}`)*/
+     message.channel.send ("Commande en maintenances") 
       }
       //Ban
       if (message.content.startsWith(prefix + "ban")) {
 
-        if (!message.channel.permissionsFor(message.author).hasPermission("BAN_MEMBERS")) {
+        /*if (!message.channel.permissionsFor(message.author).hasPermission("BAN_MEMBERS")) {
         message.channel.send ("📛 Tu n'as pas la permission 📛");
         console.log("📛 Tu n'as pas la permission 📛");
         return;
@@ -887,7 +888,8 @@ if (message.content === prefix + "onmain") {
         .catch(() => {
             message.channel.send("⛔ Accès refusé ⛔ ");
         });
-        console.log(`${message.author.username} | Ban ${member}`)
+        console.log(`${message.author.username} | Ban ${member}`)*/
+    message.channel.send ("Commande en maintenances")
       }
       //diserver
      if (message.content === prefix + "diserver") {
