@@ -1252,6 +1252,11 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
     if(!rUser) return message.channel.send("Je ne trouve pas cette utilisateur").then(msg => {msg.delete(5000)});
       let rreason = args.join(" ").slice(31);	
         
+	  if (!args9[0]){
+         let nor =("Aucune raison donné") 
+            return;
+        }
+	  
     message.channel.send(`${message.author.username} vient de report ${defineduser.username}.\n\n **Raison :** ${rreason}. `);
       let repEmbed = new Discord.RichEmbed()
          .setDescription("~Report~")
@@ -1260,9 +1265,9 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
          .addField("Report par", `${message.author.username}`, false)
          .addField("Dans ", message.channel, false)
          .addField("Le", message.createdAt, false)
-         .addField ("Raison", rreason, false)
+         .addField ("Raison",nor + rreason, false)
          .setTimestamp()
-         .setFooter(` raison`);
+         .setFooter(`raison`);
 
           let incidentchannel = message.guild.channels.find(`name`, "report-nitral");
           if(!incidentchannel) return message.channel.send("Impossible de trouver le channel `report-nitral`.");
