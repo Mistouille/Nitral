@@ -1252,7 +1252,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
     if(!rUser) return message.channel.send("Je ne trouve pas cette utilisateur").then(msg => {msg.delete(5000)});
       let rreason = args.join(" ").slice(31);	
         
-    message.channel.send(`${message.author.username} vient de report ${member}.\n\n **Raison :** ${rreason}. `);
+    message.channel.send(`${message.author.username} vient de report ${defineduser.username}.\n\n **Raison :** ${rreason}. `);
       let repEmbed = new Discord.RichEmbed()
          .setDescription("~Report~")
          .setColor("#e56b00")
