@@ -1247,15 +1247,10 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
         return;
    }
   if (message.content.startsWith(prefix + "report")) {
-    var member= message.mentions.members.first();
-    var text = message.content.substring(8)
-    let args10 = message.content.split(" ").slice(1).join(" ");
-        if (!args10[0]){
-          message.delete();
-          message.channel.send("Données incorrecte")
-          return;
-        }
-	  
+    let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    if(!rUser) return message.channel.send("Je ne trouve pas cette utilisateur").then(msg => {msg.delete(5000)});
+      let rreason = args.join(" ").slice(22);	
+        
     message.channel.send(`${message.author.username} vient de report ${member}.\n\n **Raison :** ${text}. `);
       let repEmbed = new Discord.RichEmbed()
          .setDescription("~Report~")
@@ -1264,7 +1259,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
          .addField("Report par", `${message.author.username}`, false)
          .addField("Dans ", message.channel, false)
          .addField("Le", message.createdAt, false)
-         .addField ("Raison", text, false)
+         .addField ("Raison", rreason, false)
          .setTimestamp()
          .setFooter(` raison`);
 
