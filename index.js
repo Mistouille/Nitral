@@ -1252,7 +1252,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
     if(!rUser) return message.channel.send("Je ne trouve pas cette utilisateur").then(msg => {msg.delete(5000)});
       let rreason = args.join(" ").slice(31);	
         
-	  if (!args9[0]){
+	  if (!rreason[0]){
          let nor =("Aucune raison donné") 
             return;
         }
