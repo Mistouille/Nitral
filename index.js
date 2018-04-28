@@ -11,7 +11,7 @@ bot.commands = new Discord.Collection();
 const {get} = require("snekfetch");
 const ms = require("ms");
 //const economy = require('discord-eco');
-
+const db = require ('quick.db') 
 let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 let rvotes =("99")
@@ -19,7 +19,7 @@ let rvotes =("99")
 let xp = require("./xp.json");
 var cooldown = new Set()
 //let warns = JSON.parse(fs.readFileSync("warnings.json", "utf8"));
-let prefix = "++"
+//let prefix = "++"
 
 //------------------------------------------------//
 //                   Préfixe                      //
@@ -60,8 +60,33 @@ bot.on('ready',function() {
 
 bot.on("message", async message => {
 
+	
 let defineduser = message.mentions.users.first();
+	
+	db.fetchObject(`guildPrefix_${message.guild.id}`).then(i => { // This fetches the current prefix, if none is supplied it would be an empty string.
 
+        let prefix;
+
+        if (i.text) { // This will run if i.text(exisiting prefix) is defined...
+            prefix = i.text
+        } else { // This will run if i.text(existing prefix) is not defined...
+            prefix = '++' // You can set this to your default prefix
+        }
+	
+	if (message.content.startsWith(prefix + "setprefix")){
+   
+	const args = message.content.split(" ").slice(1).join(" ");
+	
+if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('This requires you to have a role with `Administrator`'); // Tell them if they don't have the proper permissions.
+    if (!args.join(" ")) return message.channel.send('Please enter arguments. `setPrefix <prefix>`'); // Tell them if they didn't supply any arguments.
+
+    db.updateText(`guildPrefix_${message.guild.id}`, args.join().trim()).then(i => { // Update the text field in that ID. .trim() removes the whitespaces on both side.
+
+        message.channel.send('Le préfixe a était changé en : ' + i.text); // Post in chat with the new prefix!
+
+    })
+
+}
 //------------------------------------------------//
 //                   Bienvenue                    //
 //------------------------------------------------//
