@@ -845,9 +845,7 @@ if (message.content === prefix + "onmain") {
 
               incidentchannel.send(kickEmbed)
         })
-        .catch(() => {
-            message.channel.send("⛔ Accès refusé ⛔ ");
-        });
+        
         console.log(`${message.author.username} | kick ${member}`)
       }
       //Ban
