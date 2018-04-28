@@ -72,7 +72,7 @@ let defineduser = message.mentions.users.first();
         } else { // This will run if i.text(existing prefix) is not defined...
             prefix = '++' // You can set this to your default prefix
         }
-	
+	})
 	if (message.content.startsWith(prefix + "setprefix")){
    
 	const args = message.content.split(" ").slice(1).join(" ");
