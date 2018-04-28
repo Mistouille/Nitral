@@ -1265,7 +1265,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
          .setFooter(` raison`);
 
           let incidentchannel = message.guild.channels.find(`name`, "report-nitral");
-          if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```report-nitral```.");
+          if(!incidentchannel) return message.channel.send("Impossible de trouver le channel `report-nitral`.");
 
           incidentchannel.send(repEmbed)
     console.log(`${message.author.username} | Report `)
