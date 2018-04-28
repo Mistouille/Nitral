@@ -1265,7 +1265,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
          .addField("Report par", `${message.author.username}`, false)
          .addField("Dans ", message.channel, false)
          .addField("Le", message.createdAt, false)
-         .addField ("Raison",nor + rreason, false)
+         .addField ("Raison",rreason, false)
          .setTimestamp()
          .setFooter(`raison`);
 
