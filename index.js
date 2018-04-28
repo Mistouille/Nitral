@@ -11,7 +11,7 @@ bot.commands = new Discord.Collection();
 const {get} = require("snekfetch");
 const ms = require("ms");
 //const economy = require('discord-eco');
-const db = require ('quick.db') 
+const db = require ('quick-db') 
 let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 let rvotes =("99")
