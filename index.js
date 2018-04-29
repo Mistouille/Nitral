@@ -1525,7 +1525,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
                   .setDescription("Warns")
                   .setAuthor(message.author.username)
                   .setColor("#fc6400")
-                  .addField("Utilisateur Warn", `<@${defineduser.username.id}>`)
+                  .addField("Utilisateur Warn", `${defineduser.username} `)
                   .addField("Warn dans ", message.channel)
                   .addField("Nombre de warn", warns[wUser.id].warns)
 
@@ -1543,6 +1543,14 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
                     message.reply(`<@${wUser.id}> a etait ^^ban. Car il a atteint 24 warns. `)
                   }
                 }
+	if(message.content.startsWith(prefix + "warnlist")){
+	let wUser = message.mentions.users.first()
+    if(!wUser) return message.reply("Je ne trouve pas cette utilisateur");
+    let warnlevel = warns[wUser.id].warns;
+  
+    message.channel.send (`${wUser} a ${warnlevel} warns.`);
+  
+  }
 function getpollinfo() {
 	message.channel.bulkDelete (1)
 
