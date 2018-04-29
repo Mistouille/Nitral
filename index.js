@@ -823,7 +823,7 @@ if (message.content === prefix + "onmain") {
         return;
       }
 	      let args = message.content.split(" ")
-      let kUser = message.guild.member(message.mentions.users.first()
+      let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!kUser) return message.channel.send("Je ne trouve pas cette utilisateur")
     let kReason = args.join(" ").slice(31);
     
