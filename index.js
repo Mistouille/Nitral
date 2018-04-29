@@ -314,6 +314,8 @@ if (message.content === prefix + 'cat') {
     message.channel.send (catembed)
 	}
     if (message.content.startsWith (prefix +"test") ) {
+	    let args = message.content.split(" ").slice(1).join(" ");
+	
         if(message.author.bot) return;
   if(message.channel.type !== "text") return;
   
