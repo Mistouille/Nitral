@@ -475,7 +475,7 @@ if (message.content === prefix + 'cat') {
   .addField(':clock: Actif ', 'Le bot est actif', false )
   .addField(':white_check_mark: Bot actif depuis :', dateString, false )
 .addField (':scroll: Nombre de commande :', '56 commandes', false) 
-   .addField (':repeat: Nombre de commandes chargés:', '55 commandes chargés', false) 
+   .addField (':repeat: Nombre de commandes chargés:', '56 commandes chargés', false) 
 //.addField ('Utilisation mémoire' , process.memoryUsage().heapUsed, false) 
 	  
     .addField(':runner: Serveur disponible :', `**${bot.guilds.size}** servers`, false )
