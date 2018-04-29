@@ -265,7 +265,7 @@ if(!coins[message.author.id]){
       .setColor("#AB49CD")
       .addField("Niveau :", curlvl2, false)
       .addField("XP", curxp2, false)
-      .addField ("Prochain niveau ",'niveau' +nxtLvlXp2 ', '  difference + ' xp' ,false)
+      .addField ("Prochain niveau ", difference + ' xp' ,false)
       .setTimestamp()
       .setFooter(`Levels`);
   message.channel.send(lvlEmbed)
