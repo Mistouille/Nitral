@@ -313,7 +313,7 @@ if (message.content === prefix + 'cat') {
         .setImage (cating)
     message.channel.send (catembed)
 	}
-    if (message.content.startsWith (prefix +"test") ) {
+    if (message.content.startsWith (prefix +"avatar") ) {
 	    let args = message.content.split(" ").slice(1).join(" ");
 	
         if(message.author.bot) return;
@@ -350,6 +350,51 @@ if (message.content === prefix + 'cat') {
                          })
     
   
+}
+	if (message.content.startsWith (prefix +"userinfo") ) {
+	    let args = message.content.split(" ").slice(1).join(" ");
+	
+	  if(message.author.bot) return;
+  if(message.channel.type !== "text") return;
+  
+  let members = [];
+  let indexes = [];
+  
+  message.guild.members.forEach(function(member){
+    members.push(member.user.username);
+    indexes.push(member.id);
+  })
+  
+  let match = sm.findBestMatch(args, members);
+  let username = match.bestMatch.target;
+  
+    let member = message.guild.members.get(indexes[members.indexOf(username)])
+    
+     let definedUser = "";
+     let definedUser2 = "";
+    if(!args[0]) {
+      definedUser = message.author
+      definedUser2 = message.member
+    } else {
+      let mention = message.mentions.users.first()
+      definedUser = mention || member.user
+        definedUser2 = message.mentions.members.first() || message.guild.members.get(args[0]) || member
+    }
+  
+  let uEmbed = new Discord.RichEmbed()
+  .setDescription("**User Information**")
+  .setColor("#e0d318")
+  .setThumbnail(definedUser.displayAvatarURL)
+  .addField("**Pseudo**", definedUser.username, true)
+  .addField("**#**", definedUser.discriminator, true)
+  .addField("**ID**", definedUser.id, true)
+  .addField("**Bot**", `${definedUser.bot ? "Oui" : "Non"}`, true)
+  .addField("**Statuts**",definedUser.presence.status, true)
+  .addField("**Jeu**", `${definedUser.presence.game ? `${definedUser.presence.game.name}` : "Joue à rien "}`, true)
+  .addField("**Création du compte**", definedUser.createdAt, false )
+  .addField("**Date d'arrivée sur le serv**", definedUser.joinedAt, false );
+
+  message.channel.send(uEmbed);
 }
 
 	if (message.content.startsWith (prefix +  "roll")) {
@@ -629,14 +674,7 @@ if (message.content === prefix + "onmain") {
         });
     }
     //avatar
-    if (message.content.startsWith (prefix +"avatar")) {
-            var avEmbed = new Discord.RichEmbed()
-              .setColor ('#00FAD9')
-              .setDescription(`Voici ton avatar` )
-              .setImage( message.author.avatarURL)
-              .setFooter("Avatar ");
-    message.channel.send(avEmbed)
-    }
+    
     //test
     if (message.content === prefix + "check"){
         	    message.channel.send ('🤖 Bot Opérationnel 🤖')
