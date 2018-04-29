@@ -1443,6 +1443,9 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
               }
 
               if(message.content.startsWith(prefix + "warn")){
+		      
+		      let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
+
 
                 if (!message.channel.permissionsFor(message.author).hasPermission("KICK_MEMBERS")) {
                   message.channel.send ("📛 Tu n'as pas la permission 📛");
@@ -1489,6 +1492,8 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
                   }
                 }
 	if(message.content.startsWith(prefix + "listwarn")){
+		let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
+
 	let wUser = message.mentions.users.first()
     if(!wUser) return message.reply("Je ne trouve pas cette utilisateur");
     let warnlevel = warns[wUser.id].warns;
