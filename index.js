@@ -327,7 +327,7 @@ if (message.content === prefix + 'cat') {
     indexes.push(member.id);
   })
   
-  let match = sm.findBestMatch(args.join(' '), members);
+  let match = sm.findBestMatch(args, members);
   let username = match.bestMatch.target;
   
     let member = message.guild.members.get(indexes[members.indexOf(username)])
