@@ -265,7 +265,7 @@ if(!coins[message.author.id]){
       .setColor("#AB49CD")
       .addField("Niveau :", curlvl2, false)
       .addField("XP", curxp2, false)
-      .addField ("Prochain niveau ", difference ,false)
+      .addField ("Prochain niveau ",'niveau' +nxtLvlXp2 ', '  difference + ' xp' ,false)
       .setTimestamp()
       .setFooter(`Levels`);
   message.channel.send(lvlEmbed)
@@ -290,7 +290,7 @@ if(!coins[message.author.id]){
         let xpEmbed = new Discord.RichEmbed()
           .setAuthor(message.author.username)
           .setColor("#AB49CD")
-          .addField ("Prochain niveau ","Dans" + difference + "xp",false)
+          .addField ("Prochain niveau ","Dans " + difference + " xp",false)
           .setTimestamp()
           .setFooter(`Levels`);
             message.channel.send(xpEmbed)
