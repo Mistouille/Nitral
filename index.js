@@ -823,7 +823,7 @@ if (message.content === prefix + "onmain") {
         return;
       }
 	      let args = message.content.split(" ")
-      let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+      let kUser = message.guild.member(message.mentions.users.first()
     if(!kUser) return message.channel.send("Je ne trouve pas cette utilisateur")
     let kReason = args.join(" ").slice(31);
     
@@ -840,7 +840,7 @@ if (message.content === prefix + "onmain") {
     if(!kickChannel) return message.channel.send("Je ne trouve pas le salon `logs-nitral`.")
 
     message.channel.send(`${kUser} à été kick avec succès 💫`)
-    message.guild.member(kUser).kick(kReason);
+    kUser.kick()
     kickChannel.send(kickEmbed);
 }
         
