@@ -382,7 +382,7 @@ if (message.content === prefix + 'cat') {
     }
   
   let uEmbed = new Discord.RichEmbed()
-  .setDescription("**User Information**")
+  .setDescription("**Informations sur l'utilisateur **")
   .setColor("#AB49CD")
   .setThumbnail(definedUser.displayAvatarURL)
   .addField("**Pseudo**", definedUser.username, true)
@@ -392,7 +392,7 @@ if (message.content === prefix + 'cat') {
   .addField("**Statuts**",definedUser.presence.status, true)
   .addField("**Jeu**", `${definedUser.presence.game ? `${definedUser.presence.game.name}` : "Joue à rien "}`, true)
   .addField("**Création du compte**", definedUser.createdAt, false )
-  .addField("**Date d'arrivée sur le serv**", definedUser.joinedAt, false );
+  .addField("**Date d'arrivée**", message.member.joinedAt, false );
 
   message.channel.send(uEmbed);
 }
