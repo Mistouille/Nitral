@@ -1397,63 +1397,8 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
         reminder(time, timeofreminder);
       }
     }
-        /*if(message.content.startsWith(prefix + 'lock')){
-          if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
-            message.channel.send ("📛 Tu n'as pas la permission 📛");
-            console.log("📛 Tu n'as pas la permission 📛");
-            return;
-          }
-          else if (!message.channel.permissionsFor(bot.user).hasPermission("MANAGE_ROLES")) {
-            message.channel.send ("📛 Je n'es pas la permission 📛");
-            console.log("📛 Je n'es pas la permission 📛");
-            return;
-          }
-
-          if (!bot.lockit) bot.lockit = [];
-          const time = message.content.split(' ');
-          const validUnlocks = ['release', 'unlock'];
-          if (!time) return message.reply('Tu dois donner un temp precis pour le lockdown');
-
-          if (validUnlocks.includes(time)) {
-            message.channel.overwritePermissions(message.guild.id, {
-              SEND_MESSAGES: null
-            }).then(() => {
-              message.channel.send('Lockdown lifted.');
-              clearTimeout(bot.lockit[message.channel.id]);
-              delete bot.lockit[message.channel.id];
-            }).catch(error => {
-              console.log(error);
-            });
-          } else {
-            message.channel.overwritePermissions(message.guild.id, {
-              SEND_MESSAGES: false
-            }).then(() => {
-              message.channel.send(`Channel bloqué pendant `).then(() => {
-
-                let unmuteEmbed = new Discord.RichEmbed()
-                    .setDescription("~Lockchan~")
-                    .setColor("#e56b00")
-                    .addField("Moderateur", `${message.author.username}`)
-                    .addField("Channel lock ", message.channel)
-                    .addField("Le", message.createdAt)
-                    .setTimestamp()
-                    .setFooter(`lockchan`);
-                    let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
-                    if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```logs-nitral```.");
-                      incidentchannel.send(unmuteEmbed)
-                      bot.lockit[message.channel.id] = setTimeout(() => {
-                        message.channel.overwritePermissions(message.guild.id, {
-                          SEND_MESSAGES: null
-                        }).then(message.channel.send('Channel débloqué')).catch(console.error);
-                        delete bot.lockit[message.channel.id];
-                      }, ms(time));
-
-                    }).catch(error => {
-                      console.log(error);
-                    });
-                  });
-                }
-              };*/
+    
+                
               if(message.content.startsWith(prefix + "h say")){
                 message.channel.send("__Usage__ `"+ prefix + "say [Un mot ou une phrase]`");
               }
@@ -1543,7 +1488,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
                     message.reply(`<@${wUser.id}> a etait ^^ban. Car il a atteint 24 warns. `)
                   }
                 }
-	if(message.content.startsWith(prefix + "warnlist")){
+	if(message.content.startsWith(prefix + "listwarn")){
 	let wUser = message.mentions.users.first()
     if(!wUser) return message.reply("Je ne trouve pas cette utilisateur");
     let warnlevel = warns[wUser.id].warns;
