@@ -839,7 +839,7 @@ if (message.content === prefix + "onmain") {
     let kickChannel = message.guild.channels.find(`name`, "logs-nitral" ) 
     if(!kickChannel) return message.channel.send("Je ne trouve pas le salon `logs-nitral`.")
 
-    message.channel.send(`${kUser} à été kick avec succès 💫`)
+    message.channel.send(`${defineduser.username} à été kick avec succès 💫`)
     kUser.kick()
     kickChannel.send(kickEmbed);
 }
@@ -876,7 +876,7 @@ if (message.content === prefix + "onmain") {
   let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
   if(!incidentchannel) return message.channel.send("Je ne trouve pas le channel `logs-nitral`.") 
 
-  message.channel.send(`${bUser} à été ban avec succès 💫`)
+  message.channel.send(`${defineduser.username} à été ban avec succès 💫`)
   message.guild.member(bUser).ban(bReason);
   incidentchannel.send(banEmbed);
 }
