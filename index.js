@@ -844,9 +844,8 @@ if (message.content === prefix + "onmain") {
     kickChannel.send(kickEmbed);
 }
         
-        console.log(`${message.author.username} | kick ${member}`)
-     
-      }
+        
+      
       //Ban
       if (message.content.startsWith(prefix + "ban")) {
 
