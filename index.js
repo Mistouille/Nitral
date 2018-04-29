@@ -812,7 +812,7 @@ if (message.content === prefix + "onmain") {
 	//Kick
       if (message.content.startsWith(prefix + "kick")) {
 
-        /*if (!message.channel.permissionsFor(message.author).hasPermission("KICK_MEMBERS")) {
+        if (!message.channel.permissionsFor(message.author).hasPermission("KICK_MEMBERS")) {
         message.channel.send ("📛 Tu n'as pas la permission 📛");
         console.log("📛 Tu n'as pas la permission 📛");
         return;
@@ -822,37 +822,35 @@ if (message.content === prefix + "onmain") {
         console.log("📛 Je n'es pas la permission 📛");
         return;
       }
-      if(message.mentions.users.size === 0){
-			return message.channel.send ("**:x: Veuillez mentionner l'utilisateur que vous voulez kick**")
-	}
+	      let args = message.content.split(" ")
+      let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    if(!kUser) return message.channel.send("Je ne trouve pas cette utilisateur")
+    let kReason = args.join(" ").slice(31);
+    
+    let kickEmbed = new Discord.RichEmbed()
+    .setDescription("~Kick~")
+    .setColor("#689AFB")
+    .addField("Utilisateur kick", `${KUser.tag} ID ${kUser.id}`)
+    .addField("Kick par", `${message.author.tag} with ID ${message.author.id}`)
+    .addField("Kick dans", `<#${message.channel.id}>`)
+    .addField("Heure", message.createdAt)
+    .addField("Raison", kReason);
 
-        var member= message.mentions.members.first();
+    let kickChannel = message.guild.channels.find(`name`, "logs-nitral" ) 
+    if(!kickChannel) return message.channel.send("Je ne trouve pas le salon `logs-nitral`.")
 
-        member.kick().then((member) => {
-          message.channel.bulkDelete (1)
-          let kickEmbed = new Discord.RichEmbed()
-             .setDescription("~Kick~")
-             .setColor("#e56b00")
-             .addField("Utilisateur Kick", `${defineduser.username}`)
-             .addField("Kick par", `${message.author.username}`)
-             .addField("Kick dans ", message.channel)
-             .addField("Le", message.createdAt)
-             .setTimestamp()
-             .setFooter(`Kick`);
-      message.channel.send("👋" + member.displayName + " à était belle et bien kick 💫");
-                    let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
-    if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```logs-nitral```.");
-
-              incidentchannel.send(kickEmbed)
-        })
+    message.channel.send(`${kUser} à été kick avec succès 💫`)
+    message.guild.member(kUser).kick(kReason);
+    kickChannel.send(kickEmbed);
+}
         
-        console.log(`${message.author.username} | kick ${member}`)*/
-     message.channel.send ("Commande en maintenances") 
+        console.log(`${message.author.username} | kick ${member}`)
+     
       }
       //Ban
       if (message.content.startsWith(prefix + "ban")) {
 
-        /*if (!message.channel.permissionsFor(message.author).hasPermission("BAN_MEMBERS")) {
+        if (!message.channel.permissionsFor(message.author).hasPermission("BAN_MEMBERS")) {
         message.channel.send ("📛 Tu n'as pas la permission 📛");
         console.log("📛 Tu n'as pas la permission 📛");
         return;
@@ -862,35 +860,27 @@ if (message.content === prefix + "onmain") {
         console.log("📛 Je n'es pas la permission 📛");
         return;
      }
-     if(message.mentions.users.size === 0){
-			return message.channel.send ("**:x: Veuillez mentionner l'utilisateur que vous voulez ban**")
-	}
+	let args = message.content.split(" ")
+     let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if(!bUser) return message.channel.send("Je ne  trouve pas l'utilisateur );
+  let bReason = args.join(" ").slice(31);
+  
+  let banEmbed = new Discord.RichEmbed()
+  .setDescription("~Ban~")
+  .setColor("#bc0000")
+  .addField("Banned User", `${bUser} with ID ${bUser.id}`)
+  .addField("Banned By", `<@${message.author.id}> with ID ${message.author.id}`)
+  .addField("Banned In", message.channel)
+  .addField("Time", message.createdAt)
+  .addField("Reason", bReason);
 
-        var member= message.mentions.members.first();
+  let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
+  if(!incidentchannel) return message.channel.send("Je ne trouve pas le channel `logs-nitral`.") 
 
-        member.ban().then((member) => {
-        	message.channel.bulkDelete (1)
-          let banEmbed = new Discord.RichEmbed()
-             .setDescription("~Ban~")
-             .setColor("#e56b00")
-             .addField("Utilisateur ban", `${defineduser.username}`)
-             .addField("Ban par", `${message.author.username}`)
-             .addField("Ban dans ", message.channel)
-            .addField("Le", message.createdAt)
-            .setTimestamp()
-            .setFooter(`Ban`);
-            message.channel.send("👋 Le ***__BanHammer__*** a frappé sur " + member.displayName + " pas sûre qu'il s'en remet ");
-              let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
-    if(!incidentchannel) return message.channel.send("Impossible de trouver le channel ```logs-nitral```.");
-
-              incidentchannel.send(banEmbed)
-        })
-        .catch(() => {
-            message.channel.send("⛔ Accès refusé ⛔ ");
-        });
-        console.log(`${message.author.username} | Ban ${member}`)*/
-    message.channel.send ("Commande en maintenances")
-      }
+  message.channel.send(`${bUser} à été ban avec succès 💫`)
+  message.guild.member(bUser).ban(bReason);
+  incidentchannel.send(banEmbed);
+}
       //diserver
      if (message.content === prefix + "diserver") {
     	      message.channel.send ( "Connecté dans les serveur \n\n```" + bot.guilds.array () +"```" )
