@@ -346,7 +346,7 @@ if (message.content === prefix + 'cat') {
     message.channel.send({embed: new Discord.RichEmbed()
                           .setImage(definedUser.avatarURL)
                           .setTitle(`Avatar de ` + definedUser.tag)
-                          .setColor(`${message.guild.me.displayHexColor!=='#00000' ? message.guild.me.displayHexColor : 0xffffff}`)
+                          .setColor(`AB49CD`)
                          })
     
   
@@ -383,7 +383,7 @@ if (message.content === prefix + 'cat') {
   
   let uEmbed = new Discord.RichEmbed()
   .setDescription("**User Information**")
-  .setColor("#e0d318")
+  .setColor("#AB49CD")
   .setThumbnail(definedUser.displayAvatarURL)
   .addField("**Pseudo**", definedUser.username, true)
   .addField("**#**", definedUser.discriminator, true)
