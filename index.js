@@ -861,7 +861,7 @@ if (message.content === prefix + "onmain") {
      }
 	let args = message.content.split(" ")
      let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if(!bUser) return message.channel.send("Je ne  trouve pas l'utilisateur );
+  if(!bUser) return message.channel.send("Je ne  trouve pas l'utilisateur" );
   let bReason = args.join(" ").slice(31);
   
   let banEmbed = new Discord.RichEmbed()
