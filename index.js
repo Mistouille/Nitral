@@ -830,11 +830,11 @@ if (message.content === prefix + "onmain") {
     let kickEmbed = new Discord.RichEmbed()
     .setDescription("~Kick~")
     .setColor("#689AFB")
-    .addField("Utilisateur kick", `${kUser.tag} ID ${kUser.id}`)
-    .addField("Kick par", `${message.author.tag} with ID ${message.author.id}`)
-    .addField("Kick dans", `<#${message.channel.id}>`)
-    .addField("Heure", message.createdAt)
-    .addField("Raison", kReason);
+    .addField("Utilisateur kick", `${defineduser.username}`, false)
+    .addField("Kick par", `${message.author.tag}`, false )
+    .addField("Dans", `<#${message.channel.id}>`, false)
+    .addField("Heure", message.createdAt, false)
+    .addField("Raison", kReason, false);
 
     let kickChannel = message.guild.channels.find(`name`, "logs-nitral" ) 
     if(!kickChannel) return message.channel.send("Je ne trouve pas le salon `logs-nitral`.")
@@ -867,11 +867,11 @@ if (message.content === prefix + "onmain") {
   let banEmbed = new Discord.RichEmbed()
   .setDescription("~Ban~")
   .setColor("#bc0000")
-  .addField("Banned User", `${bUser} with ID ${bUser.id}`)
-  .addField("Banned By", `<@${message.author.id}> with ID ${message.author.id}`)
-  .addField("Banned In", message.channel)
-  .addField("Time", message.createdAt)
-  .addField("Reason", bReason);
+  .addField("Utilisateur ban", `${defineduser.username}`, false)
+  .addField("Ban par", `<@${message.author.id}> `, false)
+  .addField("Dans ", message.channel, false)
+  .addField("Heures ", message.createdAt, false)
+  .addField("Raison", bReason, false);
 
   let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
   if(!incidentchannel) return message.channel.send("Je ne trouve pas le channel `logs-nitral`.") 
