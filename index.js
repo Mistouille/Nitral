@@ -532,15 +532,7 @@ if (message.content.startsWith(prefix + "rps")){
     } 
   }
 	
-	if (message.content.startsWith(prefix + "listwarns")){
-	const args = message.content.split(" ").slice(1).join(" ");
-	let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
-    if(!wUser) return message.reply("Je ne trouve pas cette utilisateur");
-    let warnlevel = warns[wUser.id].warns;
-  
-    message.channel.send (`<@${wUser.id}> a ${warnlevel} warns.`);
-  
-  }
+	
 	
 	
 	
