@@ -918,7 +918,36 @@ if (message.content === prefix + "onmain") {
     kickChannel.send(kickEmbed);
 }
         
-        
+        if (message.content.startsWith(prefix + "roleadd")) {
+
+        if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
+        message.channel.send ("📛 Tu n'as pas la permission 📛");
+        console.log("📛 Tu n'as pas la permission 📛");
+        return;
+      }
+      else if (!message.channel.permissionsFor(bot.user).hasPermission("MANAGE_ROLES")) {
+        message.channel.send ("📛 Je n'es pas la permission 📛");
+        console.log("📛 Je n'es pas la permission 📛");
+        return;
+      }
+		let args = message.content.split(" ")
+		let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+  if(!rMember) return message.reply("Impossible de trouver cet utilisateur.")
+  let role = args.join(" ").slice(22);
+  if(!role) return message.reply("Spécifiez un rôle!")
+  let gRole = message.guild.roles.find(`name`, role);
+  if(!gRole) return message.reply("Je ne trouve pas ce rôle.")
+
+  if(rMember.roles.has(gRole.id)) return message.reply("Il a déja ce rôle.")
+  await(rMember.addRole(gRole.id));
+
+  try{
+    await rMember.send(`Tu as eu le rôle ${gRole.name}`)
+    message.channel.send(`${rMember} a eu le rôle ${gRole.name}.`)
+  }catch(e){
+    message.channel.send(`<@${rMember.id}> a reçu le rôle **${gRole.name}**.`)
+  }
+}
       
       //Ban
       if (message.content.startsWith(prefix + "ban")) {
