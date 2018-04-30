@@ -942,10 +942,10 @@ if (message.content === prefix + "onmain") {
   if(rMember.roles.has(gRole.id)) return message.reply("Il a déja ce rôle.")
   await(rMember.addRole(gRole.id));
 
-  try{
+
     
     message.channel.send(`${rMember} a eu le rôle ${gRole.name}.`)
-  }
+  
 }
 	 if (message.content.startsWith(prefix + "rolerem")) {
 
@@ -971,10 +971,10 @@ if (message.content === prefix + "onmain") {
     if(!rMember.roles.has(gRole.id)) return message.reply("Il n'a pas ce rôle");
     await(rMember.removeRole(gRole.id));
   
-    try{
+   
       
       message.channel.send(`${rMember} a perdu le rôle ${gRole.name}`)
-    }
+    
   }
       
       //Ban
