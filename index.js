@@ -854,7 +854,7 @@ if (message.content === prefix + "onmain") {
      	.addField("Membres Totaux", message.guild.memberCount,false)
       .addField ("Propriétaire du serveur", message.guild.owner.username,false)
       .addField ("ID du serveur", message.guild.id, false)
-     .addField ("ID du serveur", message.guild.emojis, false)
+     .addField ("ID du serveur", message.emoji.guild, false)
      
 	.setTimestamp()
       .setFooter(`${message.author.username} | Server Info`);
