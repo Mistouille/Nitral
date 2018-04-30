@@ -80,7 +80,7 @@ message.channel.send("J'ai enlever votre afk ");
 }
 fs.writeFile("./afks.json", JSON.stringify(afk), (err) => { if (err) console.error(err);});
 }else{
-message.channel.send("Erreur ! Tu es déjà afk");
+message.channel.send("Tu n'es pas afk");
 }
 }
 
@@ -93,11 +93,11 @@ let args1 = message.content.split(" ").slice(1);
 if (args1.length === 0) {
 afk[message.author.id] = {"reason" : true};
 
-message.channel.send("Tu es désormais afk, met `++remafk` pour enlever ton afk").then(x => DeleteQueue.add(x, 10000));
+message.channel.send("Tu es désormais afk, met `++remafk` pour enlever ton afk")
 }else{
 afk[message.author.id] = {"reason" : args1.join(" ")};
-message.delete();
-message.channel.send("Tu es désormais afk, met `++remafk` pour enlever ton afk" ).then(x => DeleteQueue.add(x, 10000));
+
+message.channel.send("Tu es désormais afk, met `++remafk` pour enlever ton afk" )
 }
 fs.writeFile("./afks.json", JSON.stringify(afk), (err) => { if (err) console.error(err);});
 }
