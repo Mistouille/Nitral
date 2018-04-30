@@ -930,10 +930,11 @@ if (message.content === prefix + "onmain") {
         console.log("📛 Je n'es pas la permission 📛");
         return;
       }
-		let args = message.content.split(" ")
+		let args = message.content.split(" ").slice(1).join(" ");
+	
 		let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   if(!rMember) return message.reply("Impossible de trouver cet utilisateur.")
-  let role = args.join(" ").slice(22);
+  let role = args.slice(22);
   if(!role) return message.reply("Spécifiez un rôle!")
   let gRole = message.guild.roles.find(`name`, role);
   if(!gRole) return message.reply("Je ne trouve pas ce rôle.")
