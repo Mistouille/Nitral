@@ -434,7 +434,7 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
                   
             let Embed = new Discord.RichEmbed()
     .setTitle('Poke')
-    .addField('Tu as était appelé .', `Par: __${user}__ \nDans: ${message.guild.name}\nAu salon: <#${message.channel.id}>\nRaiso: ${pokeraison} `, true)
+    .addField('Tu as était appelé .', `Par: __${user}__ \nDans: ${message.guild.name}\nAu salon: <#${message.channel.id}>\nRaison: ${pokeraison} `, true)
     .setColor("#AB49CD")
     defineduser.send(Embed)
                   }
