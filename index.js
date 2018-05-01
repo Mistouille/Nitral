@@ -408,7 +408,7 @@ if (message.content === prefix + 'cat') {
         
     let Embed = new Discord.RichEmbed()
     .setTitle('Poke')
-    .addField('Tu as était appelé .', `Par: __${user}__ \nDans: __${message.guild.name}__ `, true)
+    .addField('Tu as était appelé .', `Par: __${user}__ \nDans: ${message.guild.name}\nAu salon: ${message.guild.channels.name} `, true)
     .setColor("#AB49CD")
     defineduser.send(Embed)
                   }
