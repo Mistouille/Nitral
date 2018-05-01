@@ -401,7 +401,7 @@ if (message.content === prefix + 'cat') {
 		const args = message.content.split(" ").slice(1).join(" ");
 	
 	let user = message.author
-   let pokeraison = args.join(" ").slice(31);
+   let pokeraison = args.slice(31);
 
     if (!args[0]) {return message.reply(`Veuillez spécifiez un utilisateur .`)    
     }else if (!pokeraison[0]) {return message.reply(`**Veuillez mettre une raison à votre poke.`)    
