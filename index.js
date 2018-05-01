@@ -407,9 +407,9 @@ if (message.content === prefix + 'cat') {
                   
         
     let Embed = new Discord.RichEmbed()
-    .setTitle('Poke 👉')
-    .addField('Tu as juste été toucher.', `Par: ${user} dans ${message.guild.name} `, true)
-    .setColor(0xD4AF37)
+    .setTitle('Poke')
+    .addField('Tu as était appelé .', `Par: __${user}__ \nDans: __${message.guild.name}__ `, true)
+    .setColor("#AB49CD")
     defineduser.send(Embed)
                   }
 }    
