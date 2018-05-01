@@ -371,7 +371,7 @@ let gRole = message.guild.roles.find(`name`, args);
    }else if(!gRole) return message.channel.send ("Je ne trouve pas ce rôle.")
 }else{
 	  
-	message.guild.removeRole({
+	message.guild.deleteRole({
             name: `${args}`,
             
         });
