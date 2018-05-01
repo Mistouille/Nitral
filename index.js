@@ -377,6 +377,8 @@ let gRole = message.guild.roles.find(`name`, args);
         });
 		message.channel.send(`Le rôle ${args} à était supprimé avec  succès`) 
 		}
+		}
+		
 	if (message.content.startsWith (prefix +"userinfo") ) {
 	    let args = message.content.split(" ").slice(1).join(" ");
 	
