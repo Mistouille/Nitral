@@ -363,6 +363,7 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
         });
 		message.channel.send(`Le rôle ${args} à était créé avec  succès`) 
 		}
+		}
 if (message.content.startsWith (prefix +"removerole") ) {
 
 	let args = message.content.split(" ").slice(1).join(" ");
