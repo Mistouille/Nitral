@@ -358,7 +358,7 @@ let args = message.content.split(" ").slice(1).join(" ");
 	
 	message.guild.createRole({
             name: `${args}`,
-            color: 'RED',
+            
         });
 		}
 	if (message.content.startsWith (prefix +"userinfo") ) {
