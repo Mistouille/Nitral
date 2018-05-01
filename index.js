@@ -354,12 +354,28 @@ if (message.content === prefix + 'cat') {
 }
 	if (message.content.startsWith (prefix +"createrole") ) {
 let args = message.content.split(" ").slice(1).join(" ");
-
+if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)    
+   }else{
 	
 	message.guild.createRole({
             name: `${args}`,
             
         });
+		message.channel.send(`Le rôle ${args} à était créé avec  succès`) 
+		}
+if (message.content.startsWith (prefix +"removerole") ) {
+
+	let args = message.content.split(" ").slice(1).join(" ");
+let gRole = message.guild.roles.find(`name`, args);
+	if (!args[0]) {return message.channel.send (`Veuillez spécifier le role .`)    
+   }else if(!gRole) return message.channel.send ("Je ne trouve pas ce rôle.")
+}else{
+	  
+	message.guild.removeRole({
+            name: `${args}`,
+            
+        });
+		message.channel.send(`Le rôle ${args} à était supprimé avec  succès`) 
 		}
 	if (message.content.startsWith (prefix +"userinfo") ) {
 	    let args = message.content.split(" ").slice(1).join(" ");
