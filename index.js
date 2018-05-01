@@ -392,8 +392,8 @@ if (message.content === prefix + 'cat') {
   .addField("**Bot**", `${definedUser.bot ? "Oui" : "Non"}`, true)
   .addField("**Statuts**",definedUser.presence.status, true)
   .addField("**Jeu**", `${definedUser.presence.game ? `${definedUser.presence.game.name}` : "Joue à rien "}`, true)
-  .addField("**Création du compte**", definedUser.createdAt, false )
-  .addField("**Date d'arrivée**", message.member.joinedAt, false );
+  .addField("**Création du compte**", `${moment.utc(definedUser.createdAt).format("D/M/Y, HH:mm:ss")} (${ms(Date.now()- moment.utc(definedUser.createdAt), {long: true})})`)
+  .addField("**Date d'arrivée sur le serv**", `${moment.utc(definedUser.joinedAt).format("D/M/Y, HH:mm:ss")}`);
 
   message.channel.send(uEmbed);
 }
