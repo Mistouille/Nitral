@@ -401,14 +401,16 @@ if (message.content === prefix + 'cat') {
 		const args = message.content.split(" ").slice(1).join(" ");
 	
 	let user = message.author
-   
-    if (!args[0]) {return message.reply(`**Veuillez spécifiez un utilisateur que vous voulez toucher.**`)    
-                  }else{
+   let pokeraison = args.join(" ").slice(31);
+
+    if (!args[0]) {return message.reply(`Veuillez spécifiez un utilisateur .`)    
+     if (!pokeraison[0]) {return message.reply(`**Veuillez mettre une raison à votre poke.`)    
+     
+		  }else{
                   
-        
-    let Embed = new Discord.RichEmbed()
+            let Embed = new Discord.RichEmbed()
     .setTitle('Poke')
-    .addField('Tu as était appelé .', `Par: __${user}__ \nDans: ${message.guild.name} <#${message.channel.id}> `, true)
+    .addField('Tu as était appelé .', `Par: __${user}__ \nDans: ${message.guild.name}\nAu salon: <#${message.channel.id}>\nRaiso: ${pokeraison} `, true)
     .setColor("#AB49CD")
     defineduser.send(Embed)
                   }
