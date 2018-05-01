@@ -397,6 +397,22 @@ if (message.content === prefix + 'cat') {
 
   message.channel.send(uEmbed);
 }
+	if (message.content.startsWith (prefix +  "poke")) {
+		const args = message.content.split(" ").slice(1).join(" ");
+	
+	let user = message.author
+    message.delete();
+    if (!args[0]) {return message.reply(`**Veuillez spécifiez un utilisateur que vous voulez toucher.**`)    
+                  }else{
+                  
+        
+    let Embed = new Discord.RichEmbed()
+    .setTitle('Poke 👉')
+    .addField('Tu as juste été toucher.', `Par: ${user} dans ${message.guild.name} `, true)
+    .setColor(0xD4AF37)
+    defineduser.send(Embed)
+                  }
+}    
 
 	if (message.content.startsWith (prefix +  "roll")) {
 		const args9 = message.content.split(" ").slice(1).join(" ");
