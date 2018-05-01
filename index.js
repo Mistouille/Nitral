@@ -353,6 +353,16 @@ if (message.content === prefix + 'cat') {
   
 }
 	if (message.content.startsWith (prefix +"createrole") ) {
+		if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
+        message.channel.send ("📛 Tu n'as pas la permission 📛");
+        console.log("📛 Tu n'as pas la permission 📛");
+        return;
+      }
+      else if (!message.channel.permissionsFor(bot.user).hasPermission("MANAGE_ROLES")) {
+        message.channel.send ("📛 Je n'es pas la permission 📛");
+        console.log("📛 Je n'es pas la permission 📛");
+        return;
+      }
 let args = message.content.split(" ").slice(1).join(" ");
 if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)    
    }else{
@@ -818,7 +828,7 @@ if (message.content === prefix + "onmain") {
          .addField ("**__Info__** :gear: :" ,"`uptime`,`userinfo`,`serverinfo`,`botinfo`,`diserver`,`weather`" , false)
          .addField ("**__Fun__** :tada: :" ,"`rps`,`roll`,`cat`,`astrologia`,`triggered`,`dice`,`verlan`,`piece`,`say`" ,false)
          .addField ("**__Interaction__** :recycle: :" , "`kiss`,`hug`,`cry`,`pat`,`pout`,`punch`,`handholding`,`shoot`,`stare`,`slap`,`fuck`,`res`,`everyone`,`troll`,`highfive`,`pollc`" ,false)
-         .addField ("**__Admin__** :tools: :" , "`roleadd`,`rolerem`,`mute`,`unmute  `,`kick`,`ban`,`purge`,`report`,`warn`,`lockdown`, `reminder`",false)
+         .addField ("**__Admin__** :tools: :" , "`roleadd`,`rolerem`, `createrole`,`mute`,`unmute  `,`kick`,`ban`,`purge`,`report`,`warn`,`lockdown`, `reminder`",false)
          .setTimestamp()
          .setFooter(`Help`);
       message.channel.send(help2) ;
