@@ -352,6 +352,15 @@ if (message.content === prefix + 'cat') {
     
   
 }
+	if (message.content.startsWith (prefix +"createrole") ) {
+let args = message.content.split(" ").slice(1).join(" ");
+
+	
+	message.guild.createRole({
+            name: `${args}`,
+            color: 'RED',
+        });
+		}
 	if (message.content.startsWith (prefix +"userinfo") ) {
 	    let args = message.content.split(" ").slice(1).join(" ");
 	
