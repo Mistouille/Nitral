@@ -403,8 +403,8 @@ if (message.content === prefix + 'cat') {
 	let user = message.author
    let pokeraison = args.slice(23);
 
-    if (!args[0]) {return message.reply(`Veuillez spécifiez un utilisateur .`)    
-    }else if (!pokeraison[0]) {return message.reply(`**Veuillez mettre une raison à votre poke.`)    
+    if (!args[0]) {return message.channel.send (`Veuillez spécifiez un utilisateur .`)    
+    }else if (!pokeraison[0]) {return message.channel.send (`Veuillez mettre une raison à votre poke.`)    
      
 		  }else{
                   
