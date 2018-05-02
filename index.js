@@ -651,7 +651,7 @@ if (message.content === prefix + "onmain") {
 	if (message.content.startsWith (prefix +"botlist")) {
 	let args = message.content.split(' ')
    		args.shift ()
-   		message.channel.send ("Voici le résultat de votre recherche: https://bots.discord.pw/?q=koya"+ args.join('+'))
+   		message.channel.send ("Voici le résultat de votre recherche: https://bots.discord.pw/?q="+ args.join('+'))
          console.log(`${message.author.username} | play store `)
 	}
     //NEWS
