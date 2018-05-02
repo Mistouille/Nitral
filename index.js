@@ -44,7 +44,7 @@ bot.on('ready',function() {
 })
 
 bot.on("message", async message => {
-	
+	const used = process.memoryUsage().heapUsed / 1024 / 1024;
 let defineduser = message.mentions.users.first();
 	
 	
@@ -484,7 +484,7 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
   .setThumbnail(message.author.iconURL)
   .addField(':clock: Actif ', 'Le bot est actif', false )
   .addField(':white_check_mark: Bot actif depuis :', dateString, false )
-  .addField ('Utilisation mémoire' , process.memoryUsage().heapUsed + ' octets' , false)
+  .addField ('Utilisation mémoire' , `${Math.round(used * 100) / 100} MB`, false)
   .addField("Nous somme le", LogDay)
   .addField("Il est", LogHeure + " heures et " + LogMin + " minutes.")
   .addField(':runner: Serveur disponible :', `**${bot.guilds.size}** servers`, false )
