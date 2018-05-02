@@ -455,11 +455,23 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
 
 	 message.guild.createChannel(args, 'voice')
 		      } 
+    }
 		if (message.content.startsWith (prefix +  "createtextchan")) {
+            if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_CHANNELS")) {
+          message.channel.send ("📛 Tu n'as pas la permission 📛");
+          console.log("📛 Tu n'as pas la permission 📛");
+          return;
+        }
+        else if (!message.channel.permissionsFor(bot.user).hasPermission("MANAGE_CHANNELS")) {
+          message.channel.send ("📛 Je n'es pas la permission 📛");
+          console.log("📛 Je n'es pas la permission 📛");
+          return;
+        }
 		const args = message.content.split(" ").slice(1).join(" ");
 	if (!args[0]) {return message.channel.send (`Veuillez spécifiez un nom .`)    
 
         message.guild.createChannel(args, 'text')
+	    }
 	}
 
 	if (message.content.startsWith (prefix +  "roll")) {
