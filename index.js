@@ -43,25 +43,7 @@ bot.on('ready',function() {
   console.log("Je suis connecté !\n====================================\n\n" + bot.users.size + " utilisateurs \n" + bot.guilds.size + " serveurs \n\n====================================\n\n" + bot.guilds.array ())
 })
 
-/*fs.readdir("./commands/", (err, files) => {
-
-  if(err) console.log(err);
-
-  let jsfile = files.filter(f => f.split(".").pop() === "js")
-  if(jsfile.length <= 0){
-    console.log("Couldn't find commands.");
-    return;
-  }
-
-  jsfile.forEach((f, i) =>{
-    let props = require(`./commands/${f}`);
-    console.log(`${f} loaded!`);
-    bot.commands.set(props.help.name, props);
-  });
-});*/
-
 bot.on("message", async message => {
-
 	
 let defineduser = message.mentions.users.first();
 	
@@ -70,119 +52,67 @@ let defineduser = message.mentions.users.first();
 //                   Bienvenue                    //
 //------------------------------------------------//
 	
-let afk = JSON.parse(fs.readFileSync("./afks.json", "utf8"));
-if (message.content.startsWith(prefix + "remafk")){
-if (afk[message.author.id]) {
-delete afk[message.author.id];
-if (message.member.nickname === null) {
-message.channel.send("J'ai enlever votre afk");
-}else{
-message.channel.send("J'ai enlever votre afk ");
-}
-fs.writeFile("./afks.json", JSON.stringify(afk), (err) => { if (err) console.error(err);});
-}else{
-message.channel.send("Tu n'es pas afk");
-}
-}
+	let afk = JSON.parse(fs.readFileSync("./afks.json", "utf8"));
+		if (message.content.startsWith(prefix + "remafk")){
+	 	  if (afk[message.author.id]) {
+			delete afk[message.author.id];
+			  if (message.member.nickname === null) {
+				message.channel.send("J'ai enlever votre afk");
+			}else{
+				message.channel.send("J'ai enlever votre afk ");
+			}
+			fs.writeFile("./afks.json", JSON.stringify(afk), (err) => { if (err) console.error(err);});
+			}else{
+			        message.channel.send("Tu n'es pas afk");
+			}
+		}
 
 
-if (message.content.startsWith(prefix + "afk")||message.content === prefix + "afk") {
-if (afk[message.author.id]) {
-return message.channel.send("Tu es déjà afk ");
-}else{
-let args1 = message.content.split(" ").slice(1);
-if (args1.length === 0) {
-afk[message.author.id] = {"reason" : true};
+	if (message.content.startsWith(prefix + "afk")||message.content === prefix + "afk") {
+		if (afk[message.author.id]) {
+	return message.channel.send("Tu es déjà afk ");
+		}else{
+			let args1 = message.content.split(" ").slice(1);
+				if (args1.length === 0) {
+					afk[message.author.id] = {"reason" : true};
 
-message.channel.send("Tu es désormais afk, met `++remafk` pour enlever ton afk")
-}else{
-afk[message.author.id] = {"reason" : args1.join(" ")};
-
-message.channel.send("Tu es désormais afk, met `++remafk` pour enlever ton afk" )
-}
-fs.writeFile("./afks.json", JSON.stringify(afk), (err) => { if (err) console.error(err);});
-}
-}
+					message.channel.send("Tu es désormais afk, met `++remafk` pour enlever ton afk")
+				}else{
+					afk[message.author.id] = {"reason" : args1.join(" ")};
+					message.channel.send("Tu es désormais afk, met `++remafk` pour enlever ton afk" )
+				}
+					fs.writeFile("./afks.json", JSON.stringify(afk), (err) => { if (err) console.error(err);});
+				}
+		}
     
-    var mentionned = message.mentions.users.first();
-if(message.mentions.users.size > 0) {
-if (afk[message.mentions.users.first().id]) {
-if (afk[message.mentions.users.first().id].reason === true) {
-message.channel.send(`@${mentionned.username} est AFK: pas de raison`);
-}else{
-message.channel.send(`@${mentionned.username} est AFK: ${afk[message.mentions.users.first().id].reason}`);
-}
-}
-}
+   		 var mentionned = message.mentions.users.first();
+			if(message.mentions.users.size > 0) {
+			   if (afk[message.mentions.users.first().id]) {
+			     if (afk[message.mentions.users.first().id].reason === true) {
+				message.channel.send(`@${mentionned.username} est AFK: pas de raison`);
+			     }else{
+				message.channel.send(`@${mentionned.username} est AFK: ${afk[message.mentions.users.first().id].reason}`);
+			     }
+			}
+		}
 
 //------------------------------------------------//
 //                   Handler                      //
 //------------------------------------------------//
 
 
-/*if(message.author.bot) return;
-  if(message.channel.type === "dm") return;
-
-  let messageArray = message.content.split(" ");
-  let args = messageArray.slice(1);
-
-  let commandfile = bot.commands.get(prefix.length);
-  if(commandfile) commandfile.run(bot,message,args);*/
+/
 //------------------------------------------------//
 //                   Préfixe                      //
 //------------------------------------------------//
 
-  /*let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
-  if(!prefixes[message.guild.id]){
-    prefixes[message.guild.id] = {
-      prefixes: botconfig.prefix
-    };
-  }
-
-let prefix = prefixes[message.guild.id].prefixes;
-
-if (message.content.startsWith(prefix + "setprefix")){
-  if (!message.channel.permissionsFor(message.author).has("MANAGE_ROLES")) {
-      message.channel.send ("📛 Tu n'as pas la permission 📛");
-      console.log("📛 Tu n'as pas la permission 📛");
-      return;
-    }
-  if(!args[0] || args[0 == "help"]) return message.reply("Usage : ++setprefix votre prefix");
-
-  let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
-
-  prefixes[message.guild.id] = {
-    prefixes: args[0]
-  };
-
-  fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) => {
-    if (err) console.log(err)
-  });
-
-  let sEmbed = new Discord.RichEmbed()
-  .setColor("#FF9900")
-  .setTitle("Prefix ")
-  .setDescription(`Les prefixe est  ${args[0]}`);
-  message.channel.send(sEmbed);
-}*/
+ 
 
 //------------------------------------------------//
 //                  money                            //
 //------------------------------------------------//
 
-    /*let msg = message.content.toUpperCase();
-    let cont1 = message.content.slice(prefix.length).split(" "); // This slices off the prefix, then stores everything after that in an array split by spaces.
-    let args = cont.slice(1); // This removes the command part of the message, only leaving the words after it seperated by spaces
-if (msg === `${prefix}BALANCE` || msg === `${prefix}MONEY`) { // This will run if the message is either ~BALANCE or ~MONEY
-economy.fetchBalance(message.author.id + message.guild.id).then((i) => { // economy.fetchBalance grabs the userID, finds it, and puts the data with it into i.
-            const embed = new Discord.RichEmbed()
-                .setDescription(`**${message.guild.name} Bank**`)
-                .setColor(0xD4AF37) // You can set any HEX color if you put 0x before it.
-                .addField('Account Holder',message.author.username,true) // The TRUE makes the embed inline. Account Holder is the title, and message.author is the value
-                .addField('Account Balance',i.money,true)
-            message.channel.send({embed})
-        })
-    }*/
+  
     
 let coins = require("./coins.json");
 if(!coins[message.author.id]){
@@ -410,12 +340,12 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
   .setDescription("**Informations sur l'utilisateur **")
   .setColor("#AB49CD")
   .setThumbnail(definedUser.displayAvatarURL)
-  .addField("**Pseudo**", definedUser.username, true)
-  .addField("**#**", definedUser.discriminator, true)
-  .addField("**ID**", definedUser.id, true)
-  .addField("**Bot**", `${definedUser.bot ? "Oui" : "Non"}`, true)
-  .addField("**Statuts**",definedUser.presence.status, true)
-  .addField("**Jeu**", `${definedUser.presence.game ? `${definedUser.presence.game.name}` : "Joue à rien "}`, true)
+  .addField("**Pseudo**", definedUser.username, false)
+  .addField("**#**", definedUser.discriminator, false)
+  .addField("**ID**", definedUser.id, false)
+  .addField("**Bot**", `${definedUser.bot ? "Oui" : "Non"}`, false)
+  .addField("**Statuts**",definedUser.presence.status, false)
+  .addField("**Jeu**", `${definedUser.presence.game ? `${definedUser.presence.game.name}` : "Joue à rien "}`, false)
   .addField("**Création du compte**", `${moment.utc(definedUser.createdAt).format("D/M/Y, HH:mm:ss")} (${ms(Date.now()- moment.utc(definedUser.createdAt), {long: true})})`)
   .addField("**Date d'arrivée sur le serv**", `${moment.utc(definedUser.joinedAt).format("D/M/Y, HH:mm:ss")}`);
 
@@ -453,7 +383,7 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
 		const args = message.content.split(" ").slice(1).join(" ");
 	if (!args[0]) {return message.channel.send (`Veuillez spécifiez un nom .`)    
 
-	 message.guild.createChannel(args, 'voice')
+	 message.guild.createChannel(`${args}`, 'voice')
 		      } 
     }
 		if (message.content.startsWith (prefix +  "createtextchan")) {
@@ -470,7 +400,7 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
 		const args = message.content.split(" ").slice(1).join(" ");
 	if (!args[0]) {return message.channel.send (`Veuillez spécifiez un nom .`)    
 
-        message.guild.createChannel(args, 'text')
+        message.guild.createChannel(`${args}`, 'text')
 	    }
 	}
 
