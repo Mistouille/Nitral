@@ -874,7 +874,8 @@ if (message.content === prefix + "onmain") {
   	  	 .addField("Nom du bot", bot.user.username, false)
   	  	 .addField("Date de création", bot.user.createdAt,false )
   	  	 .addField ('📈 Utilisation mémoire' , `${Math.round(used * 100) / 100} MB/500MB`, false)
-  
+                  .addField(':white_check_mark: Bot actif depuis :', dateString, false )
+ 
 		 .addField ("ID du bot ", bot.user.id,false )
   	  	 .addField ("Créateur du bot", "[BCFB] zechaos", false)
   	  	 .addField ("Données serveur", bot.guilds.size, false)
