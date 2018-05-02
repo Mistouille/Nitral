@@ -475,6 +475,9 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
         dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
         dateString += 'et ';
     }
+	const LogHeure = (`${moment().format('HH')}`)
+      const LogMin = (`${moment().format('mm')}`)
+      const LogDay = (`${moment().format('DD-MM-YYYY')}`)
     dateString += dateStrings[dateStrings.length - 1];
     const embed = new Discord.RichEmbed()
   .setTimestamp()
@@ -640,7 +643,7 @@ if (message.content === prefix + "onmain") {
 	if (message.content.startsWith (prefix +"apple")) {
 	let args = message.content.split(' ')
    		args.shift ()
-   		message.channel.send ("Voici le résultat de votre recherche: https://www.apple.com/fr/search/" + args.join(' ') + "?src=global n'a" )
+   		message.channel.send (`Voici le résultat de votre recherche: https://www.apple.com/fr/search/" + args.join(' ') + "?src=global n'a`)
          console.log(`${message.author.username} | play store `)
 		 }
 	 
