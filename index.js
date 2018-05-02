@@ -653,7 +653,7 @@ if (message.content === prefix + "onmain") {
    		args.shift ()
    		message.channel.send ("Voici le résultat de votre recherche: https://bots.discord.pw/?q=koya"+ args.join('+'))
          console.log(`${message.author.username} | play store `)
-	 https://bots.discord.pw/?q=koya
+	}
     //NEWS
     
     let cont = message.content.slice(prefix.length).split(" ");
