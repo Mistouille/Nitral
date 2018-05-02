@@ -643,7 +643,7 @@ if (message.content === prefix + "onmain") {
 	if (message.content.startsWith (prefix +"apple")) {
 	let args = message.content.split(' ')
    		args.shift ()
-   		message.channel.send (`Voici le résultat de votre recherche: https://www.apple.com/fr/search/${args}?src=globalnav`)
+   		message.channel.send ("Voici le résultat de votre recherche: https://www.apple.com/fr/search/"+ args.join('+') + "?src=globalnav")
          console.log(`${message.author.username} | play store `)
 		 }
 	 
