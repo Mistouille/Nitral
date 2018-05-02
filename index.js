@@ -481,12 +481,13 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
   .setThumbnail(message.author.iconURL)
   .addField(':clock: Actif ', 'Le bot est actif', false )
   .addField(':white_check_mark: Bot actif depuis :', dateString, false )
-.addField ('Utilisation mémoire' , process.memoryUsage().heapUsed + ' octets' , false) 
-	  
-    .addField(':runner: Serveur disponible :', `**${bot.guilds.size}** servers`, false )
+  .addField ('Utilisation mémoire' , process.memoryUsage().heapUsed + ' octets' , false)
+  .addField("Nous somme le", LogDay)
+  .addField("Il est", LogHeure + " heures et " + LogMin + " minutes.")
+  .addField(':runner: Serveur disponible :', `**${bot.guilds.size}** servers`, false )
   .addField ('👥 Utilisateur:', ` ${bot.users.size} utilisateurs`, false) 
-   .addField ('🏓 Ping :', `${Date.now() - message.createdTimestamp} ms`, false) 
-    .setColor(6583245);
+  .addField ('🏓 Ping :', `${Date.now() - message.createdTimestamp} ms`, false) 
+  .setColor(6583245);
     message.channel.send({embed})
   .catch(console.error);
 };
@@ -537,10 +538,6 @@ if (message.content.startsWith(prefix + "rps")){
     } 
   }
 	
-	
-	
-	
-	
 	if (message.content.startsWith(prefix + "lockdown")){
 		if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
           message.channel.send ("📛 Tu n'as pas la permission 📛");
@@ -590,11 +587,6 @@ if (message.content.startsWith(prefix + "rps")){
     });
   }
 };
-	
-	
-	
-	
-
   
 if (message.content === prefix + "onmain") {
  if(message.author.id == "236627494764150784"){
@@ -645,12 +637,12 @@ if (message.content === prefix + "onmain") {
          console.log(`${message.author.username} | play store `)
 		 
 	} 
-	/*if (message.content.startsWith (prefix +"apple")) {
+	if (message.content.startsWith (prefix +"apple")) {
 	let args = message.content.split(' ')
    		args.shift ()
-   		message.channel.send ("Voici le résultat de votre recherche: https://www.apple.com/fr/search/" +args.join('+')"?src=global n'a" )
+   		message.channel.send ("Voici le résultat de votre recherche: https://www.apple.com/fr/search/" + args.join(' ') + "?src=global n'a" )
          console.log(`${message.author.username} | play store `)
-		 }*/
+		 }
 	 
     //NEWS
     
