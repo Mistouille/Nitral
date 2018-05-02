@@ -615,7 +615,8 @@ if (message.content === prefix + "onmain") {
    
     //owner
     
-    if (message.content === prefix + "botlist") {
+    if (message.content === prefix + "botlistadd") {
+	    if(message.author.id == "236627494764150784"){
     let bot= new Discord.RichEmbed ()
          .setColor('#B9121B')
          .setTitle ("Bot")
@@ -626,6 +627,7 @@ if (message.content === prefix + "onmain") {
          .setFooter(` Bot`);
       message.channel.send(bot) ;
       console.log (`${message.author.username} |ping `)
+	    }
     }
 	  if (message.content.startsWith (prefix +"youtube")) {
 	let args = message.content.split(' ')
@@ -646,7 +648,12 @@ if (message.content === prefix + "onmain") {
    		message.channel.send ("Voici le résultat de votre recherche: https://www.apple.com/fr/search/"+ args.join('+') + "?src=globalnav")
          console.log(`${message.author.username} | play store `)
 		 }
-	 
+	if (message.content.startsWith (prefix +"botlist")) {
+	let args = message.content.split(' ')
+   		args.shift ()
+   		message.channel.send ("Voici le résultat de votre recherche: https://bots.discord.pw/?q=koya"+ args.join('+'))
+         console.log(`${message.author.username} | play store `)
+	 https://bots.discord.pw/?q=koya
     //NEWS
     
     let cont = message.content.slice(prefix.length).split(" ");
