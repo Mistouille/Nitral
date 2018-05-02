@@ -364,7 +364,7 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
                   
             let Embed = new Discord.RichEmbed()
     .setTitle('Poke')
-    .addField('Tu as était appelé .', `Par: __${user}__ \nDans: ${message.guild.name}\nAu salon: <#${message.channel.id}>\nRaison: ${pokeraison} `, true)
+    .addField('Tu as était appelé .', `Par: ${user}\nDans: ${message.guild.name}\nAu salon: <#${message.channel.id}>\nRaison: ${pokeraison} `, true)
     .setColor("#AB49CD")
     defineduser.send(Embed)
                   }
@@ -643,7 +643,7 @@ if (message.content === prefix + "onmain") {
 	if (message.content.startsWith (prefix +"apple")) {
 	let args = message.content.split(' ')
    		args.shift ()
-   		message.channel.send (`Voici le résultat de votre recherche: https://www.apple.com/fr/search/${args?src=globalnav`)
+   		message.channel.send (`Voici le résultat de votre recherche: https://www.apple.com/fr/search/${args}?src=globalnav`)
          console.log(`${message.author.username} | play store `)
 		 }
 	 
@@ -781,7 +781,7 @@ if (message.content === prefix + "onmain") {
          .setColor('#B9121B')
          .setTitle ("Toutes les commandes ")
          .setDescription("Pour le bon fonctionnement du bot merci de faire la commande`" + prefix + "setup`. En cas de probleme merci de vous rendre sur le serveur en faisant `" + prefix +"botinfo` dans l'onglet 'Invitation du bot'",false)
-         .addField ("**__Membres__** :busts_in_silhouette: :", "`setup`, `help`, `ping`,`avatar`,`poke`,`afk`, `remafk`, `invite`, `check`,`google`, `youtube`, `playstore`,`h`", false)
+         .addField ("**__Membres__** :busts_in_silhouette: :", "`setup`, `help`, `ping`,`avatar`,`poke`,`afk`, `remafk`, `invite`, `check`,`google`, `youtube`, `playstore`,`apple`,`h`", false)
          .addField ("**__XP__** :rosette: : *(bug)*", "`levels`,`xp`,`progress`")
          .addField ("**__Economie__** :euro: : *(bug)*","`coins`",false)
          .addField ("**__Info__** :gear: :" ,"`uptime`,`userinfo`,`serverinfo`,`botinfo`,`diserver`,`weather`" , false)
