@@ -872,7 +872,7 @@ if (message.content === prefix + "onmain") {
   	  	 .setColor("#15f153")
   	  	 .setThumbnail(bicon)
   	  	 .addField("Nom du bot", bot.user.username, false)
-  	  	 .addField("Date de création", bot.user.createdAt,false )
+  	  	 .addField("Date de création",`${moment.utc(bot.user.createdAt).format("D/M/Y, HH:mm:ss")} (${ms(Date.now()- moment.utc(bot.user.createdAt), {long: true})})`, false )
   	  	 .addField ('📈 Utilisation mémoire' , `${Math.round(used * 100) / 100} MB/500MB`, false)
                   .addField(':white_check_mark: Bot actif depuis :', dateString, false )
  
