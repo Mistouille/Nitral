@@ -551,7 +551,7 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
   .setThumbnail(message.author.iconURL)
   .addField(':clock: Actif ', 'Le bot est actif', false )
   .addField(':white_check_mark: Bot actif depuis :', dateString, false )
-.addField ('Utilisation mémoire' , process.memoryUsage().heapUsed, false) 
+.addField ('Utilisation mémoire' , process.memoryUsage().heapUsed + 'octets' , false) 
 	  
     .addField(':runner: Serveur disponible :', `**${bot.guilds.size}** servers`, false )
   .addField ('👥 Utilisateur:', ` ${bot.users.size} utilisateurs`, false) 
