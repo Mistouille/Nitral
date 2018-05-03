@@ -1299,7 +1299,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
      	      var text = message.content.substring(5)
             var resEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " ressuscite "+ defineduser.username )
+              .setDescription(`${message.author.username}` + " ressuscite ")
               .setImage(resing)
               .setTimestamp()
               .setFooter(`Ressurect`)
