@@ -1185,7 +1185,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
       var ev = ["https://cdn.discordapp.com/attachments/395762896329768960/432476514513321984/d9d.gif", "http://i0.kym-cdn.com/photos/images/facebook/001/291/661/4cf.jpg", "http://i0.kym-cdn.com/photos/images/original/001/243/406/73c.jpg", "http://i0.kym-cdn.com/photos/images/original/001/242/548/f0f.jpg", "https://pics.me.me/everyone-discord-memes-buy-or-sell-19502778.png", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2gL44pt4ZC4w9VOq9bekbeH4NVwG-9wJ8QkcNWI7alt5zavu9", "https://i.imgur.com/FTB2stB.gif", "https://i.imgur.com/7cQtGb1.png"]
       var stare = ["https://cdn.weeb.sh/images/BkkqI1YPZ.jpeg", "https://cdn.weeb.sh/images/HJxqIyFvZ.gif", "https://cdn.weeb.sh/images/BJ88vLvd-.gif", "https://cdn.weeb.sh/images/rk23UyYP-.gif", "https://cdn.weeb.sh/images/rk0v81YwW.gif", "https://cdn.weeb.sh/images/SkH3Uytwb.gif", "https://cdn.weeb.sh/images/B1tO8JYD-.gif", "https://cdn.weeb.sh/images/HyWnLyKPZ.gif", "https://cdn.weeb.sh/images/SJ9_8kFwb.gif", "https://cdn.weeb.sh/images/H1e83lytw-.gif"]
       var slap = ["https://cdn.weeb.sh/images/rkpAXa5bG.gif", "https://cdn.weeb.sh/images/SJL3Q1Fvb.gif", "https://cdn.weeb.sh/images/B1oCmkFw-.gif", "https://cdn.weeb.sh/images/rJYqQyKv-.gif", "https://cdn.weeb.sh/images/SkdyfWCSf.gif", "https://cdn.weeb.sh/images/Sk0RmyYvb.gif", "https://cdn.weeb.sh/images/BJ8o71tD-.gif", "https://cdn.weeb.sh/images/SJlkNkFwb.gif", "https://cdn.weeb.sh/images/SkSCyl5yz.gif", "https://cdn.weeb.sh/images/B1oCmkFw-.gif", "https://cdn.weeb.sh/images/rknn7Jtv-.gif", "https://cdn.weeb.sh/images/HkJ6-e91z.gif", "https://cdn.weeb.sh/images/ByHUMRNR-.gif"]
-
+       var bite = ["http://pf.gy/b71b5c","http://pf.gy/ca2abf","https://wir.skyrock.net/wir/v1/resize/?c=isi&im=%2F9720%2F93499720%2Fpics%2F3249509450_1_23_iX7bwTYd.gif&w=300&up=no&q=70","http://humourtop.com/photos-et-gifs-droles-sur-les-chihuahuas/Chihuahua_mechant.gif","https://cdn.discordapp.com/attachments/437680262457851924/441673904436543498/49dc99422710d7294f3c350f4c58eb2916481c07_hq.gif" ] 
 
           //ALEA
       var staring = stare[Math.floor(Math.random() * stare.length)] ;
@@ -1204,6 +1204,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
       var punching = punch[Math.floor(Math.random() * punch.length)] ;
       var handholding = hand[Math.floor(Math.random() * hand.length)] ;
       var pouting = pout[Math.floor(Math.random() * pout.length)] ;
+      var biting = bite[Math.floor(Math.random() * bite.length)] ;
 
         //commandes
     if (message.content.startsWith (prefix +"highfive")) {
@@ -1215,6 +1216,17 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
               .setTimestamp()
               .setFooter(`Highfive`)
               message.channel.send (fiveEmbed)
+              console.log(`${message.author.username} | HighFive`)
+    }
+	if (message.content.startsWith (prefix +"bite")) {
+            var text = message.content.substring(11)
+            var biteEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " a mordu "+ defineduser.username )
+              .setImage(biting)
+              .setTimestamp()
+              .setFooter(`Bite`)
+              message.channel.send (biteEmbed)
               console.log(`${message.author.username} | HighFive`)
     }
 
