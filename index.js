@@ -875,7 +875,7 @@ if (message.content === prefix + "onmain") {
   	  	 .addField("Date de création",`${moment.utc(bot.user.createdAt).format("D/M/Y, HH:mm:ss")}`, false )
   	  	 .addField ('📈 Utilisation mémoire' , `${Math.round(used * 100) / 100} MB/500MB`, false)
                   .addField(':white_check_mark: Bot actif depuis :', dateString, false )
- 
+                 .addField ('Librairie', 'Discord.js', false) 
 		 .addField ("ID du bot ", bot.user.id,false )
   	  	 .addField ("Créateur du bot", "[BCFB] zechaos", false)
   	  	 .addField ("Données serveur", bot.guilds.size, false)
