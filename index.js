@@ -48,18 +48,7 @@ bot.on("message", async message => {
 let defineduser = message.mentions.users.first();
 	
 
-    let dateString = '';
-    for (let i = 0; i < dateStrings.length - 1; i++) {
-        dateString += dateStrings[i];
-        dateString += ', ';
-    }
-    if (dateStrings.length >= 2) {
-        dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
-        dateString += 'et ';
-    }
-	
-    dateString += dateStrings[dateStrings.length - 1];
-	
+     
 //------------------------------------------------//
 //                   Bienvenue                    //
 //------------------------------------------------//
