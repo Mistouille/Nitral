@@ -1227,7 +1227,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
               .setTimestamp()
               .setFooter(`Bite`)
               message.channel.send (biteEmbed)
-              console.log(`${message.author.username} | HighFive`)
+              console.log(`${message.author.username} | bite`)
     }
 
      if (message.content.startsWith (prefix +"troll")) {
