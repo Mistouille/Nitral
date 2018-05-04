@@ -1419,7 +1419,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
           message.channel.send("Données incorrecte")
           return;
         }
-        if (args3[0] > 100){
+        if (args3[0] > 10000){
           message.delete();
           var offclearEmbed = new Discord.RichEmbed()
                 .setColor ('#00FAD9')
