@@ -1433,12 +1433,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
         }
       message.channel.bulkDelete(1);
         message.channel.bulkDelete(args3[0]);
-            var onclearEmbed = new Discord.RichEmbed()
-                  .setColor ('#00FAD9')
-                  .setDescription(`${message.author.username}` + " a clear "+ args3[0] + " messages" )
-                  .setTimestamp()
-                  .setFooter(` Purge `);
-                  message.channel.send(onclearEmbed)
+            
                   var onclearEmbed2 = new Discord.RichEmbed()
                         .setDescription("~Purge~")
                         .setColor ('#e56b00')
