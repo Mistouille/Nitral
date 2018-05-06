@@ -1431,7 +1431,7 @@ var rand = ['Oui ','Assurément','Pas du tout ',"Demande à quelqu'un d'autre. "
                 console.log(`${message.author.username} | Purge incorrete`)
           return;
         }
-        message.delete();
+      message.channel.bulkDelete(1);
         message.channel.bulkDelete(args3[0]);
             var onclearEmbed = new Discord.RichEmbed()
                   .setColor ('#00FAD9')
