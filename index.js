@@ -661,7 +661,7 @@ if (message.content === prefix + "onmain") {
        if (message.content.startsWith (prefix + 'weather')) {
 
         weather.find({search: args1.join(" "), degreeType: 'C'}, function(err, result) {
-            if (err) message.channel.send(err);
+            if (err) message.channel.send('Merci de préciser votre ville' );
 
             var current = result[0].current;
             var location = result[0].location;
