@@ -859,7 +859,7 @@ if (message.content === prefix + "onmain") {
      	.addField("Membres Totaux", message.guild.memberCount,false)
       .addField ("Propriétaire du serveur", `<@${message.guild.owner.id}>`,false)
       .addField ("ID du serveur", message.guild.id, false)
-     .addField ("Image du serveur" , sicon, false)
+     .setImage ( sicon)
      
 	.setTimestamp()
       .setFooter(`${message.author.username} | Server Info`);
