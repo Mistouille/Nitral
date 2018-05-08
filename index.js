@@ -5,14 +5,18 @@ const FileSync = require ('lowdb/adapters/FileSync')
 const client = new Discord.Client();
 const fs = require("fs");
 const cute = require("cuteapi");
-const cuteapi = new cute('process.env.TOKEN2');
+const cuteapi = new cute(process.env.TOKEN2);
 const weather = require('weather-js');
 bot.commands = new Discord.Collection();
 const {get} = require("snekfetch");
 const ms = require("ms");
 //const economy = require('discord-eco');
 const sm = require("string-similarity");
-const moment = require ("moment") 
+const moment = require ("moment")
+const ytdl = require('ytdl-core');
+const search = require('youtube-search');
+const randomPuppy = require('random-puppy');
+const request = require('snekfetch');
 
 let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
@@ -21,38 +25,38 @@ let rvotes =("99")
 let xp = require("./xp.json");
 var cooldown = new Set()
 
-let prefix = "++"
+let prefix = "--"
 
 //------------------------------------------------//
 //                   Préfixe                      //
 //------------------------------------------------//
 
-let owner =("...nitrarootOwnergijcfzungecjydzgjivfbygjyevjuf. gecjydzgjivfbygjyevjuf...ngecjydzgjivfbygjyevjuf.")
-let flyfamille = ("Fly'")
+let owner =(process.env.PREFIXOWNER)
+let flyfamille = (process.env.PREFIXFLY)
 
 //------------------------------------------------//
 //                   Initialisation du bot        //
 //------------------------------------------------//
 
 bot.on('ready',function() {
-    
+
         bot.user.setStatus( 'online' );
         bot.user.setActivity(prefix + `help | ${bot.guilds.size} serveurs  | ${bot.users.size} utilisateurs`,{type: "WATCHING"});
         //bot.user.setActivity("En maintenance")
-   
+
   console.log("Je suis connecté !\n====================================\n\n" + bot.users.size + " utilisateurs \n" + bot.guilds.size + " serveurs \n\n====================================\n\n" + bot.guilds.array ())
 })
 
 bot.on("message", async message => {
 	const used = process.memoryUsage().heapUsed / 1024 / 1024;
 let defineduser = message.mentions.users.first();
-	
 
-     
+
+
 //------------------------------------------------//
 //                   Bienvenue                    //
 //------------------------------------------------//
-	
+
 	let afk = JSON.parse(fs.readFileSync("./afks.json", "utf8"));
 		if (message.content.startsWith(prefix + "remafk")){
 	 	  if (afk[message.author.id]) {
@@ -85,7 +89,7 @@ let defineduser = message.mentions.users.first();
 					fs.writeFile("./afks.json", JSON.stringify(afk), (err) => { if (err) console.error(err);});
 				}
 		}
-    
+
    		 var mentionned = message.mentions.users.first();
 			if(message.mentions.users.size > 0) {
 			   if (afk[message.mentions.users.first().id]) {
@@ -101,20 +105,151 @@ let defineduser = message.mentions.users.first();
 //                   Handler                      //
 //------------------------------------------------//
 
-
-
 //------------------------------------------------//
 //                   Préfixe                      //
 //------------------------------------------------//
 
- 
+//------------------------------------------------//
+//                   Musique                      //
+//------------------------------------------------//
+/*if (message.content.startsWith(prefix + "play")){
+var intent;
+let queue = getQueue(message.guild.id);
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * (max + 1));
+}
+
+var paused = {}
+
+
+function play(message, queue, song) {
+        if (!message || !queue) return;
+        if (song) {
+            search(song, opts, function(err, results) {
+                if(err){
+               message.channel.send("Vidéo non trouvée, essayez d'utiliser un lien à youtube à la place.");
+                }
+                song = (song.includes("https://" || "http://")) ? song : results[0].link
+                let stream = ytdl(song, {
+                    audioonly: true
+                })
+                let test
+                if (queue.length === 0) test = true
+                queue.push({
+                    "Titre": results[0].title,
+                    "Demandé par": message.author.username,
+                    "toplay": stream
+                })
+            message.channel.send({
+                embed: {
+                    author: {
+                        name: client.user.username,
+                        icon_url: client.user.avatarURL
+                    },
+                    color: 0x00FF00,
+                    title: `Liste`,
+                    description: "**" + queue[queue.length - 1].title + "**"
+                }
+                    }).then(response => { response.delete(5000) });
+                if (test) {
+                    setTimeout(function() {
+                        play(message, queue)
+                    }, 1000)
+                }
+            })
+        } else if (queue.length != 0) {
+                message.channel.send({
+        embed: {
+            author: {
+                name: client.user.username,
+                icon_url: client.user.avatarURL
+            },
+            color: 0x00FF00,
+            title: `Lecture en cours`,
+            description: `**${queue[0].title}** | Demande par ***${queue[0].requested}***`
+        }
+            }).then(response => { response.delete(5000) });
+            let connection = message.guild.voiceConnection
+            if (!connection) return console.log("Pas de connexion!");
+            intent = connection.playStream(queue[0].toplay)
+
+            intent.on('error', () => {
+                queue.shift()
+                play(message, queue)
+            })
+
+            intent.on('end', () => {
+                queue.shift()
+                play(message, queue)
+            })
+
+        } else {
+          if(err){
+                message.channel.send('Il n\'y a plus de musique dans la playlist.')
+                if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+
+            }
+        }
+
+function getQueue(guild) {
+    if (!guild) return
+    if (typeof guild == 'object') guild = guild.id
+    if (queues[guild]) return queues[guild]
+    else queues[guild] = []
+    return queues[guild]
+}
+
+if (!message.guild.voiceConnection) {
+            if (!message.member.voiceChannel) return message.channel.send('Vous devez être dans un channel vocal')
+            }
+            var chan = message.member.voiceChannel
+            chan.join()
+        }
+        let suffix = message.content.split(" ").slice(1).join(" ")
+        if (!suffix) {
+         message.channel.send('Vous devez spécifier un lien pour le morceau ou un nom de musique!')
+        }
+
+        play(message, getQueue(message.guild.id), suffix)
+    }
+    if (message.content.startsWith(prefix + "queue")){
+    var intent;
+
+    function getQueue(guild) {
+        if (!guild) return
+        if (typeof guild == 'object') guild = guild.id
+        if (queues[guild]) return queues[guild]
+        else queues[guild] = []
+        return queues[guild]
+    }
+
+
+    if (queue.length == 0){
+     message.channel.send("Pas de musique dans la queue");
+    let text = '';
+    for (let i = 0; i < queue.length; i++) {
+        text += `${(i + 1)}. ${queue[i].title} | demandé par ${queue[i].requested}\n`
+    };
+    message.channel.send({
+        embed: {
+            author: {
+                name: client.user.username,
+                icon_url: client.user.avatarURL
+            },
+            color: 0x00FF00,
+            title: `Queue`,
+            description: `\n${text}`
+        }
+    })
+    }
+}*/
 //------------------------------------------------//
 //                  money                         //
 //------------------------------------------------//
 
-  
-    
+
+
 let coins = require("./coins.json");
 if(!coins[message.author.id]){
     coins[message.author.id] = {
@@ -124,7 +259,7 @@ if(!coins[message.author.id]){
 
   let coinAmt = Math.floor(Math.random() * 15) + 1;
   let baseAmt = Math.floor(Math.random() * 15) + 1;
-  
+
 
   if(coinAmt === baseAmt){
     coins[message.author.id] = {
@@ -135,7 +270,7 @@ if(!coins[message.author.id]){
   });
   }
   if (message.content.startsWith(prefix + "coins")){
-    
+
 if(!coins[message.author.id]){
     coins[message.author.id] = {
       coins: 0
@@ -235,35 +370,53 @@ if(!coins[message.author.id]){
         //Fun
 
 //Embed
-let cat = ["http://img-comment-fun.9cache.com/media/c81c59c9145641080812687141_700wa_0.gif", "https://reseauinternational.net/wp-content/uploads/2015/10/gifa-cat-surprised.gif", "http://img4.hostingpics.net/pics/113686catmousetabletpounce.gif", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-vslRfH69TDhw9to9dtiBi9fwtiOwjHJ7HRSvi7wYSCvqP6rl","https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny85NTkvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzYzOTcxNjY1LmpwZw=="," http://www.ordanburdansurdan.com/wp-content/uploads/2017/06/oxgkvrvnd5o-1.jpg", "https://ichef.bbci.co.uk/news/660/cpsprodpb/71E1/production/_99735192_gettyimages-459467912.jpg", "https://cms.kienthuc.net.vn/zoom/500/Uploaded/ctvkhoahoc/2017_10_20/10_NMHD.jpg", "http://i0.kym-cdn.com/photos/images/facebook/000/012/445/lime-cat.jpg", "https://i2-prod.mirror.co.uk/incoming/article11812659.ece/ALTERNATES/s1200/The-Feline-World-Gathers-For-The-Supreme-Cat-Show-2017.jpg", "https://mymodernmet.com/wp/wp-content/uploads/2017/11/minimalist-cat-art-subreddit-10.jpg", "https://metrouk2.files.wordpress.com/2017/11/capture16.png?w=748&h=706&crop=1"] 
-let cating = cat[Math.floor(Math.random() * cat.length)] ;
-      
 if (message.content === prefix + 'cat') {
-    let catembed = new Discord.RichEmbed ()
-        .setColor('#B9121B')
-        .setTitle ("Chat")
-        .setImage (cating)
-    message.channel.send (catembed)
-	}
+  randomPuppy('teefies','catpictures','KittenMittens')
+  .then(url => {
+
+  let catembed = new Discord.RichEmbed()
+  .setColor("#AB49CD")
+  .setTitle(`:cat: `)
+  .setImage(url)
+  .setFooter("Cat")
+
+  message.channel.send(catembed)
+  })
+
+}
+if (message.content === prefix + 'dog') {
+  randomPuppy('dogpictures',"dog","doggif")
+  .then(url => {
+
+  let catembed = new Discord.RichEmbed()
+  .setColor("#AB49CD")
+  .setTitle(`:dog: `)
+  .setImage(url)
+  .setFooter("Dog")
+
+  message.channel.send(catembed)
+  })
+}
+
     if (message.content.startsWith (prefix +"avatar") ) {
 	    let args = message.content.split(" ").slice(1).join(" ");
-	
+
         if(message.author.bot) return;
   if(message.channel.type !== "text") return;
-  
+
   let members = [];
   let indexes = [];
-  
+
   message.guild.members.forEach(function(member){
     members.push(member.user.username);
     indexes.push(member.id);
   })
-  
+
   let match = sm.findBestMatch(args, members);
   let username = match.bestMatch.target;
-  
+
     let member = message.guild.members.get(indexes[members.indexOf(username)])
-    
+
      let definedUser = "";
      let definedUser2 = "";
     if(!args[0]) {
@@ -274,14 +427,15 @@ if (message.content === prefix + 'cat') {
       definedUser = mention || member.user
         definedUser2 = message.mentions.members.first() || message.guild.members.get(args[0]) || member
     }
-    
+
     message.channel.send({embed: new Discord.RichEmbed()
                           .setImage(definedUser.avatarURL)
                           .setTitle(`Avatar de ` + definedUser.tag)
                           .setColor(`AB49CD`)
+                          .setFooter(Avatar)
                          })
-    
-  
+
+
 }
 	if (message.content.startsWith (prefix +"createrole") ) {
 		if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
@@ -295,37 +449,37 @@ if (message.content === prefix + 'cat') {
         return;
       }
 let args = message.content.split(" ").slice(1).join(" ");
-if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)    
+if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
    }else{
-	
+
 	message.guild.createRole({
             name: `${args}`,
-            
+
         });
-		message.channel.send(`Le rôle ${args} à était créé avec  succès`) 
+		message.channel.send(`Le rôle ${args} à était créé avec  succès`)
 		}
 		}
 
-		
+
 	if (message.content.startsWith (prefix +"userinfo") ) {
 	    let args = message.content.split(" ").slice(1).join(" ");
-	
+
 	  if(message.author.bot) return;
   if(message.channel.type !== "text") return;
-  
+
   let members = [];
   let indexes = [];
-  
+
   message.guild.members.forEach(function(member){
     members.push(member.user.username);
     indexes.push(member.id);
   })
-  
+
   let match = sm.findBestMatch(args, members);
   let username = match.bestMatch.target;
-  
+
     let member = message.guild.members.get(indexes[members.indexOf(username)])
-    
+
      let definedUser = "";
      let definedUser2 = "";
     if(!args[0]) {
@@ -336,7 +490,7 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
       definedUser = mention || member.user
         definedUser2 = message.mentions.members.first() || message.guild.members.get(args[0]) || member
     }
-  
+
   let uEmbed = new Discord.RichEmbed()
   .setDescription("**Informations sur l'utilisateur **")
   .setColor("#AB49CD")
@@ -354,22 +508,22 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
 }
 	if (message.content.startsWith (prefix +  "poke")) {
 		const args = message.content.split(" ").slice(1).join(" ");
-	
+
 	let user = message.author
    let pokeraison = args.slice(23);
 
-    if (!args[0]) {return message.channel.send (`Veuillez spécifiez un utilisateur .`)    
-    }else if (!pokeraison[0]) {return message.channel.send (`Veuillez mettre une raison à votre poke.`)    
-     
+    if (!args[0]) {return message.channel.send (`Veuillez spécifiez un utilisateur .`)
+    }else if (!pokeraison[0]) {return message.channel.send (`Veuillez mettre une raison à votre poke.`)
+
 		  }else{
-                  
+
             let Embed = new Discord.RichEmbed()
     .setTitle('Poke')
     .addField('Tu as était appelé .', `Par: ${user}\nDans: ${message.guild.name}\nAu salon: <#${message.channel.id}>\nRaison: ${pokeraison} `, true)
     .setColor("#AB49CD")
     defineduser.send(Embed)
                   }
-}    
+}
 	if (message.content.startsWith (prefix +  "createvochan")) {
 		if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_CHANNELS")) {
           message.channel.send ("📛 Tu n'as pas la permission 📛");
@@ -382,10 +536,10 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
           return;
         }
 		const args = message.content.split(" ").slice(1).join(" ");
-	if (!args[0]) {return message.channel.send (`Veuillez spécifiez un nom .`)    
+	if (!args[0]) {return message.channel.send (`Veuillez spécifiez un nom .`)
 
 	 message.guild.createChannel(`${args}`, 'voice')
-		      } 
+		      }
     }
 		if (message.content.startsWith (prefix +  "createtextchan")) {
             if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_CHANNELS")) {
@@ -399,7 +553,7 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
           return;
         }
 		const args = message.content.split(" ").slice(1).join(" ");
-	if (!args[0]) {return message.channel.send (`Veuillez spécifiez un nom .`)    
+	if (!args[0]) {return message.channel.send (`Veuillez spécifiez un nom .`)
 
         message.guild.createChannel(`${args}`, 'text')
 	    }
@@ -408,11 +562,11 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
 	if (message.content.startsWith (prefix +  "roll")) {
 		const args9 = message.content.split(" ").slice(1).join(" ");
 	if (!args9[0]){
-         
+
           message.channel.send("Pour un usage correct faite` " + prefix + "roll [un nombre]` ")
           return;
         }
-	
+
 	 let result = Math.floor((Math.random() * args9) );
   message.channel.send("🏅 | **Tu as obtenu le nombre** " + result);
 }
@@ -476,9 +630,9 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
         dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
         dateString += 'et ';
     }
-	
+
     dateString += dateStrings[dateStrings.length - 1];
-	
+
     const embed = new Discord.RichEmbed()
   .setTimestamp()
   .setThumbnail(message.author.iconURL)
@@ -486,8 +640,8 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
   .addField(':white_check_mark: Bot actif depuis :', dateString, false )
   .addField ('📈 Utilisation mémoire' , `${Math.round(used * 100) / 100} MB/500MB`, false)
    .addField(':runner: Serveur disponible :', `**${bot.guilds.size}** servers`, false )
-  .addField ('👥 Utilisateur:', ` ${bot.users.size} utilisateurs`, false) 
-  .addField ('🏓 Ping :', `${Date.now() - message.createdTimestamp} ms`, false) 
+  .addField ('👥 Utilisateur:', ` ${bot.users.size} utilisateurs`, false)
+  .addField ('🏓 Ping :', `${Date.now() - message.createdTimestamp} ms`, false)
   .setColor(6583245);
     message.channel.send({embed})
   .catch(console.error);
@@ -507,7 +661,7 @@ function rand(low, high) {
 }
 if (message.content.startsWith(prefix + "rps")){
 	const args8 = message.content.split(" ").slice(1).join(" ");
-	
+
     if (args8[0]) {
       // get user choice && user choice
       let computer_choice = rand(0,2);
@@ -519,7 +673,7 @@ if (message.content.startsWith(prefix + "rps")){
       }
        if (computer_choice == 0 && user_choice == 2) {
         message.channel.send (  " J'ai gagné!");
-      } 
+      }
 	  if (computer_choice == 2 && user_choice == 0) {
         message.channel.send ("Tu as gagné!");
       }
@@ -534,11 +688,11 @@ if (message.content.startsWith(prefix + "rps")){
       }
 	    if (computer_choice == 2 && user_choice == 1) {
         message.channel.send ("J'ai gagné !");
-		
+
       }
-    } 
+    }
   }
-	
+
 	if (message.content.startsWith(prefix + "lockdown")){
 		if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
           message.channel.send ("📛 Tu n'as pas la permission 📛");
@@ -552,10 +706,10 @@ if (message.content.startsWith(prefix + "rps")){
         }
 		 if (!client.lockit) client.lockit = [];
 		let args = message.content.split(" ").slice(1).join(" ");
-	
+
   let validUnlocks = ['release', 'unlock'];
   if (!args[0]){
-         
+
           message.channel.send("Mettez une durée:\n`s`:pour secondes\n`m`: pour minutes\n`h`: pour heures ")
           return;
         }
@@ -588,7 +742,7 @@ if (message.content.startsWith(prefix + "rps")){
     });
   }
 };
-  
+
 if (message.content === prefix + "onmain") {
  if(message.author.id == "236627494764150784"){
     	message.channel.bulkDelete (1)
@@ -610,9 +764,9 @@ if (message.content === prefix + "onmain") {
     }
   }
 
-   
+
     //owner
-    
+
     if (message.content === prefix + "botlistadd") {
 	    if(message.author.id == "236627494764150784"){
     let bot= new Discord.RichEmbed ()
@@ -632,14 +786,14 @@ if (message.content === prefix + "onmain") {
    		args.shift ()
    		message.channel.send ("Voici le résultat de votre recherche: https://www.youtube.com/results?search_query=" +args.join('+'))
          console.log(`${message.author.username} | youtube `)
-		 } 
+		 }
 	if (message.content.startsWith (prefix +"playstore")) {
 	let args = message.content.split(' ')
    		args.shift ()
    		message.channel.send ("Voici le résultat de votre recherche: https://play.google.com/store/search?q=" +args.join('+'))
          console.log(`${message.author.username} | play store `)
-		 
-	} 
+
+	}
 	if (message.content.startsWith (prefix +"apple")) {
 	let args = message.content.split(' ')
    		args.shift ()
@@ -653,7 +807,7 @@ if (message.content === prefix + "onmain") {
          console.log(`${message.author.username} | play store `)
 	}
     //NEWS
-    
+
     let cont = message.content.slice(prefix.length).split(" ");
  let args1 = cont.slice(1)
 
@@ -680,11 +834,11 @@ if (message.content === prefix + "onmain") {
 
                  message.channel.send({embed});
                 message.channel.stopTyping()
-            console.log ('weather') 
+            console.log ('weather')
         });
     }
     //avatar
-    
+
     //test
     if (message.content === prefix + "check"){
         	    message.channel.send ('🤖 Bot Opérationnel 🤖')
@@ -693,7 +847,7 @@ if (message.content === prefix + "onmain") {
         console.log("Commande test" );
     }
     //Embed help
-    
+
    //Embed help membre
    if (message.content === prefix + "help membre") {
      let help_embed1 = new Discord.RichEmbed ()
@@ -719,7 +873,7 @@ if (message.content === prefix + "onmain") {
    	let help_embedfun = new Discord.RichEmbed ()
     	      .setColor ("#01B0F0")
     	      .setTitle ("Commandes fun")
-    	     .addField ("__Roll__", "Choisi un chiffre entre 1 et 1000",false) 
+    	     .addField ("__Roll__", "Choisi un chiffre entre 1 et 1000",false)
 	.addField ("__Verlan__:"," Inverse un message 🔄 ", false)
     	      .addField ("__Pièce__:", "Choisi entre pile ou face (et pas tranche) 🎲", false)
     	      .addField ("__8ball__:", "Choisi un réponse à votre place 📠", false)
@@ -727,7 +881,7 @@ if (message.content === prefix + "onmain") {
     	      .addField ("__Astrologia__:", "Dit ton signe astrologique ⛎", false)
     	      .addField ("__Say__", "Dit une phrase au bot 🤖💬", false)
             .addField ("__Cat__","Envoi une image de chat",true)
-          .addField ("__Rps__", " Fait un pierre, feuilles, ciseaux avec le bot", false) 
+          .addField ("__Rps__", " Fait un pierre, feuilles, ciseaux avec le bot", false)
 	.addField ("__Kiss__", "Fait un bisou a une personne 💋 (++kiss [mention])", false)
            .addField ("__Hug__", "Fait un calin a une personne 👐 (++hug [mention])", false)
            .addField ("__Cry__", "Vous pleurez de tristesse 😢", false)
@@ -790,8 +944,10 @@ if (message.content === prefix + "onmain") {
          .addField ("**__XP__** :rosette: : *(bug)*", "`levels`, `xp`, `progress`")
          .addField ("**__Economie__** :euro: : *(bug)*","`coins`",false)
          .addField ("**__Info__** :gear: :" ,"`uptime`, `userinfo`, `serverinfo`, `botinfo`, `diserver`, `weather`" , false)
-         .addField ("**__Fun__** :tada: :" ,"`rps`, `roll`, `cat`, `astrologia`, `triggered`, `dice`, `verlan`, `piece`, `say`" ,false)
+         .addField ("**__Fun__** :tada: :" ,"`rps`, `roll`, `cat`, `dog`, `astrologia`, `triggered`, `dice`, `verlan`, `piece`, `say`" ,false)
          .addField ("**__Interaction__** :recycle: :" , "`bite`, `kiss`, `hug`, `cry`, `pat`, `pout`, `punch`, `handholding`, `shoot`, `stare`, `slap`, `fuck`, `res`, `everyone`, `troll`, `highfive`, `pollc`" ,false)
+         .addField ("**__Musique__** :musical_score:  ","En cours de devellopement ")
+         .addField ("**__NSFW__**:smirk: ","En cours de devellopement ")
          .addField ("**__Admin__** :tools: :" , "`createvochan`, `createtextchan`, `roleadd`, `rolerem`, `createrole`, `mute`, `unmute`, `kick`, `ban`, `purge`, `report`, `warn`, `lockdown`, `reminder`",false)
          .setTimestamp()
          .setFooter(`Help`);
@@ -860,7 +1016,7 @@ if (message.content === prefix + "onmain") {
       .addField ("Propriétaire du serveur", `<@${message.guild.owner.id}>`,false)
       .addField ("ID du serveur", message.guild.id, false)
      .setImage ( sicon)
-     
+
 	.setTimestamp()
       .setFooter(`${message.author.username} | Server Info`);
    	  return message.channel.send(serverembed);
@@ -927,7 +1083,7 @@ if (message.content === prefix + "onmain") {
         dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
         dateString += 'et ';
     }
-	
+
     dateString += dateStrings[dateStrings.length - 1];
   	  	 let bicon = bot.user.displayAvatarURL;
   	  	 let botembed = new Discord.RichEmbed()
@@ -937,9 +1093,9 @@ if (message.content === prefix + "onmain") {
   	  	 .addField("Nom du bot", bot.user.username, false)
   	  	 .addField("Date de création",`${moment.utc(bot.user.createdAt).format("D/M/Y, HH:mm:ss")}`, false )
   	  	 .addField ('📈 Utilisation mémoire' , `${Math.round(used * 100) / 100} MB/500MB`, false)
-                .addField ('🚧 Version du bot', '1.0.0',false) 
+                .addField ('🚧 Version du bot', '1.0.0',false)
 		 .addField(':white_check_mark: Bot actif depuis :', dateString, false )
-                 .addField ('Librairie', 'Discord.js', false) 
+                 .addField ('Librairie', 'Discord.js', false)
 		 .addField ("ID du bot ", bot.user.id,false )
   	  	 .addField ("Créateur du bot", "[BCFB] zechaos", false)
   	  	 .addField ("Données serveur", bot.guilds.size, false)
@@ -955,11 +1111,11 @@ if (message.content === prefix + "onmain") {
    //Embed userinfo
      if (message.content.startsWith === prefix +`userinfo`){
 
-    
-    message.channel.send("La commande est temporairement off, pour plus d'informations merci de vous rendre sur le serveur du bot et tapant `++invite` et de clique sur join support server./n Merci de votre comprehention" )
-	     
 
-};      
+    message.channel.send("La commande est temporairement off, pour plus d'informations merci de vous rendre sur le serveur du bot et tapant `++invite` et de clique sur join support server./n Merci de votre comprehention" )
+
+
+};
 	//Kick
       if (message.content.startsWith(prefix + "kick")) {
 
@@ -977,7 +1133,7 @@ if (message.content === prefix + "onmain") {
       let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!kUser) return message.channel.send("Je ne trouve pas cette utilisateur")
     let kReason = args.join(" ").slice(31);
-    
+
     let kickEmbed = new Discord.RichEmbed()
     .setDescription("~Kick~")
     .setColor("#689AFB")
@@ -987,14 +1143,14 @@ if (message.content === prefix + "onmain") {
     .addField("Heure", message.createdAt, false)
     .addField("Raison", kReason, false);
 
-    let kickChannel = message.guild.channels.find(`name`, "logs-nitral" ) 
+    let kickChannel = message.guild.channels.find(`name`, "logs-nitral" )
     if(!kickChannel) return message.channel.send("Je ne trouve pas le salon `logs-nitral`.")
 
     message.channel.send(`${defineduser.username} à été kick avec succès 💫`)
     kUser.kick()
     kickChannel.send(kickEmbed);
 }
-        
+
         if (message.content.startsWith(prefix + "roleadd")) {
 
         if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_ROLES")) {
@@ -1008,7 +1164,7 @@ if (message.content === prefix + "onmain") {
         return;
       }
 		let args = message.content.split(" ").slice(1).join(" ");
-	
+
 		let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   if(!rMember) return message.reply("Impossible de trouver cet utilisateur.")
   let role = args.slice(22);
@@ -1020,9 +1176,9 @@ if (message.content === prefix + "onmain") {
   await(rMember.addRole(gRole.id));
 
 
-    
+
     message.channel.send(`${rMember} a eu le rôle ${gRole.name}.`)
-  
+
 }
 	 if (message.content.startsWith(prefix + "rolerem")) {
 
@@ -1037,7 +1193,7 @@ if (message.content === prefix + "onmain") {
         return;
       }
 		let args = message.content.split(" ").slice(1).join(" ");
-	
+
 		let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
   if(!rMember) return message.reply("Impossible de trouver cet utilisateur.")
   let role = args.slice(22);
@@ -1047,13 +1203,13 @@ if (message.content === prefix + "onmain") {
 
     if(!rMember.roles.has(gRole.id)) return message.reply("Il n'a pas ce rôle");
     await(rMember.removeRole(gRole.id));
-  
-   
-      
+
+
+
       message.channel.send(`${rMember} a perdu le rôle ${gRole.name}`)
-    
+
   }
-      
+
       //Ban
       if (message.content.startsWith(prefix + "ban")) {
 
@@ -1071,7 +1227,7 @@ if (message.content === prefix + "onmain") {
      let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if(!bUser) return message.channel.send("Je ne  trouve pas l'utilisateur" );
   let bReason = args.join(" ").slice(31);
-  
+
   let banEmbed = new Discord.RichEmbed()
   .setDescription("~Ban~")
   .setColor("#bc0000")
@@ -1082,7 +1238,7 @@ if (message.content === prefix + "onmain") {
   .addField("Raison", bReason, false);
 
   let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
-  if(!incidentchannel) return message.channel.send("Je ne trouve pas le channel `logs-nitral`.") 
+  if(!incidentchannel) return message.channel.send("Je ne trouve pas le channel `logs-nitral`.")
 
   message.channel.send(`${defineduser.username} à été ban avec succès 💫`)
   message.guild.member(bUser).ban(bReason);
@@ -1186,7 +1342,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
       var ev = ["https://cdn.discordapp.com/attachments/395762896329768960/432476514513321984/d9d.gif", "http://i0.kym-cdn.com/photos/images/facebook/001/291/661/4cf.jpg", "http://i0.kym-cdn.com/photos/images/original/001/243/406/73c.jpg", "http://i0.kym-cdn.com/photos/images/original/001/242/548/f0f.jpg", "https://pics.me.me/everyone-discord-memes-buy-or-sell-19502778.png", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2gL44pt4ZC4w9VOq9bekbeH4NVwG-9wJ8QkcNWI7alt5zavu9", "https://i.imgur.com/FTB2stB.gif", "https://i.imgur.com/7cQtGb1.png"]
       var stare = ["https://cdn.weeb.sh/images/BkkqI1YPZ.jpeg", "https://cdn.weeb.sh/images/HJxqIyFvZ.gif", "https://cdn.weeb.sh/images/BJ88vLvd-.gif", "https://cdn.weeb.sh/images/rk23UyYP-.gif", "https://cdn.weeb.sh/images/rk0v81YwW.gif", "https://cdn.weeb.sh/images/SkH3Uytwb.gif", "https://cdn.weeb.sh/images/B1tO8JYD-.gif", "https://cdn.weeb.sh/images/HyWnLyKPZ.gif", "https://cdn.weeb.sh/images/SJ9_8kFwb.gif", "https://cdn.weeb.sh/images/H1e83lytw-.gif"]
       var slap = ["https://cdn.weeb.sh/images/rkpAXa5bG.gif", "https://cdn.weeb.sh/images/SJL3Q1Fvb.gif", "https://cdn.weeb.sh/images/B1oCmkFw-.gif", "https://cdn.weeb.sh/images/rJYqQyKv-.gif", "https://cdn.weeb.sh/images/SkdyfWCSf.gif", "https://cdn.weeb.sh/images/Sk0RmyYvb.gif", "https://cdn.weeb.sh/images/BJ8o71tD-.gif", "https://cdn.weeb.sh/images/SJlkNkFwb.gif", "https://cdn.weeb.sh/images/SkSCyl5yz.gif", "https://cdn.weeb.sh/images/B1oCmkFw-.gif", "https://cdn.weeb.sh/images/rknn7Jtv-.gif", "https://cdn.weeb.sh/images/HkJ6-e91z.gif", "https://cdn.weeb.sh/images/ByHUMRNR-.gif"]
-       var bite = ["https://cdn.discordapp.com/attachments/437680262457851924/441681522915803136/photofunky.gif","https://data.photofunky.net/output/image/c/a/2/a/ca2abf/photofunky.gif","https://cdn.discordapp.com/attachments/437680262457851924/441680676987863050/telechargement.gif","https://cdn.discordapp.com/attachments/437680262457851924/441680676446535680/Chihuahua_mechant.gif","https://cdn.discordapp.com/attachments/437680262457851924/441673904436543498/49dc99422710d7294f3c350f4c58eb2916481c07_hq.gif", "https://cdn.discordapp.com/attachments/437680262457851924/441829639438991360/3252462046_1_9_zHieibKF.gif" ] 
+       var bite = ["https://cdn.discordapp.com/attachments/437680262457851924/441681522915803136/photofunky.gif","https://data.photofunky.net/output/image/c/a/2/a/ca2abf/photofunky.gif","https://cdn.discordapp.com/attachments/437680262457851924/441680676987863050/telechargement.gif","https://cdn.discordapp.com/attachments/437680262457851924/441680676446535680/Chihuahua_mechant.gif","https://cdn.discordapp.com/attachments/437680262457851924/441673904436543498/49dc99422710d7294f3c350f4c58eb2916481c07_hq.gif", "https://cdn.discordapp.com/attachments/437680262457851924/441829639438991360/3252462046_1_9_zHieibKF.gif" ]
 
           //ALEA
       var staring = stare[Math.floor(Math.random() * stare.length)] ;
@@ -1220,7 +1376,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               console.log(`${message.author.username} | HighFive`)
     }
 	if (message.content.startsWith (prefix +"bite")) {
-            var text = message.content.substring(11)
+
             var biteEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " a mordu "+ defineduser.username )
@@ -1264,7 +1420,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               message.channel.send (stareEmbed)
               console.log(`${message.author.username} | stare `)
     }
-     if (message.content.startsWith (prefix +"fuck")) {
+     if (message.content === prefix +"fuck"){
      	    var text = message.content.substring(6)
           var fuckEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
@@ -1433,7 +1589,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
         }
       message.channel.bulkDelete(1);
         message.channel.bulkDelete(args3[0]);
-            
+
                   var onclearEmbed2 = new Discord.RichEmbed()
                         .setDescription("~Purge~")
                         .setColor ('#e56b00')
@@ -1454,13 +1610,13 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
 	  let args = message.content.split(" ")
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!rUser) return message.channel.send("Je ne trouve pas cette utilisateur").then(msg => {msg.delete(5000)});
-      let rreason = args.join(" ").slice(31);	
-        
+      let rreason = args.join(" ").slice(31);
+
 	  if (!rreason[0]){
-         let nor =("Aucune raison donné") 
+         let nor =("Aucune raison donné")
             return;
         }
-	  
+
     message.channel.send(`${message.author.username} vient de report ${defineduser.username}.\n\n **Raison :** ${rreason}. `);
       let repEmbed = new Discord.RichEmbed()
          .setDescription("~Report~")
@@ -1612,8 +1768,8 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
         reminder(time, timeofreminder);
       }
     }
-    
-                
+
+
               if(message.content.startsWith(prefix + "h say")){
                 message.channel.send("__Usage__ `"+ prefix + "say [Un mot ou une phrase]`");
               }
@@ -1658,7 +1814,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               }
 
               if(message.content.startsWith(prefix + "warn")){
-		      
+
 		      let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 
@@ -1712,9 +1868,9 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
 	let wUser = message.mentions.users.first()
     if(!wUser) return message.reply("Je ne trouve pas cette utilisateur");
     let warnlevel = warns[wUser.id].warns;
-  
+
     message.channel.send (`${wUser} a ${warnlevel} warns.`);
-  
+
   }
 function getpollinfo() {
 	message.channel.bulkDelete (1)
