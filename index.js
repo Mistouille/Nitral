@@ -432,7 +432,7 @@ if (message.content === prefix + 'dog') {
                           .setImage(definedUser.avatarURL)
                           .setTitle(`Avatar de ` + definedUser.tag)
                           .setColor(`AB49CD`)
-                          .setFooter(Avatar)
+                          .setFooter('Avatar' )
                          })
 
 
