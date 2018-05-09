@@ -1480,7 +1480,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
      }
      if (message.content === prefix +"shoot") {
 	if (!defineduser){
-		          var bangEmbed = new Discord.RichEmbed()
+		var bangEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " a tiré sur Nitral")
               .setImage(banging)
@@ -1489,14 +1489,14 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               message.channel.send (bangEmbed)
               console.log(`${message.author.username} | Shoot`)
     }else{
-          var bangEmbed = new Discord.RichEmbed()
+		var bangEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " a tiré sur "+ defineduser.username )
+              .setDescription(`${message.author.username}` + " a tiré sur" + defineduser.username)
               .setImage(banging)
               .setTimestamp()
-              .setFooter(`Bang`)
+              .setFooter(`Shoot`)
               message.channel.send (bangEmbed)
-              console.log(`${message.author.username} | Bang`)
+              console.log(`${message.author.username} | Shoot`)
     }
 }
     if (message.content.startsWith (prefix +"stare")) {
