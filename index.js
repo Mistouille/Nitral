@@ -1134,6 +1134,27 @@ if (message.content === prefix + "onmain") {
     if(!kUser) return message.channel.send("Je ne trouve pas cette utilisateur")
     let kReason = args.join(" ").slice(31);
 
+	      if (!kReason[0]){
+		 
+         let kickEmbed = new Discord.RichEmbed()
+    	.setDescription("~Kick~")
+    	.setColor("#689AFB")
+    	.addField("Utilisateur kick", `${defineduser.username}`, false)
+    	.addField("Kick par", `${message.author.tag}`, false )
+    	.addField("Dans", `<#${message.channel.id}>`, false)
+   	 .addField("Heure", message.createdAt, false)
+         .addField ("Raison","Aucune raison spécifié" , false)
+         .setTimestamp()
+         .setFooter(`Report`);
+
+    let kickChannel = message.guild.channels.find(`name`, "logs-nitral" )
+    if(!kickChannel) return message.channel.send("Je ne trouve pas le salon `logs-nitral`.")
+
+    message.channel.send(`${defineduser.username} à été kick avec succès 💫`)
+    kUser.kick()
+    kickChannel.send(kickEmbed);
+        }else {
+	      
     let kickEmbed = new Discord.RichEmbed()
     .setDescription("~Kick~")
     .setColor("#689AFB")
@@ -1149,7 +1170,8 @@ if (message.content === prefix + "onmain") {
     message.channel.send(`${defineduser.username} à été kick avec succès 💫`)
     kUser.kick()
     kickChannel.send(kickEmbed);
-}
+	}
+      }
 
         if (message.content.startsWith(prefix + "roleadd")) {
 
@@ -1211,7 +1233,7 @@ if (message.content === prefix + "onmain") {
   }
 
       //Ban
-      if (message.content.startsWith(prefix + "ban")) {
+      if message.content === (prefix + "ban") {
 
         if (!message.channel.permissionsFor(message.author).hasPermission("BAN_MEMBERS")) {
         message.channel.send ("📛 Tu n'as pas la permission 📛");
@@ -1228,6 +1250,26 @@ if (message.content === prefix + "onmain") {
   if(!bUser) return message.channel.send("Je ne  trouve pas l'utilisateur" );
   let bReason = args.join(" ").slice(31);
 
+	      if (!bReason[0]){
+		 
+         let banEmbed = new Discord.RichEmbed()
+  .setDescription("~Ban~")
+  .setColor("#bc0000")
+  .addField("Utilisateur ban", `${defineduser.username}`, false)
+  .addField("Ban par", `<@${message.author.id}> `, false)
+  .addField("Dans ", message.channel, false)
+  .addField("Heures ", message.createdAt, false)
+         .addField ("Raison","Aucune raison spécifié" , false)
+         .setTimestamp()
+         .setFooter(`Report`);
+
+    let banChannel = message.guild.channels.find(`name`, "logs-nitral" )
+    if(!banChannel) return message.channel.send("Je ne trouve pas le salon `logs-nitral`.")
+  message.channel.send(`${defineduser.username} à été ban avec succès 💫`)
+  message.guild.member(bUser).ban(bReason);
+ 	banChannel.send(banEmbed);
+        }else {
+	      
   let banEmbed = new Discord.RichEmbed()
   .setDescription("~Ban~")
   .setColor("#bc0000")
@@ -1243,7 +1285,8 @@ if (message.content === prefix + "onmain") {
   message.channel.send(`${defineduser.username} à été ban avec succès 💫`)
   message.guild.member(bUser).ban(bReason);
   incidentchannel.send(banEmbed);
-}
+	}
+      }
       //diserver
      if (message.content === prefix + "diserver") {
     	      message.channel.send ( "Connecté dans les serveur \n\n```" + bot.guilds.array () +"```" )
@@ -1365,7 +1408,17 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
 
         //commandes
     if (message.content.startsWith (prefix +"highfive")) {
-            var text = message.content.substring(11)
+	    if (!defineduser[0]){
+		    var fiveEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " a fait un highfive a Nitral")
+              .setImage(five)
+              .setTimestamp()
+              .setFooter(`Highfive`)
+              message.channel.send (fiveEmbed)
+              console.log(`${message.author.username} | HighFive`)
+    }else{
+
             var fiveEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " a fait un highfive a "+ defineduser.username )
@@ -1374,6 +1427,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               .setFooter(`Highfive`)
               message.channel.send (fiveEmbed)
               console.log(`${message.author.username} | HighFive`)
+    	}
     }
 	if (message.content.startsWith (prefix +"bite")) {
 
@@ -1398,19 +1452,19 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               message.channel.send (trollEmbed)
               console.log(`${message.author.username} | Troll`)
     }
-     if (message.content.startsWith (prefix +"shoot")) {
-          var text = message.content.substring(7)
+     if message.content === (prefix +"bang") {
+
           var bangEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " a tiré sur "+ defineduser.username )
               .setImage(banging)
               .setTimestamp()
-              .setFooter(`Shoot`)
+              .setFooter(`Bang`)
               message.channel.send (bangEmbed)
               console.log(`${message.author.username} | Bang`)
     }
     if (message.content.startsWith (prefix +"stare")) {
-          var text = message.content.substring(7)
+
           var stareEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " fixe "+ defineduser.username )
@@ -1421,7 +1475,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               console.log(`${message.author.username} | stare `)
     }
      if (message.content === prefix +"fuck"){
-     	    var text = message.content.substring(6)
+
           var fuckEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " fait un doigt d'honneur à "+ defineduser.username )
@@ -1432,7 +1486,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               console.log(`${message.author.username} | Fuck`)
     }
     if (message.content.startsWith (prefix +"slap")) {
-            var text = message.content.substring(6)
+
             var slapEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " donne une claque à "+ defineduser.username )
@@ -1444,7 +1498,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
 
     }
     if (message.content.startsWith (prefix +"cuddle")) {
-            var text = message.content.substring(8)
+
             var cudEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " réconforte "+ defineduser.username )
@@ -1465,7 +1519,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               console.log(`${message.author.username} | Everyone`)
     }
     if (message.content.startsWith (prefix +"res")) {
-     	      var text = message.content.substring(5)
+ 
             var resEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " ressuscite ")
