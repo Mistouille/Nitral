@@ -953,7 +953,7 @@ if (message.content === prefix + "onmain") {
          .addField ("**__Fun__** :tada: :" ,"`rps`, `roll`, `cat`, `dog`, `astrologia`, `triggered`, `dice`, `verlan`, `piece`, `say`" ,false)
          .addField ("**__Interaction__** :recycle: :" , "`bite`, `kiss`, `hug`, `cry`, `pat`, `pout`, `punch`, `handholding`, `shoot`, `stare`, `slap`, `fuck`, `res`, `everyone`, `troll`, `highfive`, `pollc`" ,false)
          .addField ("**__Musique__** :musical_score:  ","En cours de devellopement ")
-         .addField ("**__NSFW__**:smirk: ","En cours de devellopement ")
+         //.addField ("**__NSFW__**:smirk: ","En cours de devellopement ")
          .addField ("**__Admin__** :tools: :" , "`createvochan`, `createtextchan`, `roleadd`, `rolerem`, `createrole`, `mute`, `unmute`, `kick`, `ban`, `purge`, `report`, `warn`, `lockdown`, `reminder`",false)
          .setTimestamp()
          .setFooter(`Help`);
@@ -1099,7 +1099,7 @@ if (message.content === prefix + "onmain") {
   	  	 .addField("Nom du bot", bot.user.username, false)
   	  	 .addField("Date de création",`${moment.utc(bot.user.createdAt).format("D/M/Y, HH:mm:ss")}`, false )
   	  	 .addField ('📈 Utilisation mémoire' , `${Math.round(used * 100) / 100} MB/500MB`, false)
-                .addField ('🚧 Version du bot', '1.0.0',false)
+                .addField ('🚧 Version du bot', '1.0.2',false)
 		 .addField(':white_check_mark: Bot actif depuis :', dateString, false )
                  .addField ('Librairie', 'Discord.js', false)
 		 .addField ("ID du bot ", bot.user.id,false )
