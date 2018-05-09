@@ -1408,7 +1408,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
 
         //commandes
     if (message.content.startsWith (prefix +"highfive")) {
-	    if (!defineduser[0]){
+	    if (!defineduser){
 		    var fiveEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " a fait un highfive a Nitral")
