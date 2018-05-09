@@ -1118,66 +1118,6 @@ if (message.content === prefix + "onmain") {
 };
 	//Kick
       if (message.content.startsWith(prefix + "kick")) {
-	    /*  let ms = bot.uptime;
-    let cd = 24 * 60 * 60 * 1000; // Calc days
-    let ch = 60 * 60 * 1000; // Calc hours
-    let cm = 60 * 1000; // Calc minutes
-    let cs = 1000; // Calc seconds
-    let days = Math.floor(ms / cd);
-    let dms = days * cd; // Days, in ms
-    let hours = Math.floor((ms - dms) / ch);
-    let hms = hours * ch; // Hours, in ms
-    let minutes = Math.floor((ms - dms - hms) / cm);
-    let mms = minutes * cm; // Minutes, in ms
-    let seconds = Math.round((ms - dms - hms - mms) / cs);
-    if (seconds === 60) {
-        minutes++; // Increase by 1
-        seconds = 0;
-    }
-    if (minutes === 60) {
-        hours++; // Inc by 1
-        minutes = 0;
-    }
-    if (hours === 24) {
-        days++; // Increase by 1
-        hours = 0;
-    }*/
-    let dateStrings = [];
-
-    if (days === 1) {
-        dateStrings.push('**1** jour');
-    } else if (days > 1) {
-        dateStrings.push('**' + String(days) + '** jours');
-    }
-
-    if (hours === 1) {
-        dateStrings.push('**1** heure' );
-    } else if (hours > 1) {
-        dateStrings.push('**' + String(hours) + '** heures');
-    }
-
-    if (minutes === 1) {
-        dateStrings.push('**1** minute');
-    } else if (minutes > 1) {
-        dateStrings.push('**' + String(minutes) + '** minutes');
-    }
-
-    if (seconds === 1) {
-        dateStrings.push('**1** seconde');
-    } else if (seconds > 1) {
-        dateStrings.push('**' + String(seconds) + '** secondes');
-    }
-
-    let dateString = '';
-    for (let i = 0; i < dateStrings.length - 1; i++) {
-        dateString += dateStrings[i];
-        dateString += ', ';
-    }
-    if (dateStrings.length >= 2) {
-        dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
-        dateString += 'et ';
-    }
-
 
         if (!message.channel.permissionsFor(message.author).hasPermission("KICK_MEMBERS")) {
         message.channel.send ("📛 Tu n'as pas la permission 📛");
@@ -1202,7 +1142,6 @@ if (message.content === prefix + "onmain") {
     	.addField("Utilisateur kick", `${defineduser.username}`, false)
     	.addField("Kick par", `${message.author.tag}`, false )
     	.addField("Dans", `<#${message.channel.id}>`, false)
-   	 .addField("Heure", `${moment.utc( message.createdAt).format("D/M/Y, HH:mm:ss")}`, false)
          .addField ("Raison","Aucune raison spécifié" , false)
          .setTimestamp()
          .setFooter(`Report`);
@@ -1221,7 +1160,6 @@ if (message.content === prefix + "onmain") {
     .addField("Utilisateur kick", `${defineduser.username}`, false)
     .addField("Kick par", `${message.author.tag}`, false )
     .addField("Dans", `<#${message.channel.id}>`, false)
-    .addField("Heure",`${moment.utc( message.createdAt).format("D/M/Y, HH:mm:ss")}`, false)
     .addField("Raison", kReason, false);
 
     let kickChannel = message.guild.channels.find(`name`, "logs-nitral" )
@@ -1294,41 +1232,6 @@ if (message.content === prefix + "onmain") {
 
       //Ban
       if (message.content.startsWith ( prefix + "ban")) {
-	          let dateStrings = [];
-
-    if (days === 1) {
-        dateStrings.push('**1** jour');
-    } else if (days > 1) {
-        dateStrings.push('**' + String(days) + '** jours');
-    }
-
-    if (hours === 1) {
-        dateStrings.push('**1** heure' );
-    } else if (hours > 1) {
-        dateStrings.push('**' + String(hours) + '** heures');
-    }
-
-    if (minutes === 1) {
-        dateStrings.push('**1** minute');
-    } else if (minutes > 1) {
-        dateStrings.push('**' + String(minutes) + '** minutes');
-    }
-
-    if (seconds === 1) {
-        dateStrings.push('**1** seconde');
-    } else if (seconds > 1) {
-        dateStrings.push('**' + String(seconds) + '** secondes');
-    }
-
-    let dateString = '';
-    for (let i = 0; i < dateStrings.length - 1; i++) {
-        dateString += dateStrings[i];
-        dateString += ', ';
-    }
-    if (dateStrings.length >= 2) {
-        dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
-        dateString += 'et ';
-    }
 
         if (!message.channel.permissionsFor(message.author).hasPermission("BAN_MEMBERS")) {
         message.channel.send ("📛 Tu n'as pas la permission 📛");
@@ -1348,12 +1251,11 @@ if (message.content === prefix + "onmain") {
 	      if (!bReason[0]){
 		 
          let banEmbed = new Discord.RichEmbed()
-  .setDescription("~Ban~")
-  .setColor("#bc0000")
-  .addField("Utilisateur ban", `${defineduser.username}`, false)
-  .addField("Ban par", `<@${message.author.id}> `, false)
-  .addField("Dans ", message.channel, false)
-  .addField("Heures ", `${moment.utc( message.createdAt).format("D/M/Y, HH:mm:ss")}`, false)
+ 	 .setDescription("~Ban~")
+ 	 .setColor("#bc0000")
+ 	 .addField("Utilisateur ban", `${defineduser.username}`, false)
+  	.addField("Ban par", `<@${message.author.id}> `, false)
+  	.addField("Dans ", message.channel, false)
          .addField ("Raison","Aucune raison spécifié" , false)
          .setTimestamp()
          .setFooter(`Report`);
@@ -1371,7 +1273,6 @@ if (message.content === prefix + "onmain") {
   .addField("Utilisateur ban", `${defineduser.username}`, false)
   .addField("Ban par", `<@${message.author.id}> `, false)
   .addField("Dans ", message.channel, false)
-  .addField("Heures ", `${moment.utc( message.createdAt).format("D/M/Y, HH:mm:ss")}`, false)
   .addField("Raison", bReason, false);
 
   let incidentchannel = message.guild.channels.find(`name`, "logs-nitral");
@@ -1964,66 +1865,6 @@ if (!defineduser){
    }
   if (message.content.startsWith(prefix + "report")) {
 
-	      let ms = bot.uptime;
-    let cd = 24 * 60 * 60 * 1000; // Calc days
-    let ch = 60 * 60 * 1000; // Calc hours
-    let cm = 60 * 1000; // Calc minutes
-    let cs = 1000; // Calc seconds
-    let days = Math.floor(ms / cd);
-    let dms = days * cd; // Days, in ms
-    let hours = Math.floor((ms - dms) / ch);
-    let hms = hours * ch; // Hours, in ms
-    let minutes = Math.floor((ms - dms - hms) / cm);
-    let mms = minutes * cm; // Minutes, in ms
-    let seconds = Math.round((ms - dms - hms - mms) / cs);
-    if (seconds === 60) {
-        minutes++; // Increase by 1
-        seconds = 0;
-    }
-    if (minutes === 60) {
-        hours++; // Inc by 1
-        minutes = 0;
-    }
-    if (hours === 24) {
-        days++; // Increase by 1
-        hours = 0;
-    }
-    let dateStrings = [];
-
-    if (days === 1) {
-        dateStrings.push('**1** jour');
-    } else if (days > 1) {
-        dateStrings.push('**' + String(days) + '** jours');
-    }
-
-    if (hours === 1) {
-        dateStrings.push('**1** heure' );
-    } else if (hours > 1) {
-        dateStrings.push('**' + String(hours) + '** heures');
-    }
-
-    if (minutes === 1) {
-        dateStrings.push('**1** minute');
-    } else if (minutes > 1) {
-        dateStrings.push('**' + String(minutes) + '** minutes');
-    }
-
-    if (seconds === 1) {
-        dateStrings.push('**1** seconde');
-    } else if (seconds > 1) {
-        dateStrings.push('**' + String(seconds) + '** secondes');
-    }
-
-    let dateString = '';
-    for (let i = 0; i < dateStrings.length - 1; i++) {
-        dateString += dateStrings[i];
-        dateString += ', ';
-    }
-    if (dateStrings.length >= 2) {
-        dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
-        dateString += 'et ';
-    }
-
 	  let args = message.content.split(" ")
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!rUser) return message.channel.send("Je ne trouve pas cette utilisateur").then(msg => {msg.delete(5000)});
@@ -2038,7 +1879,6 @@ if (!defineduser){
          .addField("Utilisateur Report", `${defineduser.username} `, false)
          .addField("Report par", `${message.author.username}`, false)
          .addField("Dans ", message.channel, false)
-         .addField("Le", `${moment.utc( message.createdAt).format("D/M/Y, HH:mm:ss")}`, false)
          .addField ("Raison","Aucune raison spécifié" , false)
          .setTimestamp()
          .setFooter(`Report`);
@@ -2057,7 +1897,6 @@ if (!defineduser){
          .addField("Utilisateur Report", `${defineduser.username} `, false)
          .addField("Report par", `${message.author.username}`, false)
          .addField("Dans ", message.channel, false)
-         .addField("Le", `${moment.utc( message.createdAt).format("D/M/Y, HH:mm:ss")}`, false)
          .addField ("Raison",rreason, false)
          .setTimestamp()
          .setFooter(`raison`);
@@ -2210,20 +2049,11 @@ if (!defineduser){
               if(message.content.startsWith(prefix + "h warn")){
                 message.channel.send("Commun à touts les serveur \n12 warns = Kick \n24 warn = Ban \n\n__Usage__ `"+ prefix + "warns [Un utilisateur ]` \n\n__Pré-requis__: Channel `log-nitral`");
               }
-              if(message.content.startsWith(prefix + "h lockchan")){
-                message.channel.send("__Usage__ `"+ prefix + "lockchan [temps en seconde]`");
-              }
               if(message.content.startsWith(prefix + "h 8ball")){
                 message.channel.send("__Usage__ `"+ prefix + "8ball [Un mot ou une phrase]`");
               }
               if(message.content.startsWith(prefix + "h verlan")){
                 message.channel.send("__Usage__ `"+ prefix + "verlan <un mot ou une phrase>`");
-              }
-              if(message.content.startsWith(prefix + "h reminder")){
-                message.channel.send("Un reminder par channel \n \n __Usage__ `"+ prefix + "reminder <temps en seconde> <un mot ou une phrase>` \n             `" + prefix + "reminder end`");
-              }
-              if(message.content.startsWith(prefix + "h report")){
-                message.channel.send("__Usage__ `"+ prefix + "report <Une mention><La raison>`");
               }
               if(message.content.startsWith(prefix + "h purge")){
                 message.channel.send("`__Usage__ `"+ prefix + "purge <Un nombre entre 1 et 100>`");
@@ -2231,19 +2061,13 @@ if (!defineduser){
               if(message.content.startsWith(prefix + "h help")){
                 message.channel.send("__Usage__ `"+ prefix + "help <gen, admin, fun, membre ou info>`");
               }
-              if(message.content.startsWith(prefix + "h ban")){
-                    message.channel.send("__Usage__ `"+ prefix + "ban <la mention de lutilisateur>`");
-              }
-              if(message.content.startsWith(prefix + "h kick")){
-                    message.channel.send("__Usage__ `"+ prefix + "kick <la mention de lutilisateur>`");
-              }
               if(message.content.startsWith(prefix + "h mute")){
                     message.channel.send("Mute un utilisateur sur __un channel__ \n \n__Usage__ `"+ prefix + "mute <la mention de lutilisateur>`");
               }
               if(message.content.startsWith(prefix + "h unmute")){
                     message.channel.send("__Usage__ `"+ prefix + "unmute <la mention de lutilisateur>`");
               }
-	if(message.content.startsWith(prefix + "h rps")){
+		if(message.content.startsWith(prefix + "h rps")){
                 message.channel.send("__Usage__ `"+ prefix + "rps <pierre, feuille, ciseaux `");
               }
 
