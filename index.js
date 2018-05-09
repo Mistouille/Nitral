@@ -1118,6 +1118,66 @@ if (message.content === prefix + "onmain") {
 };
 	//Kick
       if (message.content.startsWith(prefix + "kick")) {
+	      let ms = bot.uptime;
+    let cd = 24 * 60 * 60 * 1000; // Calc days
+    let ch = 60 * 60 * 1000; // Calc hours
+    let cm = 60 * 1000; // Calc minutes
+    let cs = 1000; // Calc seconds
+    let days = Math.floor(ms / cd);
+    let dms = days * cd; // Days, in ms
+    let hours = Math.floor((ms - dms) / ch);
+    let hms = hours * ch; // Hours, in ms
+    let minutes = Math.floor((ms - dms - hms) / cm);
+    let mms = minutes * cm; // Minutes, in ms
+    let seconds = Math.round((ms - dms - hms - mms) / cs);
+    if (seconds === 60) {
+        minutes++; // Increase by 1
+        seconds = 0;
+    }
+    if (minutes === 60) {
+        hours++; // Inc by 1
+        minutes = 0;
+    }
+    if (hours === 24) {
+        days++; // Increase by 1
+        hours = 0;
+    }
+    let dateStrings = [];
+
+    if (days === 1) {
+        dateStrings.push('**1** jour');
+    } else if (days > 1) {
+        dateStrings.push('**' + String(days) + '** jours');
+    }
+
+    if (hours === 1) {
+        dateStrings.push('**1** heure' );
+    } else if (hours > 1) {
+        dateStrings.push('**' + String(hours) + '** heures');
+    }
+
+    if (minutes === 1) {
+        dateStrings.push('**1** minute');
+    } else if (minutes > 1) {
+        dateStrings.push('**' + String(minutes) + '** minutes');
+    }
+
+    if (seconds === 1) {
+        dateStrings.push('**1** seconde');
+    } else if (seconds > 1) {
+        dateStrings.push('**' + String(seconds) + '** secondes');
+    }
+
+    let dateString = '';
+    for (let i = 0; i < dateStrings.length - 1; i++) {
+        dateString += dateStrings[i];
+        dateString += ', ';
+    }
+    if (dateStrings.length >= 2) {
+        dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
+        dateString += 'et ';
+    }
+
 
         if (!message.channel.permissionsFor(message.author).hasPermission("KICK_MEMBERS")) {
         message.channel.send ("📛 Tu n'as pas la permission 📛");
@@ -1233,7 +1293,7 @@ if (message.content === prefix + "onmain") {
   }
 
       //Ban
-      if (message.content === prefix + "ban") {
+      if (message.content.startsWith ( prefix + "ban")) {
 
         if (!message.channel.permissionsFor(message.author).hasPermission("BAN_MEMBERS")) {
         message.channel.send ("📛 Tu n'as pas la permission 📛");
@@ -1474,16 +1534,16 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               console.log(`${message.author.username} | Troll`)
    	 }
      }
-     if (message.content === prefix +"bang") {
+     if (message.content === prefix +"shoot") {
 	if (!defineduser){
 		          var bangEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " a tiré sur Nitral")
               .setImage(banging)
               .setTimestamp()
-              .setFooter(`Bang`)
+              .setFooter(`Shoot`)
               message.channel.send (bangEmbed)
-              console.log(`${message.author.username} | Bang`)
+              console.log(`${message.author.username} | Shoot`)
     }else{
           var bangEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
@@ -1809,6 +1869,67 @@ if (!defineduser){
         return;
    }
   if (message.content.startsWith(prefix + "report")) {
+	  if (message.content.startsWith(prefix + "kick")) {
+	      let ms = bot.uptime;
+    let cd = 24 * 60 * 60 * 1000; // Calc days
+    let ch = 60 * 60 * 1000; // Calc hours
+    let cm = 60 * 1000; // Calc minutes
+    let cs = 1000; // Calc seconds
+    let days = Math.floor(ms / cd);
+    let dms = days * cd; // Days, in ms
+    let hours = Math.floor((ms - dms) / ch);
+    let hms = hours * ch; // Hours, in ms
+    let minutes = Math.floor((ms - dms - hms) / cm);
+    let mms = minutes * cm; // Minutes, in ms
+    let seconds = Math.round((ms - dms - hms - mms) / cs);
+    if (seconds === 60) {
+        minutes++; // Increase by 1
+        seconds = 0;
+    }
+    if (minutes === 60) {
+        hours++; // Inc by 1
+        minutes = 0;
+    }
+    if (hours === 24) {
+        days++; // Increase by 1
+        hours = 0;
+    }
+    let dateStrings = [];
+
+    if (days === 1) {
+        dateStrings.push('**1** jour');
+    } else if (days > 1) {
+        dateStrings.push('**' + String(days) + '** jours');
+    }
+
+    if (hours === 1) {
+        dateStrings.push('**1** heure' );
+    } else if (hours > 1) {
+        dateStrings.push('**' + String(hours) + '** heures');
+    }
+
+    if (minutes === 1) {
+        dateStrings.push('**1** minute');
+    } else if (minutes > 1) {
+        dateStrings.push('**' + String(minutes) + '** minutes');
+    }
+
+    if (seconds === 1) {
+        dateStrings.push('**1** seconde');
+    } else if (seconds > 1) {
+        dateStrings.push('**' + String(seconds) + '** secondes');
+    }
+
+    let dateString = '';
+    for (let i = 0; i < dateStrings.length - 1; i++) {
+        dateString += dateStrings[i];
+        dateString += ', ';
+    }
+    if (dateStrings.length >= 2) {
+        dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
+        dateString += 'et ';
+    }
+
 	  let args = message.content.split(" ")
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!rUser) return message.channel.send("Je ne trouve pas cette utilisateur").then(msg => {msg.delete(5000)});
@@ -1842,7 +1963,7 @@ if (!defineduser){
          .addField("Utilisateur Report", `${defineduser.username} `, false)
          .addField("Report par", `${message.author.username}`, false)
          .addField("Dans ", message.channel, false)
-         .addField("Le", message.createdAt, false)
+         .addField("Le", `${moment.utc( message.createdAt).format("D/M/Y, HH:mm:ss")}`, false)
          .addField ("Raison",rreason, false)
          .setTimestamp()
          .setFooter(`raison`);
