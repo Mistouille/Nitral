@@ -397,6 +397,19 @@ if (message.content === prefix + 'dog') {
   message.channel.send(catembed)
   })
 }
+	if (message.content === prefix + 'kiss2') {
+  randomPuppy('love',"kiss","kissing")
+  .then(url => {
+
+  let catembed = new Discord.RichEmbed()
+  .setColor("#AB49CD")
+  .setTitle(`:dog: `)
+  .setImage(url)
+  .setFooter("Dog")
+
+  message.channel.send(catembed)
+  })
+}
 
     if (message.content.startsWith (prefix +"avatar") ) {
 	    let args = message.content.split(" ").slice(1).join(" ");
