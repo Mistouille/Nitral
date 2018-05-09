@@ -1869,7 +1869,7 @@ if (!defineduser){
         return;
    }
   if (message.content.startsWith(prefix + "report")) {
-	  if (message.content.startsWith(prefix + "kick")) {
+
 	      let ms = bot.uptime;
     let cd = 24 * 60 * 60 * 1000; // Calc days
     let ch = 60 * 60 * 1000; // Calc hours
