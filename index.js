@@ -1478,7 +1478,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               console.log(`${message.author.username} | Troll`)
    	 }
      }
-     if (message.content === prefix +"shoot") {
+     if (message.content.startsWith (prefix +"shoot")) {
 	if (!defineduser){
 		var bangEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
