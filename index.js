@@ -1233,7 +1233,7 @@ if (message.content === prefix + "onmain") {
   }
 
       //Ban
-      if message.content === (prefix + "ban") {
+      if (message.content === prefix + "ban") {
 
         if (!message.channel.permissionsFor(message.author).hasPermission("BAN_MEMBERS")) {
         message.channel.send ("📛 Tu n'as pas la permission 📛");
@@ -1452,7 +1452,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               message.channel.send (trollEmbed)
               console.log(`${message.author.username} | Troll`)
     }
-     if message.content === (prefix +"bang") {
+     if (message.content === prefix +"bang") {
 
           var bangEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
