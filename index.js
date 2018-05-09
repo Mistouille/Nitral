@@ -831,12 +831,12 @@ if (message.content === prefix + "onmain") {
                 .setAuthor(`Temps pour ${current.observationpoint}`)
                 .setThumbnail(current.imageUrl)
                 .setColor("#333333")
-                .addField('Plage horaire ',`UTC${location.timezone}`, true)
+                .addField('Plage horaire ',`UTC${location.timezone}`, false))
                 .addField('Messure ',location.degreetype, true)
-                .addField('Température ',`${current.temperature} °C`, true)
-                .addField('Ressenti ', `${current.feelslike} °C`, true)
-                .addField('Vents ',current.winddisplay, true)
-                .addField('Humidité', `${current.humidity}%`, true)
+                .addField('Température ',`${current.temperature} °C`, false))
+                .addField('Ressenti ', `${current.feelslike} °C`, false))
+                .addField('Vents ',current.winddisplay, false)
+                .addField('Humidité', `${current.humidity}%`, false))
 
                  message.channel.send({embed});
                 message.channel.stopTyping()
