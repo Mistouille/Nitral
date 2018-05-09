@@ -1430,8 +1430,17 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
     	}
     }
 	if (message.content.startsWith (prefix +"bite")) {
-
+	if (!defineduser){
             var biteEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " a mordu Nitral" )
+              .setImage(biting)
+              .setTimestamp()
+              .setFooter(`Bite`)
+              message.channel.send (biteEmbed)
+              console.log(`${message.author.username} | bite`)
+    }else{
+	                var biteEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " a mordu "+ defineduser.username )
               .setImage(biting)
@@ -1439,9 +1448,21 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               .setFooter(`Bite`)
               message.channel.send (biteEmbed)
               console.log(`${message.author.username} | bite`)
-    }
+    		}
+	}
 
      if (message.content.startsWith (prefix +"troll")) {
+	     if (!defineduser){
+	var text = message.content.substring(7)
+            var trollEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username }` + " a troller Nitral")
+              .setImage(trolling)
+              .setTimestamp()
+              .setFooter(`Troll`)
+              message.channel.send (trollEmbed)
+              console.log(`${message.author.username} | Troll`)
+    }else{
             var text = message.content.substring(7)
             var trollEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
@@ -1451,9 +1472,19 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               .setFooter(`Troll`)
               message.channel.send (trollEmbed)
               console.log(`${message.author.username} | Troll`)
-    }
+   	 }
+     }
      if (message.content === prefix +"bang") {
-
+	if (!defineduser){
+		          var bangEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " a tiré sur Nitral")
+              .setImage(banging)
+              .setTimestamp()
+              .setFooter(`Bang`)
+              message.channel.send (bangEmbed)
+              console.log(`${message.author.username} | Bang`)
+    }else{
           var bangEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " a tiré sur "+ defineduser.username )
@@ -1463,8 +1494,18 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               message.channel.send (bangEmbed)
               console.log(`${message.author.username} | Bang`)
     }
+}
     if (message.content.startsWith (prefix +"stare")) {
-
+		if (!defineduser){
+			          var stareEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " fixe Nitral")
+              .setImage(staring)
+              .setTimestamp()
+              .setFooter(`Stare`)
+              message.channel.send (stareEmbed)
+              console.log(`${message.author.username} | stare `)
+    }else{
           var stareEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " fixe "+ defineduser.username )
@@ -1474,8 +1515,18 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               message.channel.send (stareEmbed)
               console.log(`${message.author.username} | stare `)
     }
+    }
      if (message.content === prefix +"fuck"){
-
+	if (!defineduser){
+		          var fuckEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " fait un doigt d'honneur à Nitral")
+              .setImage(fucking)
+              .setTimestamp()
+              .setFooter(`Fuck`)
+              message.channel.send(fuckEmbed)
+              console.log(`${message.author.username} | Fuck`)
+    }else{
           var fuckEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " fait un doigt d'honneur à "+ defineduser.username )
@@ -1484,9 +1535,21 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               .setFooter(`Fuck`)
               message.channel.send(fuckEmbed)
               console.log(`${message.author.username} | Fuck`)
-    }
+    		}
+    	 }
     if (message.content.startsWith (prefix +"slap")) {
+if (!defineduser){
+	            var slapEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " donne une claque à Nitral" )
+              .setImage(slapping)
+              .setTimestamp()
+              .setFooter(`Slap`)
+              message.channel.send(slapEmbed)
+              console.log(`${message.author.username} | Slap`)
 
+    
+	}else{
             var slapEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " donne une claque à "+ defineduser.username )
@@ -1497,8 +1560,18 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               console.log(`${message.author.username} | Slap`)
 
     }
+    }
     if (message.content.startsWith (prefix +"cuddle")) {
-
+if (!defineduser){
+	            var cudEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " réconforte Nitral")
+              .setImage( cuddle)
+              .setTimestamp()
+              .setFooter(`Cuddle`)
+              message.channel.send(cudEmbed)
+              console.log(`${message.author.username} |Cuddle`)
+    }else{
             var cudEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " réconforte "+ defineduser.username )
@@ -1508,10 +1581,11 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               message.channel.send(cudEmbed)
               console.log(`${message.author.username} |Cuddle`)
     }
+    }
     if (message.content.startsWith (prefix +"everyone")) {
      	      var eveEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " a fait un everyone ")
+              .setDescription(`${message.author.username}` + " rage sur un everyone ")
               .setImage(eve)
               .setTimestamp()
               .setFooter(`Everyone`)
@@ -1519,15 +1593,25 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               console.log(`${message.author.username} | Everyone`)
     }
     if (message.content.startsWith (prefix +"res")) {
- 
-            var resEmbed = new Discord.RichEmbed()
+ 	if (!defineduser){
+		            var resEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " ressuscite ")
+              .setDescription(`${message.author.username}` + " ressuscite")
               .setImage(resing)
               .setTimestamp()
               .setFooter(`Ressurect`)
               message.channel.send(resEmbed)
               console.log(`${message.author.username} | Ressurect`)
+    }else{
+            var resEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " ressuscite "+ defineduser.username)
+              .setImage(resing)
+              .setTimestamp()
+              .setFooter(`Ressurect`)
+              message.channel.send(resEmbed)
+              console.log(`${message.author.username} | Ressurect`)
+    	}
     }
     if (message.content.startsWith (prefix +"cry")) {
             var cryEmbed = new Discord.RichEmbed()
@@ -1541,6 +1625,17 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
 
     }
     if (message.content.startsWith (prefix +"kiss")) {
+	    if (!defineduser){
+		    var kissEmbed = new Discord.RichEmbed()
+              .setDescription(`${message.author.username}` + " fait un bisou a Nitral")
+              .setColor ('#00FAD9')
+              .setImage(kissing)
+              .setTimestamp()
+              .setFooter(`Kiss`)
+              console.log(`${message.author.username} | Kiss`)
+              message.channel.send(kissEmbed)
+
+    }else{
             var text = message.content.substring(6)
             var kissEmbed = new Discord.RichEmbed()
               .setDescription(`${message.author.username}` + " fait un bisou a "  + defineduser.username)
@@ -1552,8 +1647,20 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               message.channel.send(kissEmbed)
 
     }
+    }
     if (message.content.startsWith (prefix +"punch")) {
-            var text = message.content.substring(7)
+	    if (!defineduser){
+		     var punchEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " donne un coup de poing à Nitral")
+              .setImage(punching)
+              .setTimestamp()
+              .setFooter(`Punch`)
+              console.log(`${message.author.username} | Punch`)
+              message.channel.send(punchEmbed)
+
+}else{
+ 
             var punchEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " donne un coup de poing à "+ defineduser.username )
@@ -1562,10 +1669,21 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               .setFooter(`Punch`)
               console.log(`${message.author.username} | Punch`)
               message.channel.send(punchEmbed)
-
+	}
 }
     if (message.content.startsWith (prefix +"handholding")) {
-            var text = message.content.substring(13)
+	    if (!defineduser){
+		    var handEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " donne la main à Nitral")
+              .setImage(handholding)
+              .setTimestamp()
+              .setFooter(`Handholding`)
+              console.log(`${message.author.username} | Handholding`)
+              message.channel.send(handEmbed)
+
+    }else{
+
             var handEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " donne la main à " + defineduser.username )
@@ -1574,10 +1692,20 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               .setFooter(`Handholding`)
               console.log(`${message.author.username} | Handholding`)
               message.channel.send(handEmbed)
-
+    	}	
     }
     if (message.content.startsWith (prefix +"pout")) {
-            var text = message.content.substring(6)
+   if (!defineduser){
+	               var poutEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " boude")
+              .setImage(pouting)
+              .setTimestamp()
+              .setFooter(`Pout`)
+              console.log(`${message.author.username} | Pout`)
+              message.channel.send(poutEmbed)
+
+     }else{
             var poutEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " boude "+ defineduser.username )
@@ -1586,10 +1714,19 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               .setFooter(`Pout`)
               console.log(`${message.author.username} | Pout`)
               message.channel.send(poutEmbed)
-
+     	}
      }
     if (message.content.startsWith (prefix +"pat")) {
-            var text = message.content.substring(5)
+            if (!defineduser){
+		     var patEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " carresse Nitral")
+              .setImage(pating)
+              .setTimestamp()
+              .setFooter(`Pat`)
+              console.log(`${message.author.username} | Pat`)
+              message.channel.send(patEmbed)
+    }else{
             var patEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " carresse "+ defineduser.username )
@@ -1598,9 +1735,19 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               .setFooter(`Pat`)
               console.log(`${message.author.username} | Pat`)
               message.channel.send(patEmbed)
+    	}
     }
     if (message.content.startsWith (prefix +"hug")) {
-            var text = message.content.substring(5)
+            if (!defineduser){
+		    var HugEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9' )
+              .setDescription(`${message.author.username}` + " fait un calîn a Nitral")
+              .setImage(huging)
+              .setTimestamp()
+              .setFooter(`Hug`);
+              message.channel.send(HugEmbed)
+              console.log(`${message.author.username} | Hug`)
+      }else{
             var HugEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9' )
               .setDescription(`${message.author.username}` + " fait un calîn a "  + defineduser.username)
@@ -1610,6 +1757,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               message.channel.send(HugEmbed)
               console.log(`${message.author.username} | Hug`)
       }
+}
       //triggered
 
       if (message.content.startsWith(prefix + "purge")) {
@@ -2494,6 +2642,36 @@ if (message.content.startsWith (prefix + "pollc") ) {
 cuteapi.generate("triggered", image).then(r => { message.channel.send({ file: { attachment: r
       }}) ;
       })
+    }    if (message.content.startsWith (prefix +"test")) {
+	    var text = message.content.substring(6);
+            if (!defineduser){
+		     var patEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " carresse Nitral")
+              .setImage(pating)
+              .setTimestamp()
+              .setFooter(`Pat`)
+              console.log(`${message.author.username} | Pat`)
+              message.channel.send(patEmbed)
+    }else if(text>0){
+	                var patEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " carresse "+ text )
+              .setImage(pating)
+              .setTimestamp()
+              .setFooter(`Pat`)
+              console.log(`${message.author.username} | Pat`)
+              message.channel.send(patEmbed)
+    	}else
+            var patEmbed = new Discord.RichEmbed()
+              .setColor ('#00FAD9')
+              .setDescription(`${message.author.username}` + " carresse "+ defineduser.username )
+              .setImage(pating)
+              .setTimestamp()
+              .setFooter(`Pat`)
+              console.log(`${message.author.username} | Pat`)
+              message.channel.send(patEmbed)
+    	}
     }
   })
 
