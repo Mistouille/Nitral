@@ -2662,7 +2662,7 @@ cuteapi.generate("triggered", image).then(r => { message.channel.send({ file: { 
               .setFooter(`Pat`)
               console.log(`${message.author.username} | Pat`)
               message.channel.send(patEmbed)
-    	}else
+    	}else{
             var patEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
               .setDescription(`${message.author.username}` + " carresse "+ defineduser.username )
