@@ -1613,9 +1613,25 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
       let rreason = args.join(" ").slice(31);
 
 	  if (!rreason[0]){
-         let nor =("Aucune raison donné")
-            return;
-        }
+		  message.channel.send(`${message.author.username} vient de report ${defineduser.username}.\n\n **Raison :** Aucune . `);
+ 
+         let repEmbed = new Discord.RichEmbed()
+         .setDescription("~Report~")
+         .setColor("#e56b00")
+         .addField("Utilisateur Report", `${defineduser.username} `, false)
+         .addField("Report par", `${message.author.username}`, false)
+         .addField("Dans ", message.channel, false)
+         .addField("Le", message.createdAt, false)
+         .addField ("Raison","Aucune raison spécifié" , false)
+         .setTimestamp()
+         .setFooter(`Report`);
+
+          let incidentchannel = message.guild.channels.find(`name`, "report-nitral");
+          if(!incidentchannel) return message.channel.send("Impossible de trouver le channel `report-nitral`.");
+
+          incidentchannel.send(repEmbed)
+    console.log(`${message.author.username} | Report `)
+        }else {
 
     message.channel.send(`${message.author.username} vient de report ${defineduser.username}.\n\n **Raison :** ${rreason}. `);
       let repEmbed = new Discord.RichEmbed()
@@ -1635,6 +1651,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
           incidentchannel.send(repEmbed)
     console.log(`${message.author.username} | Report `)
   }
+	 } 
     if (message.content === "ed"){
       message.channel.send ("https://www.ecoledirecte.com/login")
     }
