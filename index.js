@@ -2644,19 +2644,19 @@ cuteapi.generate("triggered", image).then(r => { message.channel.send({ file: { 
       })
     }    if (message.content.startsWith (prefix +"test")) {
 	    var text = message.content.substring(6);
-            if (!defineduser){
+            if (text>0){text>0
 		     var patEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " carresse Nitral")
+              .setDescription(`${message.author.username}` + " carresse " + text)
               .setImage(pating)
               .setTimestamp()
               .setFooter(`Pat`)
               console.log(`${message.author.username} | Pat`)
               message.channel.send(patEmbed)
-    }else if(text>0){
+    }else if(!defineduser){
 	                var patEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " carresse "+ text )
+              .setDescription(`${message.author.username}` + " carresse Nitral")
               .setImage(pating)
               .setTimestamp()
               .setFooter(`Pat`)
