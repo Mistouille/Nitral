@@ -53,11 +53,11 @@ let defineduser = message.mentions.users.first();
 	
 bot.on("guildCreate", guild => {
   console.log(`Nouveau serveur : ${guild.name} (id: ${guild.id}). ce serveur a  ${guild.memberCount} membres !`);
-emitter.setMaxListeners(1) 
+ 
 });
 bot.on("guildDelete", guild => {
   console.log(`J'ai perdu un serveur ${guild.name} (id: ${guild.id})`);
-emitter.setMaxListeners(1) 
+ 
 });
 
 
