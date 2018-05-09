@@ -2642,37 +2642,7 @@ if (message.content.startsWith (prefix + "pollc") ) {
 cuteapi.generate("triggered", image).then(r => { message.channel.send({ file: { attachment: r
       }}) ;
       })
-    }    if (message.content.startsWith (prefix +"test")) {
-	    var text = message.content.substring(6);
-            if (text>0){text>0
-		     var patEmbed = new Discord.RichEmbed()
-              .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " carresse " + text)
-              .setImage(pating)
-              .setTimestamp()
-              .setFooter(`Pat`)
-              console.log(`${message.author.username} | Pat`)
-              message.channel.send(patEmbed)
-    }else if(!defineduser){
-	                var patEmbed = new Discord.RichEmbed()
-              .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " carresse Nitral")
-              .setImage(pating)
-              .setTimestamp()
-              .setFooter(`Pat`)
-              console.log(`${message.author.username} | Pat`)
-              message.channel.send(patEmbed)
-    	}else{
-            var patEmbed = new Discord.RichEmbed()
-              .setColor ('#00FAD9')
-              .setDescription(`${message.author.username}` + " carresse "+ defineduser.username )
-              .setImage(pating)
-              .setTimestamp()
-              .setFooter(`Pat`)
-              console.log(`${message.author.username} | Pat`)
-              message.channel.send(patEmbed)
-    	}
-    }
+    }    
   })
 
           //Token
