@@ -1518,7 +1518,7 @@ var rand = ['C\'est certain','Sans aucun doute','Oui définitivement', 'Les pers
               console.log(`${message.author.username} | stare `)
     }
     }
-     if (message.content === prefix +"fuck"){
+     if (message.content.startsWith( prefix +"fuck") ){
 	if (!defineduser){
 		          var fuckEmbed = new Discord.RichEmbed()
               .setColor ('#00FAD9')
