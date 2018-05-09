@@ -50,7 +50,13 @@ bot.on('ready',function() {
 bot.on("message", async message => {
 	const used = process.memoryUsage().heapUsed / 1024 / 1024;
 let defineduser = message.mentions.users.first();
-
+	
+bot.on("guildCreate", guild => {
+  console.log(`Nouveau serveur : ${guild.name} (id: ${guild.id}). ce serveur a  ${guild.memberCount} membres !`);
+});
+bot.on("guildDelete", guild => {
+  console.log(`J'ai perdu un serveur ${guild.name} (id: ${guild.id})`);
+});
 
 
 //------------------------------------------------//
