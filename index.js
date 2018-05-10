@@ -120,7 +120,38 @@ bot.on("guildDelete", guild => {
 //------------------------------------------------//
 //                   Musique                      //
 //------------------------------------------------//
-/*if (message.content.startsWith(prefix + "play")){
+	if (message.content.startsWith(prefix + "queue")){
+    var intent;
+
+    function getQueue(guild) {
+        if (!guild) return
+        if (typeof guild == 'object') guild = guild.id
+        if (queues[guild]) return queues[guild]
+        else queues[guild] = []
+        return queues[guild]
+    }
+
+
+    if (queue.length == 0){
+     message.channel.send("Pas de musique dans la queue");
+    let text = '';
+    for (let i = 0; i < queue.length; i++) {
+        text += `${(i + 1)}. ${queue[i].title} | demandé par ${queue[i].requested}\n`
+    };
+    message.channel.send({
+        embed: {
+            author: {
+                name: client.user.username,
+                icon_url: client.user.avatarURL
+            },
+            color: 0x00FF00,
+            title: `Queue`,
+            description: `\n${text}`
+        }
+    })
+    }
+}
+if (message.content.startsWith(prefix + "play")){
 var intent;
 let queue = getQueue(message.guild.id);
 
@@ -152,8 +183,8 @@ function play(message, queue, song) {
             message.channel.send({
                 embed: {
                     author: {
-                        name: client.user.username,
-                        icon_url: client.user.avatarURL
+                        name: bot.user.username,
+                        icon_url: bot.user.avatarURL
                     },
                     color: 0x00FF00,
                     title: `Liste`,
@@ -170,8 +201,8 @@ function play(message, queue, song) {
                 message.channel.send({
         embed: {
             author: {
-                name: client.user.username,
-                icon_url: client.user.avatarURL
+                name: bot.user.username,
+                icon_url: bot.user.avatarURL
             },
             color: 0x00FF00,
             title: `Lecture en cours`,
@@ -221,37 +252,7 @@ if (!message.guild.voiceConnection) {
 
         play(message, getQueue(message.guild.id), suffix)
     }
-    if (message.content.startsWith(prefix + "queue")){
-    var intent;
-
-    function getQueue(guild) {
-        if (!guild) return
-        if (typeof guild == 'object') guild = guild.id
-        if (queues[guild]) return queues[guild]
-        else queues[guild] = []
-        return queues[guild]
-    }
-
-
-    if (queue.length == 0){
-     message.channel.send("Pas de musique dans la queue");
-    let text = '';
-    for (let i = 0; i < queue.length; i++) {
-        text += `${(i + 1)}. ${queue[i].title} | demandé par ${queue[i].requested}\n`
-    };
-    message.channel.send({
-        embed: {
-            author: {
-                name: client.user.username,
-                icon_url: client.user.avatarURL
-            },
-            color: 0x00FF00,
-            title: `Queue`,
-            description: `\n${text}`
-        }
-    })
-    }
-}*/
+    
 //------------------------------------------------//
 //                  money                         //
 //------------------------------------------------//
