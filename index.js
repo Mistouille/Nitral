@@ -17,7 +17,7 @@ const ytdl = require('ytdl-core');
 const search = require('youtube-search');
 const randomPuppy = require('random-puppy');
 const request = require('snekfetch');
-const queues = {}
+
 const opts = {
     part: 'snippet',
     maxResults: 10,
@@ -127,7 +127,7 @@ bot.on("guildDelete", guild => {
 //                   Musique                      //
 //------------------------------------------------//
 	if (message.content.startsWith(prefix + "queue")){
-
+	const queues = {}
     var intent;
 
     function getQueue(guild) {
@@ -139,17 +139,17 @@ bot.on("guildDelete", guild => {
     }
 
 
-    if (queue.length == 0){
+    if (queues.length == 0){
      message.channel.send("Pas de musique dans la queue");
     let text = '';
-    for (let i = 0; i < queue.length; i++) {
-        text += `${(i + 1)}. ${queue[i].title} | demandé par ${queue[i].requested}\n`
+    for (let i = 0; i < queues.length; i++) {
+        text += `${(i + 1)}. ${queues[i].title} | demandé par ${queues[i].requested}\n`
     };
     message.channel.send({
         embed: {
             author: {
-                name: client.user.username,
-                icon_url: client.user.avatarURL
+                name: bot.user.username,
+                icon_url: bot.user.avatarURL
             },
             color: 0x00FF00,
             title: `Queue`,
