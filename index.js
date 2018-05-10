@@ -519,7 +519,7 @@ if (!args[0]) {return message.channel.send (`Veuillez mettreun nom au role .`)
   .addField("**Statuts**",definedUser.presence.status, false)
   .addField("**Jeu**", `${definedUser.presence.game ? `${definedUser.presence.game.name}` : "Joue à rien "}`, false)
   .addField("**Création du compte**", `${moment.utc(definedUser.createdAt).format("D/M/Y, HH:mm:ss")} (${ms(Date.now()- moment.utc(definedUser.createdAt), {long: true})})`)
-  .addField("**Date d'arrivée sur le serv**", `${moment.utc(message.member.mentions.users.first().joinedAt).format("D/M/Y, HH:mm:ss")} (${ms(Date.now()- moment.utc(message.member.joinedAt), {long: true})})`)
+  .addField("**Date d'arrivée sur le serv**", `${moment.utc(definedUser.joinedAt).format("D/M/Y, HH:mm:ss")} (${ms(Date.now()- moment.utc(message.member.joinedAt), {long: true})})`)
 .setImage(definedUser.avatarURL)
   message.channel.send(uEmbed);
 }
