@@ -17,6 +17,12 @@ const ytdl = require('ytdl-core');
 const search = require('youtube-search');
 const randomPuppy = require('random-puppy');
 const request = require('snekfetch');
+const queues = {}
+const opts = {
+    part: 'snippet',
+    maxResults: 10,
+    key: process.env.YTAPI
+}
 
 let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
@@ -121,6 +127,7 @@ bot.on("guildDelete", guild => {
 //                   Musique                      //
 //------------------------------------------------//
 	if (message.content.startsWith(prefix + "queue")){
+
     var intent;
 
     function getQueue(guild) {
