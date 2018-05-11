@@ -31,7 +31,7 @@ let rvotes =("99")
 let xp = require("./xp.json");
 var cooldown = new Set()
 
-let prefix = "++"
+let prefix = "--"
 
 //------------------------------------------------//
 //                   Préfixe                      //
